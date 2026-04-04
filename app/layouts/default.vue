@@ -2,7 +2,7 @@
 
 <template>
   <div class="default-layout">
-    <!-- <AppHeader /> -->
+    <LayoutHeader />
     <slot />
     <!-- <AppFooter /> -->
   </div>
