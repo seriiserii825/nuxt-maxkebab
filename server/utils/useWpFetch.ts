@@ -14,7 +14,7 @@ export function useWpFetch(event: Parameters<typeof getCookie>[0]) {
 
   return {
     get<T = unknown>(path: string, params?: Record<string, string>) {
-      return $fetch<T>(`${config.public.apiBase}${path}`, { headers, params });
+      return $fetch<T>(`${config.public.apiBase}${path}`, { headers, params, timeout: 5000 });
     },
 
     post<T = unknown>(path: string, body: unknown) {
@@ -22,6 +22,7 @@ export function useWpFetch(event: Parameters<typeof getCookie>[0]) {
         method: "POST",
         headers,
         body: JSON.stringify(body),
+        timeout: 5000,
       });
     },
   };
