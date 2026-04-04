@@ -10,12 +10,12 @@ export default defineNuxtConfig({
   css: ["@/assets/scss/my.scss"],
   modules: ["@nuxtjs/i18n"],
   i18n: {
+    defaultLocale: "ro",
     locales: [
-      { code: "en", name: "English" },
-      { code: "ru", name: "Русский" },
-      { code: "ro", name: "Română" },
+      { code: "ro", name: "Română", file: "ro.json" },
+      { code: "ru", name: "Русский", file: "ru.json" },
+      { code: "en", name: "English", file: "en.json" },
     ],
-    defaultLocale: "en",
-    strategy: "prefix", // /en, /ru, /ro
   },
 });
+

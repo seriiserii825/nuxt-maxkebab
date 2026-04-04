@@ -1,7 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { locales, setLocale } = useI18n();
+</script>
 
 <template>
   <header class="main-header">
+    <button v-for="locale in locales" @click="setLocale(locale.code)">
+      {{ locale.name }}
+    </button>
+    <h1>{{ $t("welcome") }}</h1>
     <div class="container main-header__menu">
       <div class="language">
         <section id="wpglobus-5" class="widget widget_wpglobus">
