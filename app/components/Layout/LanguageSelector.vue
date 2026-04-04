@@ -11,35 +11,25 @@ watch(locale, () => {
 </script>
 
 <template>
-  <div class="language">
-    <section class="widget widget_wpglobus" :class="{ active: is_visible_dropdown }">
-      <h2 class="widget-title">Alege limba</h2>
-      <div class="list flags">
+  <div class="language-selector">
+    <section class="language-selector__dropdown" :class="{ active: is_visible_dropdown }">
+      <h2 class="language-selector__title">Alege limba</h2>
+      <div class="language-selector__list">
         <NuxtLink
           v-for="locale in locales"
           :key="locale.code"
           :to="switchLocalePath(locale.code)"
-          :class="{ 'wpglobus-current-language': locale.code === currentLocale?.code }"
-          class="wpglobus-selector-link">
+          :class="{ active: locale.code === currentLocale?.code }"
+          class="language-selector__item">
           <img :src="`/img/${locale.img}`" :alt="locale.name" />
           <span class="name">{{ locale.name }}</span>
-          <span class="code">{{ locale.code.toUpperCase }}</span>
+          <span class="code">{{ locale.code.toUpperCase() }}</span>
         </NuxtLink>
       </div>
     </section>
-    <div
-      @click="is_visible_dropdown = !is_visible_dropdown"
-      class="language__btn"
-      id="js-language-btn">
+    <button @click="is_visible_dropdown = !is_visible_dropdown" class="language-selector__btn">
       <img :src="`/img/${currentLocale?.img}`" :alt="currentLocale?.name" />
-      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
-        <path
-          d="M6.5 3L4 5.5L1.5 3"
-          stroke="#231F20"
-          stroke-width="0.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"></path>
-      </svg>
-    </div>
+      <IconDown />
+    </button>
   </div>
 </template>
