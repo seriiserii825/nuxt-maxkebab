@@ -1,0 +1,150 @@
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  transition: 0.3s;
+
+  @media (max-width: 576px) {
+    background: linear-gradient(to top, #fff 0%, #fff 80%, transparent 100%);
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  /* white background card */
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60%;
+    background: #fff;
+    border-radius: 3rem;
+    box-shadow: 0 3.2rem 3rem -2.9rem rgba(0, 0, 0, 0.25);
+    z-index: 1;
+  }
+
+  &__img,
+  &__content {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* image */
+
+  &__img {
+    display: flex;
+    justify-content: center;
+    padding: 0 1rem;
+
+    @media (max-width: 576px) {
+      padding: 0;
+    }
+
+    img {
+      border-radius: 8.5rem;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+
+      @media (max-width: 576px) {
+        border-radius: 3.2rem;
+      }
+
+      @media (max-width: 400px) {
+        border-radius: 2.4rem;
+      }
+    }
+  }
+
+  /* content */
+
+  &__content {
+    display: grid;
+    align-items: center;
+    padding: 2.6rem;
+    flex: 1;
+
+    @media (max-width: 576px) {
+      padding: 2.4rem 1rem 0;
+    }
+  }
+
+  &__title {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    @media (max-width: 576px) {
+      font-size: 16px;
+    }
+  }
+
+  &__description {
+    p {
+      margin-bottom: 1.3rem;
+      font-size: 2rem;
+      font-weight: 300;
+
+      @media (max-width: 576px) {
+        font-size: 12px;
+      }
+    }
+  }
+
+  /* footer */
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    @media (max-width: 576px) {
+      display: block;
+    }
+  }
+
+  &__price {
+    font-size: 3rem;
+    font-weight: 700;
+
+    span {
+      margin-left: 1rem;
+      font-size: 2rem;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 1rem;
+
+    @media (max-width: 576px) {
+      justify-content: space-between;
+    }
+  }
+
+  &__add-to-cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    width: 5rem;
+    background: #ee3230;
+    border-radius: 50%;
+  }
+
+  &__topping {
+    font-weight: 400;
+    color: var(--color-green);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

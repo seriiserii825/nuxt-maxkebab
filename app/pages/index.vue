@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import SectionProductsSection from "~/components/Section/SectionProductsSection.vue";
 import type { IHomeResponse } from "~/interfaces/IHomeResponse";
 
 const { locale } = useI18n();
@@ -26,5 +27,6 @@ if (error.value) {
         <img :src="slide" alt="slider" />
       </template>
     </UISlider>
+    <SectionProductsSection />
   </div>
 </template>
