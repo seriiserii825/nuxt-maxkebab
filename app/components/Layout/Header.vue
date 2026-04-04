@@ -1,4 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const props = defineProps({
+  menu: {
+    type: Array as PropType<Array<{ id: number; title: string; url: string }>>,
+    required: true,
+  },
+});
+</script>
 
 <template>
   <header class="main-header">
