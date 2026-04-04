@@ -12,9 +12,9 @@ export default defineNuxtConfig({
   i18n: {
     defaultLocale: "ro",
     locales: [
-      { code: "ro", name: "Română", file: "ro.json" },
-      { code: "ru", name: "Русский", file: "ru.json" },
-      { code: "en", name: "English", file: "en.json" },
+      { code: "ro", name: "Română", file: "ro.json", img: "ro.png" },
+      { code: "ru", name: "Русский", file: "ru.json", img: "ru.png" },
+      { code: "en", name: "English", file: "en.json", img: "en.png" },
     ],
   },
 });

@@ -1,52 +1,9 @@
-<script setup lang="ts">
-const { locales, setLocale } = useI18n();
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <header class="main-header">
-    <button v-for="locale in locales" @click="setLocale(locale.code)">
-      {{ locale.name }}
-    </button>
-    <h1>{{ $t("welcome") }}</h1>
     <div class="container main-header__menu">
-      <div class="language">
-        <section id="wpglobus-5" class="widget widget_wpglobus">
-          <h2 class="widget-title">Alege limba</h2>
-          <div class="list flags">
-            <a href="https://maxkebab.md/" class="wpglobus-selector-link wpglobus-current-language">
-              <img src="https://maxkebab.md/wp-content/plugins/wpglobus/flags/ro.png" alt="" />
-              <span class="name">Română</span>
-              <span class="code">RO</span>
-            </a>
-            <a href="https://maxkebab.md/ru/" class="wpglobus-selector-link">
-              <img src="https://maxkebab.md/wp-content/plugins/wpglobus/flags/ru.png" alt="" />
-              <span class="name">Русский</span>
-              <span class="code">RU</span>
-            </a>
-            <a href="https://maxkebab.md/en/" class="wpglobus-selector-link">
-              <img src="https://maxkebab.md/wp-content/plugins/wpglobus/flags/us.png" alt="" />
-              <span class="name">English</span>
-              <span class="code">EN</span>
-            </a>
-          </div>
-        </section>
-        <div class="language__btn" id="js-language-btn">
-          <img src="https://maxkebab.md/wp-content/plugins/wpglobus/flags/ro.png" alt="" />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="8"
-            height="8"
-            viewBox="0 0 8 8"
-            fill="none">
-            <path
-              d="M6.5 3L4 5.5L1.5 3"
-              stroke="#231F20"
-              stroke-width="0.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </svg>
-        </div>
-      </div>
+      <LayoutLanguageSelector />
       <ul class="city-select">
         <li class="city-select__item" data-city-select="chisinau">
           <div class="city-select__title">
