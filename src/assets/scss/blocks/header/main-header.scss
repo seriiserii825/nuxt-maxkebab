@@ -1,0 +1,310 @@
+@keyframes headerFade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.main-header {
+  position: absolute;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 4px 60px -20px rgb(0, 0, 0, 20%);
+  transition: all 0.3s;
+  z-index: 999;
+  padding-block: 2rem;
+  @media screen and (max-width: 992px) {
+    padding: 0;
+  }
+  @media screen and (max-width: 576px) {
+    padding: 0;
+  }
+
+  &.active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0.4rem 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgb(0, 0, 0, 30%);
+    transition: all 0.4s;
+    z-index: 1000;
+
+    .logo {
+      width: 11rem;
+    }
+
+    .main-menu {
+      align-items: baseline;
+      @media screen and (max-width: 992px) {
+        align-items: center;
+      }
+    }
+  }
+
+  .container {
+    @media screen and (max-width: 576px) {
+      padding: 0 5px;
+    }
+  }
+
+  &__menu {
+    display: flex;
+    align-items: center;
+  }
+
+  &__main-menu {
+    position: relative;
+    @media screen and (max-width: 992px) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      margin-left: 0;
+    }
+  }
+
+  &__cart-icon {
+    position: relative;
+    display: block;
+    width: 7.4rem;
+    text-align: center;
+    z-index: 10;
+
+    .cart-icon-target {
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+      }
+      @media screen and (max-width: 992px) {
+        top: 0;
+      }
+    }
+
+    &__total {
+      font-size: 1.4rem;
+      font-weight: 400;
+      line-height: 1.6rem;
+      letter-spacing: -0.025em;
+      text-align: center;
+      color: var(--accent-dark);
+      @media screen and (max-width: 992px) {
+        display: none;
+      }
+    }
+  }
+
+  &__sandwich {
+    display: none;
+    @media screen and (max-width: 992px) {
+      display: block;
+      order: 3;
+    }
+  }
+
+  &.fixed-scroll {
+    &.active {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6rem;
+      z-index: 1000;
+      animation-duration: 0.6s;
+      animation-fill-mode: forwards;
+      animation-name: headerFade;
+
+      .cart-icon {
+        top: 2rem;
+      }
+
+      .sandwitch-wrap {
+        top: 0.5rem;
+        left: 2rem;
+      }
+    }
+  }
+
+  .logo {
+    position: relative;
+    margin-right: auto;
+    width: 19.1rem;
+    opacity: 1;
+    transition: all 0.4s;
+    z-index: 3;
+    @media screen and (max-width: 1400px) {
+      width: 16rem;
+    }
+    @media screen and (max-width: 992px) {
+      top: 0;
+      left: 1.5rem;
+      width: 14rem;
+    }
+    @media screen and (max-width: 576px) {
+      width: 11rem;
+    }
+    @media screen and (max-width: 460px) {
+      left: -1.2rem;
+    }
+
+    /* @media screen and (max-width: 576px) { */
+
+    /*   transform: scale(0.6); */
+
+    /*   top: -1.5rem; */
+
+    /* } */
+    &:hover {
+      opacity: 0.7;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .info {
+    height: 8.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.3rem;
+    letter-spacing: -0.025em;
+    color: #fff;
+
+    &__container {
+      display: flex;
+      justify-content: space-between;
+      @media screen and (max-width: 992px) {
+        display: grid;
+        justify-content: initial;
+        text-align: center;
+      }
+    }
+
+    &__hours {
+      padding: 1.6rem 3rem;
+      height: fit-content;
+      background-color: var(--color-red);
+      border-radius: 0 0 1rem 1rem;
+      @media screen and (max-width: 1600px) {
+        padding: 0.6rem 1rem;
+        font-size: 1.5rem;
+      }
+      @media screen and (max-width: 576px) {
+        display: none;
+      }
+
+      span {
+        &:first-of-type {
+          margin-right: 3.3rem;
+          @media screen and (max-width: 1600px) {
+            margin-right: 1rem;
+          }
+        }
+      }
+    }
+
+    &__contacts {
+      margin-top: 2rem;
+      margin-right: 10rem;
+      @media screen and (max-width: 992px) {
+        margin-top: 1rem;
+      }
+
+      ul {
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+        @media screen and (max-width: 1830px) {
+          gap: 1rem;
+        }
+        @media screen and (max-width: 992px) {
+          justify-content: initial;
+        }
+
+        li {
+          align-items: center;
+          height: fit-content;
+          font-size: 2rem;
+          font-weight: 700;
+          line-height: 2.3rem;
+          letter-spacing: -0.025em;
+          color: white;
+          background-color: var(--color-brown);
+          border-radius: 1rem;
+          transition: all 0.3s;
+          @media screen and (max-width: 1400px) {
+            border-radius: 0.5rem;
+          }
+
+          &:hover {
+            background-color: var(--color-red);
+            transition: all 0.3s;
+          }
+
+          &.phone {
+            padding: 0.7rem 3.3rem 0.77rem 2.3rem;
+            @media screen and (max-width: 1400px) {
+              display: flex;
+              align-items: center;
+              padding: 0.8rem 1.5rem 0.7rem;
+              font-size: 1.8rem;
+              line-height: 2rem;
+            }
+
+            svg {
+              margin-right: 8px;
+            }
+          }
+
+          &.cabinet {
+            a {
+              display: block;
+              padding: 0.7rem 1.5rem;
+              text-transform: capitalize;
+              @media screen and (max-width: 1400px) {
+                padding: 0.3rem 1.5rem;
+                font-size: 1.8rem;
+                line-height: 2.9rem;
+              }
+            }
+          }
+
+          &.lang {
+            background: transparent;
+            @media screen and (max-width: 576px) {
+              margin-top: 1rem;
+            }
+          }
+        }
+      }
+
+      .phone {
+        @media screen and (max-width: 650px) {
+          display: none !important;
+        }
+      }
+
+      .cabinet {
+        @media screen and (max-width: 650px) {
+          display: none;
+        }
+      }
+    }
+    @media screen and (max-width: 1400px) {
+      height: 5rem;
+    }
+  }
+}

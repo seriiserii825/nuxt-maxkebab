@@ -1,0 +1,141 @@
+.features {
+  position: relative;
+
+  .line {
+    &:first-of-type {
+      left: 13.7%;
+    }
+
+    &:nth-of-type(2) {
+      left: 34.3%;
+    }
+
+    &:nth-of-type(3) {
+      left: 43.5%;
+    }
+
+    &:nth-of-type(4) {
+      left: 64.1%;
+    }
+
+    &:nth-of-type(5) {
+      left: 73.2%;
+    }
+
+    &:nth-of-type(6) {
+      left: 93.9%;
+    }
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+
+    // flex-direction: row-reverse;
+    @media screen and (max-width: 1700px) {
+      display: block;
+    }
+
+    &>img {
+      display: block;
+
+      @media screen and (max-width: 992px) {
+        display: table;
+        margin: 0 auto 2rem;
+      }
+    }
+  }
+
+  &__wrap {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 15.9rem 2.8rem 0;
+    max-width: 1717px;
+    z-index: 2;
+    flex: 1;
+
+    @media screen and (max-width: 1700px) {
+      padding: 4rem 2rem;
+    }
+
+    @media screen and (max-width: 992px) {
+      display: block;
+    }
+  }
+
+  &__item {
+    margin-bottom: 8.3rem;
+    width: 32%;
+
+    @media screen and (max-width: 992px) {
+      width: 100%;
+      text-align: center;
+    }
+
+    &:first-of-type {
+      .features__text {
+        padding-right: 14rem;
+      }
+    }
+
+    &:nth-of-type(2) {
+      .features__text {
+        padding-right: 12rem;
+      }
+    }
+
+    &:nth-of-type(3) {
+      .features__text {
+        padding-right: 14rem;
+
+        img {
+          width: 28.7rem;
+          max-width: initial;
+        }
+      }
+    }
+  }
+
+  &__title {
+    margin-bottom: 3rem;
+  }
+
+  &__text {
+    padding-top: 3.2rem;
+    padding-left: 38.6%;
+    line-height: 1.5;
+
+    @media screen and (max-width: 1600px) {
+      padding-left: 20%;
+    }
+
+    @media screen and (max-width: 992px) {
+      padding-right: 0 !important;
+      padding-left: 0;
+      text-align: center !important;
+    }
+
+    p {
+      margin-bottom: 3.4rem;
+      font-size: 1.6rem;
+      line-height: 3.1rem;
+      letter-spacing: -0.05rem;
+    }
+  }
+
+  ul {
+    display: flex;
+    margin-top: 3.9rem;
+
+    @media screen and (max-width: 992px) {
+      justify-content: center;
+    }
+
+    img {
+      margin-right: 2rem;
+      height: 2.6rem;
+    }
+  }
+}

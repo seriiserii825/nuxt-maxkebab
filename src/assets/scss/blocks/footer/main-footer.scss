@@ -1,0 +1,300 @@
+.main-footer {
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    padding: 9rem 0 5rem 16rem;
+    background-color: #fff;
+
+    @media screen and (max-width: 1600px) {
+      padding: 9rem 0 5rem 6rem;
+    }
+
+    @media screen and (max-width: 1400px) {
+      padding: 9rem 1.5rem;
+    }
+
+    @media screen and (max-width: 576px) {
+      display: block;
+      padding: 5rem 1.5rem 1rem;
+    }
+
+    &__info {
+      @media screen and (max-width: 576px) {
+        text-align: center;
+      }
+
+      h1 {
+        margin-bottom: 6.6rem;
+        font-size: 4.5rem;
+        font-weight: 700;
+        line-height: 5.4rem;
+        color: #000;
+
+        @media screen and (max-width: 576px) {
+          margin-bottom: 2.5rem;
+        }
+      }
+
+      ul {
+        li {
+          display: flex;
+          align-items: center;
+          margin-bottom: 3rem;
+          font-size: 3rem;
+          font-weight: 400;
+          line-height: 3.5rem;
+          letter-spacing: -0.025em;
+          color: #000;
+
+          &.current-menu-item {
+            a {
+              color: var(--color-red);
+            }
+          }
+
+          a {
+            &:hover {
+              color: var(--color-red);
+            }
+          }
+
+          img {
+            width: 35rem;
+          }
+
+          @media screen and (max-width: 576px) {
+            display: block;
+            text-align: center;
+          }
+        }
+
+        svg {
+          margin-right: 1.8rem;
+        }
+      }
+
+      .main-footer__delivery-links {
+        display: flex !important;
+        gap: 2rem;
+        align-items: center;
+        overflow: visible;
+        font-size: 0;
+        line-height: 0;
+
+        @media screen and (max-width: 576px) {
+          justify-content: center;
+          display: flex !important;
+        }
+
+        a {
+          display: inline-block;
+          transition: opacity 0.3s ease;
+          overflow: visible;
+          flex-shrink: 0;
+
+          &:hover {
+            opacity: 0.7;
+          }
+
+          svg {
+            display: block;
+          }
+
+          &[href*="glovo"] svg {
+            height: auto;
+            width: auto;
+          }
+
+          &[href*="straus"] svg {
+            height: 3rem;
+            width: auto;
+
+            path {
+              fill: #122128;
+            }
+          }
+        }
+      }
+    }
+
+    &__menu {
+      margin-top: 10rem;
+      text-align: right;
+
+      @media screen and (max-width: 992px) {
+        margin-top: 0;
+      }
+
+      @media screen and (max-width: 576px) {
+        margin-top: 6rem;
+      }
+
+      ul {
+        display: flex;
+        padding-right: 16rem;
+        border-bottom: 1px solid #000;
+
+        @media screen and (max-width: 1600px) {
+          padding-right: 6rem;
+        }
+
+        @media screen and (max-width: 1400px) {
+          padding-right: 0;
+        }
+
+        @media screen and (max-width: 992px) {
+          display: block;
+        }
+
+        li {
+          margin: 2rem 1rem;
+
+          @media screen and (max-width: 992px) {
+            margin: 0 0 1rem;
+          }
+
+          &.current-menu-item {
+            a {
+              color: var(--color-red);
+            }
+          }
+
+          a {
+            display: block;
+            font-size: 2.6rem;
+            font-weight: 300;
+            line-height: 3rem;
+            text-align: right;
+
+            &:hover {
+              color: var(--color-red);
+            }
+
+            @media screen and (max-width: 576px) {
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+
+    &__partner {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: 8rem;
+      padding-right: 16rem;
+      font-size: 2rem;
+
+      @media screen and (max-width: 992px) {
+        padding-right: 0;
+      }
+
+      @media screen and (max-width: 576px) {
+        display: grid;
+        justify-content: center;
+        margin-top: 4rem;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+        line-height: 4rem;
+        text-align: center;
+      }
+
+      a {
+        margin-left: 2rem;
+      }
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 16rem;
+    font-size: 1.8rem;
+    font-weight: 300;
+    line-height: 2.1rem;
+    color: #000;
+    background-color: var(--color-yellow);
+
+    @media screen and (max-width: 1350px) {
+      padding: 2rem 1.5rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      display: block;
+      text-align: center;
+    }
+
+    &__social {
+      ul {
+        display: flex;
+        align-items: center;
+
+        @media screen and (max-width: 768px) {
+          justify-content: center;
+          padding: 2rem 0;
+        }
+
+        li {
+          padding: 0 1.5rem;
+
+          &.current-menu-item {
+            a {
+              color: var(--color-red);
+            }
+          }
+
+          a {
+            display: block;
+          }
+        }
+      }
+    }
+
+    &__terms {
+      ul {
+        display: flex;
+
+        @media screen and (max-width: 768px) {
+          justify-content: center;
+        }
+
+        li {
+          position: relative;
+
+          &:first-child {
+            margin-right: 3rem;
+
+            @media screen and (max-width: 1200px) {
+              margin-right: 4rem;
+            }
+
+            &::after {
+              content: "";
+              position: absolute;
+              top: 3px;
+              right: -17px;
+              display: block;
+              width: 1.2px;
+              height: 16px;
+              background: black;
+
+              @media screen and (max-width: 1200px) {
+                height: 11px;
+              }
+            }
+          }
+
+          a {
+            text-decoration: underline;
+
+            &:hover {
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

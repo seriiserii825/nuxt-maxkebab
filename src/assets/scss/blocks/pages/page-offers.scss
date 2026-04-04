@@ -1,0 +1,145 @@
+.page-offers {
+  position: relative;
+  padding-top: 22rem;
+  padding-bottom: 11rem;
+  background: linear-gradient(180deg, #FFFEF1 80.21%, #F1FFF5 100%);
+
+  @media screen and (max-width: 992px) {
+    padding-top: 14rem;
+  }
+
+  @media screen and (max-width: 576px) {
+    padding-top: 11rem;
+  }
+
+  .decor-1 {
+    position: absolute;
+    top: 18rem;
+    right: 0;
+    z-index: 0;
+  }
+
+  .decor-2 {
+    position: absolute;
+    left: -5rem;
+    bottom: 35%;
+    z-index: 0;
+  }
+
+  .decor-3 {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+  }
+
+  &__products {
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 5rem;
+
+    @media screen and (max-width: 768px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  &__item {
+    position: relative;
+    background: #FFF;
+    border-radius: 3rem;
+    box-shadow: 0 4px 60px -20px rgb(0, 0, 0, 25%);
+    transition: all 0.3s;
+    z-index: 1;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+
+  &__info {
+    padding: 2.8rem 3.2rem;
+
+    @media screen and (max-width: 400px) {
+      padding: 2rem;
+    }
+  }
+
+  &__thumb {
+    img {
+      width: 100%;
+      height: 35rem;
+      border-radius: 3rem;
+      object-fit: cover;
+    }
+  }
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 4.2rem;
+    color: #000;
+    gap: 2rem;
+
+    @media screen and (max-width: 400px) {
+      font-size: 2.8rem;
+      line-height: 3.5rem;
+      gap: 0;
+    }
+  }
+
+  &__prices {
+    display: flex;
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 4.1rem;
+    letter-spacing: -0.025em;
+
+    .sale {
+      margin-right: 2rem;
+      color: #120D0D;
+
+      span {
+        font-size: 3rem;
+        color: var(--color-red);
+      }
+    }
+
+    .regular {
+      color: #000;
+      opacity: 0.1;
+
+      span {
+        font-size: 3rem;
+      }
+    }
+  }
+
+
+  &__add-to-cart {
+    display: none;
+    margin-top: 1rem;
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 2.3rem;
+    text-transform: lowercase;
+    color: #000;
+  }
+
+  &__btn-add {
+    a {
+      display: flex;
+      justify-content: center;
+      width: 5rem;
+      height: 5rem;
+      font-size: 5rem;
+      line-height: 5.2rem;
+      color: #fff;
+      background: #8D1E14;
+      border-radius: 50%;
+    }
+  }
+}

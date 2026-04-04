@@ -1,0 +1,15 @@
+.image-border {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(100% - 8px);
+    height: calc(100% - 8px);
+    border: 1px solid white;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+  }
+}

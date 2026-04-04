@@ -1,0 +1,253 @@
+.main-menu {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  margin-right: 0;
+  transition: all 0.3s;
+  z-index: 2;
+  gap: 3.2rem;
+
+  /* justify-content: space-between; */
+
+  @media screen and (max-width: 992px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: safe center;
+    align-items: center;
+    margin-left: 0;
+    padding: 4rem 0 5rem;
+    width: 100%;
+    height: 100%;
+    background: var(--color-brown);
+    opacity: 0;
+    transform: scale(1.3);
+    overflow-y: auto;
+    z-index: 1000;
+    box-sizing: border-box;
+    flex-direction: column;
+    pointer-events: none;
+
+    li {
+      a {
+        color: #fff;
+
+        svg {
+          display: none;
+        }
+      }
+
+      &:nth-child(4) {
+        margin-right: 0 !important;
+      }
+    }
+  }
+
+  &.fixed {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: initial;
+
+    .menu-menu__title {
+      margin-bottom: 2rem;
+      color: #fff;
+    }
+  }
+
+  li {
+    position: relative;
+
+    &.current-menu-item {
+      a {
+        color: var(--color-red);
+      }
+    }
+
+    &:nth-child(2) {
+      a {
+        svg {
+          position: relative;
+          top: 0.8rem;
+        }
+      }
+    }
+
+    &.phone {
+      @media screen and (max-width: 992px) {
+        display: flex;
+      }
+    }
+  }
+  .menu-menu__title {
+    cursor: pointer;
+    margin-bottom: 0;
+    text-transform: initial;
+  }
+
+  .menu-menu__title,
+  a {
+    position: relative;
+    display: block;
+    padding: 0;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 2.3rem;
+    text-align: center;
+    color: var(--color-brown);
+    transition: all 0.3s;
+
+    &:hover {
+      color: var(--color-red);
+      transition: all 0.3s;
+      fill: var(--color-red);
+
+      svg {
+        transform: scale(1.3);
+        transition: all 0.3s;
+        fill: var(--color-red);
+      }
+    }
+
+    svg {
+      transform: initial;
+      transition: all 0.3s;
+    }
+
+    @media screen and (max-width: 1830px) {
+      margin: 0 2rem;
+    }
+
+    @media screen and (max-width: 992px) {
+      margin-bottom: 3rem;
+      font-size: 3rem;
+      text-align: center;
+    }
+
+    &.active {
+      color: var(--color-red);
+
+      svg {
+        fill: var(--color-red);
+      }
+    }
+
+    // svg {
+    //   position: relative;
+    //   bottom: 5px;
+    // }
+  }
+
+  .sub-menu {
+    position: absolute;
+    top: 2.5rem;
+    left: -4.5rem;
+    display: none;
+    padding: 1.5rem 0;
+    width: 15rem;
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgb(0, 0, 0, 15%);
+
+    @media screen and (max-width: 992px) {
+      position: static;
+      align-items: start;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      width: 100%;
+      background-color: transparent;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    &.active {
+      display: block;
+    }
+
+    li {
+      display: block;
+      margin: 0;
+      padding: 0;
+      &.current-menu-item {
+        a {
+          color: var(--color-red);
+        }
+      }
+
+      a {
+        display: block;
+        margin: 0;
+        padding: 1rem 2rem;
+        font-size: 1.6rem;
+        text-align: left;
+        color: var(--color-brown);
+        transition: all 0.3s;
+        @media screen and (max-width: 992px) {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 1rem 1rem !important;
+        }
+
+        &:hover {
+          @media screen and (min-width: 992px) {
+            color: var(--color-red);
+            background: rgb(var(--color-red), 0.1);
+          }
+        }
+
+        @media screen and (max-width: 992px) {
+          font-size: 2rem !important;
+          text-align: center;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .menu-menu {
+    position: relative;
+
+    @media screen and (min-width: 993px) {
+      &:hover {
+        .sub-menu {
+          display: block;
+        }
+      }
+    }
+    .sub-menu {
+      left: 0;
+      a {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .phone {
+    @media screen and (min-width: 650px) {
+      display: none !important;
+    }
+  }
+
+  .cabinet {
+    @media screen and (min-width: 650px) {
+      display: none;
+    }
+  }
+
+  .info__hours {
+    @media screen and (max-width: 576px) {
+      display: block;
+      margin: 3rem auto;
+      padding: 2rem;
+      width: 95%;
+      font-size: 1.8rem;
+      text-align: center;
+      color: #fff;
+      border-radius: 0.5rem;
+    }
+  }
+}

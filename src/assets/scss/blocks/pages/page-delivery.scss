@@ -1,0 +1,14 @@
+.page-delivery {
+  position: relative;
+  padding-top: 22rem;
+  padding-bottom: 11rem;
+  background: linear-gradient(180deg, #FFFEF1 80.21%, #F1FFF5 100%);
+
+  @media screen and (max-width: 992px) {
+    padding-top: 14rem;
+  }
+
+  @media screen and (max-width: 576px) {
+    padding-top: 11rem;
+  }
+}

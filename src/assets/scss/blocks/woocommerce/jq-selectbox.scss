@@ -1,0 +1,29 @@
+.jq-selectbox {
+	&.focused {
+		.jq-selectbox__select {
+			border-color: transparent;
+		}
+	}
+
+	&__select {
+		background: transparent !important;
+		border: 1px solid transparent;
+		box-shadow: none !important;
+	}
+
+	&__trigger {
+		border: none;
+	}
+
+	&__dropdown {
+		border: none;
+
+		li {
+			padding: 1rem;
+
+			&.selected {
+				background: var(--accent);
+			}
+		}
+	}
+}

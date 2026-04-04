@@ -1,0 +1,24 @@
+// * {
+//   --scroll_bg: #d7d7d7;
+//   --scroll_color: #e0e0e0;
+//
+//   scrollbar-color: var(--scroll_color) var(--scroll_bg);
+//   scrollbar-width: thin;
+// }
+//
+// /* для Chrome/Edge/Safari */
+// *::-webkit-scrollbar {
+//   width: 12px;
+//   height: 12px;
+// }
+//
+// *::-webkit-scrollbar-track {
+//   background: var(--scroll_bg);
+// }
+//
+// *::-webkit-scrollbar-thumb {
+//   background-color: var(--scroll_color);
+//   border: 3px solid var(--scroll_bg);
+//   border-radius: 5px;
+// }
+//

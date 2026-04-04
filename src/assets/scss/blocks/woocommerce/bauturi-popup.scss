@@ -1,0 +1,283 @@
+.bauturi-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0, 70%);
+  }
+
+  &__content {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    padding: 3rem;
+    width: 90%;
+    max-width: 50rem;
+    max-height: 90vh;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 3rem rgb(0, 0, 0, 30%);
+    transform: translate(-50%, -50%);
+    overflow-y: auto;
+
+    @media screen and (max-width: 576px) {
+      padding: 2rem;
+      max-width: 95%;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--color-brown);
+    background: transparent;
+    border: none;
+    transition: color 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-red);
+    }
+  }
+
+  &__product {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+    gap: 2rem;
+
+    @media screen and (max-width: 576px) {
+      text-align: center;
+      flex-direction: column;
+    }
+  }
+
+  &__product-image {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 0.5rem;
+    object-fit: cover;
+
+    @media screen and (max-width: 576px) {
+      width: 15rem;
+      height: 15rem;
+    }
+  }
+
+  &__product-info {
+    flex: 1;
+  }
+
+  &__product-name {
+    margin: 0 0 0.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+    color: black;
+  }
+
+  &__product-price {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-red);
+
+    .price-value {
+      color: black;
+    }
+  }
+
+  &__form-container {
+    form.cart {
+      display: flex;
+      flex-direction: column;
+    }
+
+    // Direct radio button styles (higher specificity)
+    input[type="radio"] {
+      margin-right: 8px;
+      width: 3.2rem;
+      height: 3.2rem;
+      border: 3px solid #ececec;
+      border-radius: 50%;
+      transition: all 0.2s;
+      appearance: none;
+      cursor: pointer;
+    }
+
+    input[type="radio"]:checked {
+      position: relative;
+      border-color: #0cc42a;
+    }
+
+    input[type="radio"]:checked::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: flex;
+      width: 2rem;
+      height: 2rem;
+      background: #0cc42a;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    input[type="radio"]:not(:checked):hover {
+      border-color: #d03528;
+    }
+
+    // Style PEWC addons groups
+    .pewc-groups-standard {
+      display: block !important;
+      width: 100%;
+
+      .pewc-group {
+        display: block !important;
+        margin-bottom: 2rem;
+
+        .pewc-group-title {
+          display: block !important;
+          margin: 0 0 1.5rem;
+          font-size: 1.8rem;
+          font-weight: 600;
+          color: var(--color-brown);
+        }
+
+        .pewc-group-description {
+          display: none; // Hide description if exists
+        }
+
+        .pewc-group-content-wrapper {
+          display: block !important;
+
+          .pewc-item-field-wrapper {
+            display: block !important;
+            margin-bottom: 1rem;
+
+            label {
+              display: flex !important;
+              align-items: center;
+              margin-bottom: 0.5rem;
+              padding: 1rem;
+              font-size: 1.6rem;
+              font-weight: 400;
+              border: 2px solid #eee;
+              border-radius: 0.5rem;
+              transition: all 0.3s;
+              cursor: pointer;
+
+              &:hover {
+                background-color: rgb(var(--color-brown), 0.05);
+                border-color: var(--color-brown);
+              }
+
+              input[type="checkbox"] {
+                margin-right: 1rem;
+                width: 2rem;
+                height: 2rem;
+                accent-color: var(--color-brown);
+              }
+            }
+
+            // Radio buttons wrapper
+            .pewc-radio-image-wrapper,
+            .pewc-radio-buttons-wrapper,
+            .pewc-checkbox-group-wrapper {
+              display: block !important;
+
+              li {
+                margin-bottom: 0.5rem;
+                list-style: none;
+              }
+            }
+          }
+        }
+
+        // Custom radio button styles (same as single-product)
+        .pewc-group-radio input[type="radio"] {
+          margin-right: 8px;
+          width: 3.2rem;
+          height: 3.2rem;
+          border: 3px solid #ececec;
+          border-radius: 50%;
+          transition: all 0.2s;
+          appearance: none;
+          cursor: pointer;
+        }
+
+        .pewc-group-radio input[type="radio"]:checked {
+          position: relative;
+          border-color: #0cc42a;
+        }
+
+        .pewc-group-radio input[type="radio"]:checked::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          display: flex;
+          width: 2rem;
+          height: 2rem;
+          background: #0cc42a;
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        .pewc-group-radio input[type="radio"]:not(:checked):hover {
+          border-color: #d03528;
+        }
+      }
+    }
+
+    // Hide main price and totals from PEWC
+    .pewc-main-price,
+    .pewc-total-price,
+    .pewc-total-field-wrapper,
+    .pewc-product-total,
+    .pewc-options-total,
+    .pewc-grand-total,
+    #pewc-product-total-label,
+    #pewc-options-total-label,
+    #pewc-grand-total-label {
+      display: none !important;
+    }
+
+    .pewc-radio-form-label {
+      display: flex;
+      align-items: center;
+      font-size: 2rem;
+    }
+  }
+
+  &__add-to-cart {
+    padding: 1.5rem;
+    width: 100%;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    background-color: var(--color-brown);
+    border: none;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--color-brown-darken);
+    }
+  }
+}

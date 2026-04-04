@@ -1,0 +1,19 @@
+.woocommerce-billing-fields {
+	&__field-wrapper {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		flex-wrap: wrap;
+
+		p {
+			width: 48%;
+		}
+	}
+
+	#billing_address_2,
+	#billing_address_2_field,
+	#billing_country_field,
+	#billing_company_field {
+		display: none !important;
+	}
+}

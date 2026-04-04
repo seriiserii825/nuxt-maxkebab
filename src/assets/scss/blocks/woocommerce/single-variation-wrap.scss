@@ -1,0 +1,53 @@
+.single_variation_wrap {
+	display: flex;
+	align-items: center;
+	padding: 0 3.2rem 3.2rem;
+	color: white;
+	@media screen and (max-width: 576px) {
+		display: block;
+	}
+
+	.price {
+		margin-right: 3.2rem;
+		font-weight: bold;
+		color: white;
+		@media screen and (max-width: 576px) {
+			display: block;
+			margin-bottom: 4rem;
+			margin-left: 10rem;
+		}
+
+		.woocommerce-Price-currencySymbol {
+			margin-right: 0.6rem;
+		}
+	}
+
+	.woocommerce-variation-add-to-cart {
+		display: flex;
+		align-items: center;
+		@media screen and (max-width: 576px) {
+			display: block;
+		}
+	}
+
+	.quantity {
+		margin-right: 3.2rem;
+		@media screen and (max-width: 576px) {
+			margin-bottom: 4rem;
+			margin-left: 6rem;
+		}
+	}
+
+	button[type='submit'] {
+		font-size: 1.6rem;
+		font-weight: bold;
+		text-transform: initial;
+		color: white;
+		background: transparent;
+
+		&:hover {
+			color: white;
+			background: var(--accent);
+		}
+	}
+}

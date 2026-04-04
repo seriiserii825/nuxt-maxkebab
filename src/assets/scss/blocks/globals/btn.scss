@@ -1,0 +1,18 @@
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 3.2rem;
+  height: 4.5rem;
+  font-size: 1.6rem;
+  color: var(--text-color);
+  background: linear-gradient(95.14deg, rgb(201, 201, 201, 20%) 0%, rgb(201, 201, 201, 50%) 53.13%, rgb(200, 200, 200, 20%) 100%);
+  border: 1px solid transparent;
+  border-radius: 1rem;
+  transition: all .4s;
+  cursor: pointer;
+
+  &:hover {
+    border-color: black;
+  }
+}

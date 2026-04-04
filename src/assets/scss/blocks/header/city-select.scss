@@ -1,0 +1,81 @@
+.city-select {
+  position: relative;
+  margin-right: 6rem;
+  padding: 0;
+  @media screen and (max-width: 992px) {
+    margin-right: 1rem;
+  }
+  @media screen and (max-width: 576px) {
+    margin-right: 0;
+    flex: 0 0 180px;
+  }
+  &__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    @media screen and (max-width: 576px) {
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      text-align: left;
+    }
+    span {
+      @media screen and (max-width: 576px) {
+        flex: 0 0 100%;
+      }
+    }
+  }
+
+  li {
+    padding: 0 2.4rem;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 2.3rem;
+    text-align: center;
+    color: var(--color-brown);
+    transition: all 0.4s;
+    cursor: pointer;
+    @media screen and (max-width: 576px) {
+      padding: 0 1.2rem;
+    }
+    @media screen and (max-width: 370px) {
+      padding: 0 0.6rem;
+    }
+    &:hover {
+      color: var(--color-brown-light);
+    }
+  }
+  &__list.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  &__list {
+    position: absolute;
+    top: 3.8rem;
+    left: 0;
+    display: block;
+    padding: 1.2rem 2.4rem;
+    text-align: left;
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 1.6rem;
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: all 0.4s;
+    pointer-events: none;
+    @media screen and (max-width: 576px) {
+      padding: 1.2rem 1.2rem;
+    }
+    @media screen and (max-width: 370px) {
+      padding: 0.8rem 0.6rem;
+    }
+    &:hover {
+      background: #fff;
+    }
+    li {
+      padding: 0;
+    }
+  }
+}

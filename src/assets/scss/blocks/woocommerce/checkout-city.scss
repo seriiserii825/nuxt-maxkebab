@@ -1,0 +1,23 @@
+.checkout-city {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-bottom: 2rem;
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    height: 48px;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.4s;
+    &:hover,
+    &.active {
+      color: #fff;
+      background-color: #ee3230;
+    }
+  }
+}

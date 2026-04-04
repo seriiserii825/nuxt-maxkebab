@@ -1,0 +1,13 @@
+.line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background-color: #E5F3F1;
+
+  // background-color: blue;
+  &--short {
+    height: 13rem;
+  }
+}

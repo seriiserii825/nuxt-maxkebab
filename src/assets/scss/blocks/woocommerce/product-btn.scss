@@ -1,0 +1,20 @@
+.product-btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  svg {
+    position: relative;
+    transition: all 0.3s;
+  }
+}

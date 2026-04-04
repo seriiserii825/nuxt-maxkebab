@@ -1,0 +1,26 @@
+.page-about {
+  padding: 22rem 0 17.8rem;
+  background: linear-gradient(180deg, #fffef1 80.21%, #f1fff5 100%);
+
+  @media screen and (max-width: 1200px) {
+    padding: 17rem 0 5rem;
+  }
+
+  @media screen and (max-width: 576px) {
+    padding: 11rem 0 5rem;
+  }
+
+  h1 {
+    font-size: 4rem;
+    font-weight: 700;
+  }
+
+  &__title {
+    position: relative;
+    margin-top: 1.5rem;
+    margin-bottom: 7.5rem;
+    font-size: 4.5rem;
+    font-weight: 700;
+  }
+}
+

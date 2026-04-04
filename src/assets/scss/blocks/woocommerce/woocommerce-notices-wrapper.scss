@@ -1,0 +1,28 @@
+.woocommerce-notices-wrapper {
+  margin: 0 auto;
+
+  // margin: 0 15px;
+  // padding: 0 15px;
+  max-width: 1615px;
+
+  // margin-bottom: 2rem;
+
+  .woocommerce-message {
+    position: relative;
+    margin-bottom: 2rem;
+    padding: 1rem 2rem;
+    font-weight: 400;
+    line-height: 2.4rem;
+    background-color: #98ff97;
+    border: 1px solid #8aed89;
+    border-radius: 0.5rem;
+    z-index: 0;
+
+    a {
+      margin-right: 1rem;
+      color: var(--color-red);
+      text-decoration: underline;
+    }
+  }
+
+}
