@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import type { IHomeResponse } from "~/interfaces/IHomeResponse";
+
 const { locale } = useI18n();
-const { data: home, error } = await useFetch("/api/home", {
+const { data: home, error } = await useFetch<IHomeResponse>("/api/home", {
   query: { lang: locale },
   watch: [locale],
 });
@@ -15,5 +17,14 @@ if (error.value) {
 <template>
   <div class="index">
     <!-- <UIPrettyPrint v-if="home" :data="home" /> -->
+    <UISlider
+      v-if="home && home.slider && home.slider.gallery"
+      :slides="home.slider.gallery"
+      :speed="1000"
+      :delay="4000">
+      <template #default="{ slide }">
+        <img :src="slide" alt="slider" />
+      </template>
+    </UISlider>
   </div>
 </template>
