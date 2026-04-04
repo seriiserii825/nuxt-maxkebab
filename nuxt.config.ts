@@ -25,6 +25,8 @@ export default defineNuxtConfig({
   css: ["@/assets/scss/my.scss"],
   modules: ["@nuxtjs/i18n"],
   i18n: {
+    strategy: "prefix_except_default",
+    detectBrowserLanguage: false,
     defaultLocale: "ro",
     locales: [
       { code: "ro", name: "Română", file: "ro.json", img: "ro.png" },

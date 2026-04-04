@@ -1,6 +1,12 @@
-export function useWpFetch(event: Parameters<typeof getCookie>[0]) {
+export function useWpFetch(event: Parameters<typeof getCookie>[0], lang?: string) {
   const config = useRuntimeConfig();
   const token = getCookie(event, "token");
+  const defaultLocale = "ro";
+
+  const apiBase =
+    lang && lang !== defaultLocale
+      ? config.public.apiBase.replace("/wp-json", `/${lang}/wp-json`)
+      : config.public.apiBase;
 
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
@@ -21,13 +27,13 @@ export function useWpFetch(event: Parameters<typeof getCookie>[0]) {
 
   return {
     get<T = unknown>(path: string, params?: Record<string, string>) {
-      return $fetch<T>(`${config.public.apiBase}${path}`, { headers, params, timeout: 5000 }).catch(
+      return $fetch<T>(`${apiBase}${path}`, { headers, params, timeout: 5000 }).catch(
         handleError,
       );
     },
 
     post<T = unknown>(path: string, body: unknown) {
-      return $fetch<T>(`${config.public.apiBase}${path}`, {
+      return $fetch<T>(`${apiBase}${path}`, {
         method: "POST",
         headers,
         body: JSON.stringify(body),
