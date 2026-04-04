@@ -12,9 +12,18 @@ export function useWpFetch(event: Parameters<typeof getCookie>[0]) {
     headers.Authorization = `Bearer ${token}`;
   }
 
+  function handleError(err: any): never {
+    throw createError({
+      statusCode: err?.response?.status ?? 500,
+      message: err?.data?.message ?? err?.message ?? "WordPress API error",
+    });
+  }
+
   return {
     get<T = unknown>(path: string, params?: Record<string, string>) {
-      return $fetch<T>(`${config.public.apiBase}${path}`, { headers, params, timeout: 5000 });
+      return $fetch<T>(`${config.public.apiBase}${path}`, { headers, params, timeout: 5000 }).catch(
+        handleError,
+      );
     },
 
     post<T = unknown>(path: string, body: unknown) {
@@ -23,7 +32,7 @@ export function useWpFetch(event: Parameters<typeof getCookie>[0]) {
         headers,
         body: JSON.stringify(body),
         timeout: 5000,
-      });
+      }).catch(handleError);
     },
   };
 }
