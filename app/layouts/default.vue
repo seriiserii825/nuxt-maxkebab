@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const { data: menu, error } = await useFetch("/api/menu");
+import type { IMenuCategory } from "~/interfaces/IMenuCategory";
+
+const { data: menu, error } = await useFetch<IMenuCategory[]>("/api/menu");
 if (error.value) {
   showError({
     statusCode: error.value.statusCode ?? 500,

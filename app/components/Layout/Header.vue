@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import type { IMenuCategory } from "~/interfaces/IMenuCategory";
+
 const props = defineProps({
   menu: {
-    type: Array as PropType<Array<{ id: number; title: string; url: string }>>,
+    type: Array as PropType<Array<IMenuCategory>>,
     required: true,
   },
 });
@@ -17,7 +19,7 @@ const props = defineProps({
           <img src="/img/Logo.png" alt="Logo Max Kebab" title="Max Kebab" />
         </NuxtLink>
       </div>
-      <UINavMenu />
+      <UINavMenu :menu="menu" />
       <!-- TODO: change cart -->
       <div class="main-header__cart-icon cart-icon">
         <div class="cart-icon-target">

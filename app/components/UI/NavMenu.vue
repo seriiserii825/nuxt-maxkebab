@@ -1,4 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { IMenuCategory } from "~/interfaces/IMenuCategory";
+
+const props = defineProps({
+  menu: {
+    type: Array as PropType<IMenuCategory[]>,
+    required: true,
+  },
+});
+</script>
 
 <template>
   <ul class="main-menu main-header__main-menu">
@@ -6,33 +15,8 @@
       <h3 class="menu-menu__title">Menu</h3>
       <ul class="sub-menu">
         <li>
-          <a href="#meniuri">
-            <div>Combo</div>
-          </a>
-        </li>
-        <li>
-          <a href="#sandvich">
-            <div>Sandvich</div>
-          </a>
-        </li>
-        <li>
-          <a href="#snack">
-            <div>Snack-uri</div>
-          </a>
-        </li>
-        <li>
-          <a href="#desert">
-            <div>Deserturi</div>
-          </a>
-        </li>
-        <li>
-          <a href="#sosuri">
-            <div>Sosuri</div>
-          </a>
-        </li>
-        <li>
-          <a href="#bauturi">
-            <div>Băuturi</div>
+          <a v-for="item in menu" :key="item.slug" :href="`${$localePath('index')}/#${item.slug}`">
+            <div>{{ item.name }}</div>
           </a>
         </li>
       </ul>
