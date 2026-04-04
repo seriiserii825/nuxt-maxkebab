@@ -4,36 +4,10 @@
   <header class="main-header">
     <div class="container main-header__menu">
       <LayoutLanguageSelector />
-      <ul class="city-select">
-        <li class="city-select__item" data-city-select="chisinau">
-          <div class="city-select__title">
-            <span>Chișinău</span>
-            <small>Ion Pelivan 22/1</small>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="8"
-              height="8"
-              viewBox="0 0 8 8"
-              fill="none">
-              <path
-                d="M6.5 3L4 5.5L1.5 3"
-                stroke="#231F20"
-                stroke-width="0.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-            </svg>
-          </div>
-          <ul class="city-select__list">
-            <li class="city-select__item" data-city-select="ialoveni">Ialoveni</li>
-          </ul>
-        </li>
-      </ul>
+      <UICitySelect />
       <div class="logo">
         <a href="https://maxkebab.md">
-          <img
-            src="https://maxkebab.md/wp-content/uploads/2025/11/Logo-Max-Kebab.png"
-            alt="Logo Max Kebab"
-            title="Max Kebab" />
+          <img src="/img/Logo.png" alt="Logo Max Kebab" title="Max Kebab" />
         </a>
       </div>
       <ul id="js-main-menu" class="main-menu main-header__main-menu">
