@@ -16,7 +16,7 @@ if (error.value) {
 
 <template>
   <div class="default-layout">
-    <LayoutHeader :menu="menu" />
+    <LayoutHeader v-if="menu" :menu="menu" />
     <slot />
     <!-- <AppFooter /> -->
   </div>
