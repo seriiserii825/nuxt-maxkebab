@@ -6,67 +6,12 @@
       <LayoutLanguageSelector />
       <UICitySelect />
       <div class="logo">
-        <a href="https://maxkebab.md">
+        <NuxtLink :to="$localePath('index')">
           <img src="/img/Logo.png" alt="Logo Max Kebab" title="Max Kebab" />
-        </a>
+        </NuxtLink>
       </div>
-      <ul id="js-main-menu" class="main-menu main-header__main-menu">
-        <li class="menu-menu">
-          <h3 class="menu-menu__title">Menu</h3>
-          <ul class="sub-menu">
-            <li>
-              <a href="#meniuri">
-                <div>Combo</div>
-              </a>
-            </li>
-            <li>
-              <a href="#sandvich">
-                <div>Sandvich</div>
-              </a>
-            </li>
-            <li>
-              <a href="#snack">
-                <div>Snack-uri</div>
-              </a>
-            </li>
-            <li>
-              <a href="#desert">
-                <div>Deserturi</div>
-              </a>
-            </li>
-            <li>
-              <a href="#sosuri">
-                <div>Sosuri</div>
-              </a>
-            </li>
-            <li>
-              <a href="#bauturi">
-                <div>Băuturi</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li
-          id="menu-item-56"
-          class="menu-item menu-item-type-post_type menu-item-object-page menu-item-56">
-          <a href="https://maxkebab.md/oferte/">Oferte</a>
-        </li>
-        <li
-          id="menu-item-58"
-          class="menu-item menu-item-type-post_type menu-item-object-page menu-item-58">
-          <a href="https://maxkebab.md/despre-noi/">Despre noi</a>
-        </li>
-        <li
-          id="menu-item-1952"
-          class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1952">
-          <a href="https://maxkebab.md/livrare/">Livrare</a>
-        </li>
-        <li
-          id="menu-item-57"
-          class="menu-item menu-item-type-post_type menu-item-object-page menu-item-57">
-          <a href="https://maxkebab.md/contacte/">Contacte</a>
-        </li>
-      </ul>
+      <UINavMenu />
+      <!-- TODO: change cart -->
       <div class="main-header__cart-icon cart-icon">
         <div class="cart-icon-target">
           <svg
@@ -94,6 +39,7 @@
         <div class="main-header__cart-icon__total">0 Lei</div>
       </div>
 
+      <!-- TODO: change sandwitch -->
       <div class="main-header__sandwich sandwitch-wrap" id="js-sandwitch-wrap">
         <div class="sandwitch">
           <div class="sandwitch__line sandwitch__line--top"></div>
