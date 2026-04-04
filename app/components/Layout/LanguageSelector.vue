@@ -4,6 +4,10 @@ const switchLocalePath = useSwitchLocalePath();
 
 const is_visible_dropdown = ref(false);
 const currentLocale = computed(() => locales.value.find((l) => l.code === locale.value));
+
+watch(locale, () => {
+  is_visible_dropdown.value = false;
+});
 </script>
 
 <template>
@@ -15,7 +19,8 @@ const currentLocale = computed(() => locales.value.find((l) => l.code === locale
           v-for="locale in locales"
           :key="locale.code"
           :to="switchLocalePath(locale.code)"
-          class="wpglobus-selector-link wpglobus-current-language">
+          :class="{ 'wpglobus-current-language': locale.code === currentLocale?.code }"
+          class="wpglobus-selector-link">
           <img :src="`/img/${locale.img}`" :alt="locale.name" />
           <span class="name">{{ locale.name }}</span>
           <span class="code">{{ locale.code.toUpperCase }}</span>
