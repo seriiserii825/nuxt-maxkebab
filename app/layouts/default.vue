@@ -2,7 +2,11 @@
 import { menu } from "~/data/menu";
 
 const city_store = useCityStore();
-const { popup_is_active } = storeToRefs(city_store);
+const { popup_is_active, city_was_selected } = storeToRefs(city_store);
+
+if (!city_was_selected.value) {
+  city_store.setPopupIsActive(true);
+}
 </script>
 
 <template>

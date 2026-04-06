@@ -29,7 +29,7 @@ export default defineNuxtConfig({
     },
   },
   css: ["@/assets/scss/my.scss"],
-  modules: ["@nuxtjs/i18n", "@pinia/nuxt"],
+  modules: ["@nuxtjs/i18n", "@pinia/nuxt", "@pinia-plugin-persistedstate/nuxt"],
   i18n: {
     strategy: "prefix_except_default",
     detectBrowserLanguage: false,

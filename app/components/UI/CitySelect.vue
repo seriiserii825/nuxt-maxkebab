@@ -1,15 +1,17 @@
 <script setup lang="ts">
-import type { ICity } from "~/interfaces/ICity";
-
 const { t } = useI18n();
 const cityStore = useCityStore();
-const { currentCity, cities } = storeToRefs(cityStore);
+const { currentCity, cities, city_was_selected } = storeToRefs(cityStore);
 
 const is_open_dropdown = ref(false);
 
 function handleItemClick(index: number) {
-  cityStore.setCityIndex(index);
-  is_open_dropdown.value = false;
+  if (!city_was_selected.value) {
+    cityStore.setPopupIsActive(true);
+  } else {
+    cityStore.setCityIndex(index);
+    is_open_dropdown.value = false;
+  }
 }
 </script>
 
