@@ -1,8 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { menu } from "~/data/menu";
+</script>
 
 <template>
   <div class="default-layout">
-    <LayoutHeader />
+    <LayoutHeader v-if="menu" :menu="menu" />
     <slot />
     <!-- <AppFooter /> -->
   </div>
