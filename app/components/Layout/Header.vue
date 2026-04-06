@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { IMenuCategory } from "~/interfaces/IMenuCategory";
+import type { IMenuItem } from "~/interfaces/IMenuItem";
 
 const props = defineProps({
   menu: {
-    type: Array as PropType<Array<IMenuCategory>>,
+    type: Array as PropType<IMenuItem[]>,
     required: true,
   },
 });

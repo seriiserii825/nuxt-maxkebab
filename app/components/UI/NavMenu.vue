@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import type { IMenuCategory } from "~/interfaces/IMenuCategory";
+import type { IMenuItem } from "~/interfaces/IMenuItem";
+
+const { t } = useI18n();
 
 const props = defineProps({
   menu: {
-    type: Array as PropType<IMenuCategory[]>,
+    type: Array as PropType<IMenuItem[]>,
     required: true,
   },
 });
@@ -11,19 +13,16 @@ const props = defineProps({
 
 <template>
   <ul class="main-menu main-header__main-menu">
-    <li class="menu-menu">
-      <h3 class="menu-menu__title">Menu</h3>
-      <ul class="sub-menu">
-        <li>
-          <a v-for="item in menu" :key="item.slug" :href="`${$localePath('index')}/#${item.slug}`">
-            <div>{{ item.name }}</div>
-          </a>
-        </li>
-      </ul>
+    <li v-for="item in menu" :key="item.href" :class="item.sub_menu ? 'menu-menu' : ''">
+      <template v-if="item.sub_menu">
+        <h3 class="menu-menu__title">{{ t(item.text) }}</h3>
+        <ul class="sub-menu">
+          <li v-for="sub in item.sub_menu" :key="sub.href">
+            <NuxtLink :href="`${$localePath('index')}${sub.href}`">{{ t(sub.text) }}</NuxtLink>
+          </li>
+        </ul>
+      </template>
+      <a v-else :href="$localePath(item.href)">{{ t(item.text) }}</a>
     </li>
-    <UINavLink slug="oferte" label="Oferte" />
-    <UINavLink slug="despre-noi" label="Despre noi" />
-    <UINavLink slug="livrare" label="Livrare" />
-    <UINavLink slug="contacte" label="Contacte" />
   </ul>
 </template>

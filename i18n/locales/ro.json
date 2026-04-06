@@ -1,3 +1,15 @@
 {
-  "welcome": "Bine ai venit"
+  "menu": {
+    "menu": "Menu",
+    "combo": "Combo",
+    "sandvich": "Sandvich",
+    "snack": "Snack-uri",
+    "desert": "Deserturi",
+    "sosuri": "Sosuri",
+    "bauturi": "Băuturi",
+    "oferte": "Oferte",
+    "despre": "Despre noi",
+    "livrare": "Livrare",
+    "contacte": "Contacte"
+  }
 }

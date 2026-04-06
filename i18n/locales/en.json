@@ -1,3 +1,15 @@
 {
-  "welcome": "Welcome"
+  "menu": {
+    "menu": "Menu",
+    "combo": "Combo",
+    "sandvich": "Sandwich",
+    "snack": "Snacks",
+    "desert": "Desserts",
+    "sosuri": "Sauces",
+    "bauturi": "Drinks",
+    "oferte": "Offers",
+    "despre": "About us",
+    "livrare": "Delivery",
+    "contacte": "Contact"
+  }
 }
