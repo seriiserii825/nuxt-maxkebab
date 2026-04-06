@@ -19,11 +19,17 @@ export default defineNuxtConfig({
   },
   vite: {
     optimizeDeps: {
-      include: ["@vue/devtools-core", "@vue/devtools-kit"],
+      include: [
+        "@vue/devtools-core",
+        "@vue/devtools-kit",
+        "swiper/vue",
+        "swiper/modules",
+        "@pinia-plugin-persistedstate/nuxt",
+      ],
     },
   },
   css: ["@/assets/scss/my.scss"],
-  modules: ["@nuxtjs/i18n"],
+  modules: ["@nuxtjs/i18n", "@pinia/nuxt"],
   i18n: {
     strategy: "prefix_except_default",
     detectBrowserLanguage: false,
@@ -35,3 +41,4 @@ export default defineNuxtConfig({
     ],
   },
 });
+

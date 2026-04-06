@@ -11,5 +11,9 @@
     "despre": "Despre noi",
     "livrare": "Livrare",
     "contacte": "Contacte"
+  },
+  "cities": {
+    "chisinau": "Chișinău",
+    "ialoveni": "Ialoveni"
   }
 }

@@ -11,5 +11,9 @@
     "despre": "О нас",
     "livrare": "Доставка",
     "contacte": "Контакты"
+  },
+  "cities": {
+    "chisinau": "Кишинёв",
+    "ialoveni": "Яловены"
   }
 }
