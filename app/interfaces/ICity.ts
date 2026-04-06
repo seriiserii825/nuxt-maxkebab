@@ -1,5 +1,5 @@
 export interface ICity {
-  slug: string;
+  slug: "chisinau" | "ialoveni";
   text: string;
   address: string;
 }

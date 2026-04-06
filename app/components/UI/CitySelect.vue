@@ -1,9 +1,19 @@
 <script setup lang="ts">
+import type { ICity } from "~/interfaces/ICity";
+
 const { t } = useI18n();
 const cityStore = useCityStore();
 const { currentCity, cities } = storeToRefs(cityStore);
 
 const is_open_dropdown = ref(false);
+
+function handleItemClick(index: number, slug: ICity["slug"]) {
+  cityStore.setCityIndex(index);
+  is_open_dropdown.value = false;
+  if (slug === "chisinau") {
+    cityStore.setPopupIsActive(true);
+  }
+}
 </script>
 
 <template>
@@ -21,7 +31,7 @@ const is_open_dropdown = ref(false);
           :key="city.slug"
           class="city-select__item"
           :data-city-select="city.slug"
-          @click="cityStore.setCityIndex(index); is_open_dropdown = false">
+          @click="handleItemClick(index, city.slug)">
           {{ t(city.text) }}
         </li>
       </ul>
