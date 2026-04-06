@@ -27,6 +27,6 @@ if (error.value) {
         <img :src="slide" alt="slider" />
       </template>
     </UISlider>
-    <SectionProductsSection />
+    <SectionProductsSection v-if="home?.catalog" :catalog="home.catalog" />
   </div>
 </template>
