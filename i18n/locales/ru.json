@@ -15,5 +15,11 @@
   "cities": {
     "chisinau": "Кишинёв",
     "ialoveni": "Яловены"
+  },
+  "cityPopup": {
+    "title": "Выберите способ заказа",
+    "selectLocation": "Выберите заведение",
+    "deliveryOptions": "Предпочитаете Glovo, Straus или заказ на сайте?",
+    "orderOnSite": "Заказать на сайте"
   }
 }

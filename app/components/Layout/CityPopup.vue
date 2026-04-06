@@ -1,25 +1,27 @@
 <script setup lang="ts">
 import type { ICity } from "~/interfaces/ICity";
 
+const { t } = useI18n();
 const city_store = useCityStore();
 
-const props = defineProps({
+defineProps({
   active: {
     type: Boolean,
     default: false,
   },
 });
 
-const current_index = ref<null | number>(null);
+const chisinau_selected = ref(false);
 
 const closePopup = () => {
   city_store.setPopupIsActive(false);
+  chisinau_selected.value = false;
 };
 
 function handleCity(city: ICity["slug"]) {
   if (city === "chisinau") {
-    current_index.value = 0;
     city_store.setCityIndex(0);
+    chisinau_selected.value = true;
   } else {
     city_store.setCityIndex(1);
     closePopup();
@@ -37,35 +39,37 @@ function chooseSite() {
     <div class="city-popup__overlay" @click="closePopup"></div>
     <div class="city-popup__content">
       <button class="city-popup__close" @click="closePopup">×</button>
-      <h2 class="city-popup__title">Alege cum să comanzi</h2>
-      <p v-if="current_index !== null" class="city-popup__subtitle">Selectați localul</p>
-      <p v-if="current_index === 0" class="city-popup__subtitle city-popup__subtitle--second">
-        Preferi Glovo, Straus sau comanda pe site?
+      <h2 class="city-popup__title">{{ t("cityPopup.title") }}</h2>
+      <p v-if="!chisinau_selected" class="city-popup__subtitle">
+        {{ t("cityPopup.selectLocation") }}
+      </p>
+      <p v-if="chisinau_selected" class="city-popup__subtitle city-popup__subtitle--second">
+        {{ t("cityPopup.deliveryOptions") }}
       </p>
       <div class="city-popup__buttons">
         <button
-          v-if="current_index === 0"
+          v-if="chisinau_selected"
           class="city-popup__button city-popup__button--continue"
           @click="chooseSite">
-          Comanda pe site
+          {{ t("cityPopup.orderOnSite") }}
         </button>
         <button
-          v-if="current_index === null"
+          v-if="!chisinau_selected"
           @click="handleCity('chisinau')"
           class="city-popup__button"
           data-city="Chișinău">
-          Chișinău
+          {{ t("cities.chisinau") }}
         </button>
         <button
-          v-if="current_index === null"
+          v-if="!chisinau_selected"
           @click="handleCity('ialoveni')"
           class="city-popup__button"
           data-city="Ialoveni">
-          Ialoveni
+          {{ t("cities.ialoveni") }}
         </button>
 
         <a
-          v-if="current_index === 0"
+          v-if="chisinau_selected"
           href="https://glovo.go.link/open?adjust_deeplink=glovoapp%3A%2F%2Fopen%3Flink_type%3Dstore%26store_id%3D509901&amp;adjust_t=s321jkn"
           target="_blank"
           rel="noopener noreferrer"
@@ -73,7 +77,7 @@ function chooseSite() {
           <IconGlovo />
         </a>
         <a
-          v-if="current_index === 0"
+          v-if="chisinau_selected"
           href="https://straus.md/restaurant/max-kebab"
           target="_blank"
           rel="noopener noreferrer"

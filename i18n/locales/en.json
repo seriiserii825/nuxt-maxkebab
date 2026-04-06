@@ -15,5 +15,11 @@
   "cities": {
     "chisinau": "Chișinău",
     "ialoveni": "Ialoveni"
+  },
+  "cityPopup": {
+    "title": "Choose how to order",
+    "selectLocation": "Select a location",
+    "deliveryOptions": "Prefer Glovo, Straus or order on the site?",
+    "orderOnSite": "Order on site"
   }
 }
