@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import type { ICatalog, ICatalogChild, IProduct } from "~/interfaces/IHomeResponse";
+import type { ICatalog } from "~/interfaces/IHomeResponse";
+
+const { locale } = useI18n();
+
+function productPath(permalink: string) {
+  const prefix = locale.value !== "ro" ? `/${locale.value}` : "";
+  return `${prefix}/${permalink}`;
+}
 
 const props = defineProps<{
   catalog: ICatalog[];
@@ -23,7 +30,7 @@ const props = defineProps<{
 
           <div class="products-section__content">
             <div v-for="product in child.products" :key="product.id" class="product-card">
-              <a :href="product.permalink">
+              <NuxtLink :to="productPath(product.permalink)">
                 <div class="product-card__img">
                   <img
                     v-if="product.image"
@@ -31,7 +38,7 @@ const props = defineProps<{
                     :alt="product.title"
                     loading="lazy" />
                 </div>
-              </a>
+              </NuxtLink>
 
               <div class="product-card__content">
                 <h3 class="product-card__title">{{ product.title }}</h3>
@@ -50,16 +57,18 @@ const props = defineProps<{
                   </div>
 
                   <div class="product-card__actions">
-                    <a :href="product.permalink" class="product-card__add-to-cart">
+                    <NuxtLink
+                      :to="productPath(product.permalink)"
+                      class="product-card__add-to-cart">
                       <IconTopping />
-                    </a>
+                    </NuxtLink>
 
-                    <a
+                    <NuxtLink
                       v-if="product.has_options"
                       class="product-card__topping"
-                      :href="product.permalink">
+                      :to="productPath(product.permalink)">
                       Topping
-                    </a>
+                    </NuxtLink>
                   </div>
                 </footer>
               </div>
