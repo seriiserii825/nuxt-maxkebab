@@ -38,7 +38,7 @@ function chooseSite() {
     <div class="city-popup__content">
       <button class="city-popup__close" @click="closePopup">×</button>
       <h2 class="city-popup__title">Alege cum să comanzi</h2>
-      <p v-if="current_index !== null" class="city-popup__subtitle">Selectați localul</p>
+      <p v-if="current_index === null" class="city-popup__subtitle">Selectați localul</p>
       <p v-if="current_index === 0" class="city-popup__subtitle city-popup__subtitle--second">
         Preferi Glovo, Straus sau comanda pe site?
       </p>
