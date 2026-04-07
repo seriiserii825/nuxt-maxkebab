@@ -24,5 +24,16 @@
     "selectLocation": "Selectați localul",
     "deliveryOptions": "Preferi Glovo, Straus sau comanda pe site?",
     "orderOnSite": "Comandă pe site"
+  },
+  "miniCart": {
+    "title": "Coș",
+    "empty": "Nu ai niciun produs în coș.",
+    "total": "Total:",
+    "cartBtn": "Coș",
+    "checkoutBtn": "Comandă",
+    "remove": "Elimină",
+    "decrease": "Micșorează cantitatea",
+    "increase": "Mărește cantitatea",
+    "close": "Închide coșul"
   }
 }

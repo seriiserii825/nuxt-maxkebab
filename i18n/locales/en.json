@@ -24,5 +24,16 @@
     "selectLocation": "Select a location",
     "deliveryOptions": "Prefer Glovo, Straus or order on the site?",
     "orderOnSite": "Order on site"
+  },
+  "miniCart": {
+    "title": "Cart",
+    "empty": "Your cart is empty.",
+    "total": "Total:",
+    "cartBtn": "Cart",
+    "checkoutBtn": "Checkout",
+    "remove": "Remove",
+    "decrease": "Decrease quantity",
+    "increase": "Increase quantity",
+    "close": "Close cart"
   }
 }

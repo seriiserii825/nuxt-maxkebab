@@ -10,6 +10,7 @@ defineProps({
 
 const emit = defineEmits(["close"]);
 
+const { t } = useI18n();
 const cart = useCartStore();
 </script>
 
@@ -20,8 +21,8 @@ const cart = useCartStore();
       <div class="mini-cart__panel">
 
         <div class="mini-cart__header">
-          <span class="mini-cart__title">Coș ({{ cart.count }})</span>
-          <button class="mini-cart__close" aria-label="Close cart" @click="emit('close')">
+          <span class="mini-cart__title">{{ t('miniCart.title') }} ({{ cart.count }})</span>
+          <button class="mini-cart__close" :aria-label="t('miniCart.close')" @click="emit('close')">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 1L19 19M19 1L1 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             </svg>
@@ -29,7 +30,7 @@ const cart = useCartStore();
         </div>
 
         <p v-if="!cart.items.length" class="mini-cart__empty">
-          Nu ai niciun produs în coș.
+          {{ t('miniCart.empty') }}
         </p>
 
         <ul v-else class="mini-cart__list">
@@ -41,7 +42,7 @@ const cart = useCartStore();
             <div class="mini-cart__item-body">
               <div class="mini-cart__item-top">
                 <span class="mini-cart__item-title">{{ item.title }}</span>
-                <button class="mini-cart__item-remove" aria-label="Remove" @click="cart.removeItem(item.id)">
+                <button class="mini-cart__item-remove" :aria-label="t('miniCart.remove')" @click="cart.removeItem(item.id)">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
@@ -79,9 +80,9 @@ const cart = useCartStore();
 
               <div class="mini-cart__item-bottom">
                 <div class="mini-cart__item-qty-ctrl">
-                  <button class="mini-cart__qty-btn" aria-label="Decrease" @click="cart.decreaseQty(item.id)">−</button>
+                  <button class="mini-cart__qty-btn" :aria-label="t('miniCart.decrease')" @click="cart.decreaseQty(item.id)">−</button>
                   <span class="mini-cart__qty-val">{{ item.qty }}</span>
-                  <button class="mini-cart__qty-btn" aria-label="Increase" @click="cart.increaseQty(item.id)">+</button>
+                  <button class="mini-cart__qty-btn" :aria-label="t('miniCart.increase')" @click="cart.increaseQty(item.id)">+</button>
                 </div>
                 <span class="mini-cart__item-total">
                   {{ (item.basePrice + (item.additions?.reduce((s,a) => s+(a.price??0),0)??0) + (item.sauces?.reduce((s,a) => s+(a.price??0),0)??0)) * item.qty }} Lei
@@ -93,15 +94,15 @@ const cart = useCartStore();
 
         <div v-if="cart.items.length" class="mini-cart__footer">
           <div class="mini-cart__total">
-            <span>Total:</span>
+            <span>{{ t('miniCart.total') }}</span>
             <strong>{{ cart.total }} Lei</strong>
           </div>
           <div class="mini-cart__actions">
             <NuxtLink to="/cart" class="mini-cart__btn mini-cart__btn--secondary" @click="emit('close')">
-              Coș
+              {{ t('miniCart.cartBtn') }}
             </NuxtLink>
             <NuxtLink to="/checkout" class="mini-cart__btn mini-cart__btn--primary" @click="emit('close')">
-              Comandă
+              {{ t('miniCart.checkoutBtn') }}
             </NuxtLink>
           </div>
         </div>
