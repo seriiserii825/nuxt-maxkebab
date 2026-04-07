@@ -1,7 +1,7 @@
 .shipping-cost {
   position: fixed;
-  bottom: 0;
   left: 0;
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,13 +14,15 @@
   border: 1px solid #e0e0e0;
   z-index: 1000;
   @media screen and (max-width: 768px) {
-    padding: 3.2rem 1.6rem 6.4rem;
     flex-direction: column;
     gap: 1.6rem;
+    padding: 3.2rem 1.6rem 6.4rem;
   }
+
   &.shipping-cost--hidden {
     display: none;
   }
+
   &__remaining--available {
     color: #3c833f;
   }

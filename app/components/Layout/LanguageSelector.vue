@@ -13,17 +13,19 @@ watch(locale, () => {
 <template>
   <div class="language-selector">
     <section class="language-selector__dropdown" :class="{ active: is_visible_dropdown }">
-      <h2 class="language-selector__title">Alege limba</h2>
+      <h2 class="language-selector__title">
+        Alege limba
+      </h2>
       <div class="language-selector__list">
         <NuxtLink
-          v-for="locale in locales"
-          :key="locale.code"
-          :to="switchLocalePath(locale.code)"
-          :class="{ active: locale.code === currentLocale?.code }"
-          class="language-selector__item">
-          <img :src="`/img/${locale.img}`" :alt="locale.name" />
-          <span class="name">{{ locale.name }}</span>
-          <span class="code">{{ locale.code.toUpperCase() }}</span>
+            v-for="lc in locales"
+            :key="lc.code"
+            :to="switchLocalePath(lc.code)"
+            :class="{ active: lc.code === currentLocale?.code }"
+            class="language-selector__item">
+        <img :src="`/img/${lc.img}`" :alt="lc.name" />
+        <span class="name">{{ lc.name }}</span>
+        <span class="code">{{ lc.code.toUpperCase() }}</span>
         </NuxtLink>
       </div>
     </section>

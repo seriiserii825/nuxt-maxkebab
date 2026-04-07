@@ -24,7 +24,7 @@
     height: 60%;
     background: #fff;
     border-radius: 3rem;
-    box-shadow: 0 3.2rem 3rem -2.9rem rgba(0, 0, 0, 0.25);
+    box-shadow: 0 3.2rem 3rem -2.9rem rgb(0, 0, 0, 25%);
     z-index: 1;
   }
 
@@ -65,8 +65,8 @@
   &__content {
     display: grid;
     align-items: center;
-    padding: 2.6rem;
     flex: 1;
+    padding: 2.6rem;
 
     @media (max-width: 576px) {
       padding: 2.4rem 1rem 0;
@@ -120,8 +120,8 @@
 
   &__actions {
     display: flex;
-    flex-direction: row-reverse;
     align-items: center;
+    flex-direction: row-reverse;
     gap: 1rem;
 
     @media (max-width: 576px) {
@@ -133,8 +133,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 5rem;
     width: 5rem;
+    height: 5rem;
     background: #ee3230;
     border-radius: 50%;
   }

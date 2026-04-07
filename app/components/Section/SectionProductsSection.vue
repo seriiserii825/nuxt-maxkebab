@@ -8,7 +8,7 @@ function productPath(permalink: string) {
   return `${prefix}/${permalink}`;
 }
 
-const props = defineProps<{
+defineProps<{
   catalog: ICatalog[];
 }>();
 </script>
@@ -31,51 +31,53 @@ const props = defineProps<{
           <div class="products-section__content">
             <div v-for="product in child.products" :key="product.id" class="product-card">
               <NuxtLink :to="productPath(product.permalink)">
-                <div class="product-card__img">
-                  <img
+              <div class="product-card__img">
+                <img
                     v-if="product.image"
                     :src="product.image"
                     :alt="product.title"
                     loading="lazy" />
-                </div>
+              </div>
               </NuxtLink>
 
               <div class="product-card__content">
-                <h3 class="product-card__title">{{ product.title }}</h3>
+                <h3 class="product-card__title">
+                  {{ product.title }}
+                </h3>
 
                 <div class="product-card__description" v-html="product.description" />
 
-                <footer class="product-card__footer">
-                  <div class="product-card__price">
-                    <span v-if="product.is_on_sale" class="product-card__price--old">
-                      {{ product.regular_price }} Lei
-                    </span>
-                    <span>
-                      {{ product.is_on_sale ? product.sale_price : product.regular_price }}
-                    </span>
-                    <span>Lei</span>
-                  </div>
+                  <footer class="product-card__footer">
+                    <div class="product-card__price">
+                      <span v-if="product.is_on_sale" class="product-card__price--old">
+                        {{ product.regular_price }} Lei
+                      </span>
+                      <span>
+                        {{ product.is_on_sale ? product.sale_price : product.regular_price }}
+                      </span>
+                      <span>Lei</span>
+                    </div>
 
-                  <div class="product-card__actions">
-                    <NuxtLink
-                      :to="productPath(product.permalink)"
-                      class="product-card__add-to-cart">
+                    <div class="product-card__actions">
+                      <NuxtLink
+                          :to="productPath(product.permalink)"
+                          class="product-card__add-to-cart">
                       <IconTopping />
-                    </NuxtLink>
+                      </NuxtLink>
 
-                    <NuxtLink
-                      v-if="product.has_options"
-                      class="product-card__topping"
-                      :to="productPath(product.permalink)">
+                      <NuxtLink
+                          v-if="product.has_options"
+                          class="product-card__topping"
+                          :to="productPath(product.permalink)">
                       Topping
-                    </NuxtLink>
-                  </div>
-                </footer>
+                      </NuxtLink>
+                    </div>
+                  </footer>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 </template>

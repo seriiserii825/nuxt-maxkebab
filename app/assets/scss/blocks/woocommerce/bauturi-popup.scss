@@ -56,14 +56,14 @@
   &__product {
     display: flex;
     align-items: center;
+    gap: 2rem;
     margin-bottom: 2rem;
     padding-bottom: 2rem;
     border-bottom: 1px solid #eee;
-    gap: 2rem;
 
     @media screen and (max-width: 576px) {
-      text-align: center;
       flex-direction: column;
+      text-align: center;
     }
   }
 

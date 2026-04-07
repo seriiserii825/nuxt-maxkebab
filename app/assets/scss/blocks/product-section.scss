@@ -57,10 +57,10 @@
     text-transform: uppercase;
 
     img {
-      margin-left: 4rem;
-      height: 8rem;
       position: relative;
       top: -6px;
+      margin-left: 4rem;
+      height: 8rem;
     }
   }
 
@@ -81,8 +81,7 @@
     }
 
     @media (max-width: 768px) {
-      column-gap: 15px;
-      row-gap: 30px;
+      gap: 30px 15px;
     }
 
     @media (max-width: 576px) {

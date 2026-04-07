@@ -13,6 +13,8 @@ defineProps({
 
 <template>
   <li>
-    <NuxtLink :to="$localePath(slug)">{{ label }}</NuxtLink>
+    <NuxtLink :to="$localePath(slug)">
+{{ label }}
+</NuxtLink>
   </li>
 </template>

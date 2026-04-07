@@ -17,7 +17,9 @@ defineProps({
           stroke-width="2"
           d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
-      <p class="error-container__text">{{ errorMessage }}</p>
+      <p class="error-container__text">
+{{ errorMessage }}
+</p>
     </div>
   </div>
 </template>

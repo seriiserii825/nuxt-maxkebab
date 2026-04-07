@@ -24,6 +24,7 @@
 
     .swiper-slide {
       position: relative;
+
       img {
         position: absolute;
         top: 0;
@@ -38,9 +39,11 @@
 
   .gallery-desktop {
     display: none;
+
     &.active {
       display: block;
     }
+
     .swiper-slide {
       aspect-ratio: 3.15/1;
     }
@@ -48,9 +51,11 @@
 
   .gallery-mobile {
     display: none;
+
     &.active {
       display: block;
     }
+
     .swiper-slide {
       aspect-ratio: 1/1.5;
     }

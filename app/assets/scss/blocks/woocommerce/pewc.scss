@@ -1,9 +1,9 @@
 .pewc-groups-standard {
   display: grid;
-  width: 100%;
-  gap: 1.5rem;
-  grid-template-columns: 1fr 1fr;
   order: 3;
+  gap: 1.5rem;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
 
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -162,6 +162,7 @@
       label {
         display: flex;
         align-items: center;
+        order: 1;
         margin-left: 5rem;
         font-size: 1.7rem;
         font-weight: 300;
@@ -169,7 +170,6 @@
         letter-spacing: -0.025em;
         color: #000;
         cursor: pointer;
-        order: 1;
 
         // @media screen and (max-width: 576px) {
         //   font-size: 1.5rem;

@@ -38,8 +38,12 @@ function chooseSite() {
   <div class="city-popup" :class="{ active: active }">
     <div class="city-popup__overlay" @click="closePopup"></div>
     <div class="city-popup__content">
-      <button class="city-popup__close" @click="closePopup">×</button>
-      <h2 class="city-popup__title">{{ t("cityPopup.title") }}</h2>
+      <button class="city-popup__close" @click="closePopup">
+×
+</button>
+      <h2 class="city-popup__title">
+{{ t("cityPopup.title") }}
+</h2>
       <p v-if="!chisinau_selected" class="city-popup__subtitle">
         {{ t("cityPopup.selectLocation") }}
       </p>
