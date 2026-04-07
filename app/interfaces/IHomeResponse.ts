@@ -1,5 +1,6 @@
 export interface IHomeResponse {
   slider: ISlider;
+  catalog: ICatalog[];
 }
 
 export interface ISlider {
