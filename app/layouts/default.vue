@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import LayoutFooter from "~/components/Layout/LayoutFooter.vue";
 import { menu } from "~/data/menu";
 
 const city_store = useCityStore();
@@ -14,6 +15,6 @@ if (!city_was_selected.value) {
     <LayoutHeader v-if="menu" :menu="menu" />
     <slot />
     <LayoutCityPopup v-if="popup_is_active" :active="popup_is_active" />
-    <!-- <AppFooter /> -->
+    <LayoutFooter />
   </div>
 </template>
