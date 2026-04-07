@@ -14,7 +14,7 @@ watch(locale, () => {
   <div class="language-selector">
     <section class="language-selector__dropdown" :class="{ active: is_visible_dropdown }">
       <h2 class="language-selector__title">
-        Alege limba
+        {{ $t('languageSelector.title') }}
       </h2>
       <div class="language-selector__list">
         <NuxtLink

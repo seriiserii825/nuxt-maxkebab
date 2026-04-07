@@ -1,4 +1,7 @@
 {
+  "languageSelector": {
+    "title": "Choose language"
+  },
   "menu": {
     "menu": "Menu",
     "combo": "Combo",
