@@ -39,19 +39,12 @@ function chooseSite() {
     <div class="city-popup__overlay" @click="closePopup"></div>
     <div class="city-popup__content">
       <button class="city-popup__close" @click="closePopup">×</button>
-<<<<<<< HEAD
-      <h2 class="city-popup__title">Alege cum să comanzi</h2>
-      <p v-if="current_index === null" class="city-popup__subtitle">Selectați localul</p>
-      <p v-if="current_index === 0" class="city-popup__subtitle city-popup__subtitle--second">
-        Preferi Glovo, Straus sau comanda pe site?
-=======
       <h2 class="city-popup__title">{{ t("cityPopup.title") }}</h2>
       <p v-if="!chisinau_selected" class="city-popup__subtitle">
         {{ t("cityPopup.selectLocation") }}
       </p>
       <p v-if="chisinau_selected" class="city-popup__subtitle city-popup__subtitle--second">
         {{ t("cityPopup.deliveryOptions") }}
->>>>>>> d93283a9d4ac42559e2e871b1f5dc2d6626d445b
       </p>
       <div class="city-popup__buttons">
         <button
