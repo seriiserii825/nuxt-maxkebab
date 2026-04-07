@@ -1,10 +1,34 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { IFooterResponse } from "~/interfaces/IFooterResponse";
+
+const { locale } = useI18n();
+
+const { data: footer_data, error } = await useFetch<IFooterResponse>("/api/footer");
+
+if (error.value) {
+  showError({
+    statusCode: error.value.statusCode ?? 500,
+    message: error.value.data?.message ?? error.value.message,
+  });
+}
+
+const footer = computed(() => footer_data.value?.footer);
+
+const full_company_name = computed(() => {
+  const f = footer.value;
+  if (!f) return "";
+  if (locale.value === "ru") return f.full_company_name_ru;
+  if (locale.value === "en") return f.full_company_name_en;
+  return f.full_company_name_ro;
+});
+
+</script>
 
 <template>
   <footer class="main-footer">
     <div class="main-footer__top">
       <div class="main-footer__top__info">
-        <h1>Max Kebab</h1>
+        <h1>{{ full_company_name || "Max Kebab" }}</h1>
         <ul>
           <li>
             <svg
@@ -17,9 +41,23 @@
                 d="M9.20397 1.63733C8.80921 0.68376 7.76849 0.176214 6.7739 0.44793L2.26238 1.67834C1.37033 1.92443 0.75 2.73445 0.75 3.65726C0.75 16.3408 11.0342 26.625 23.7177 26.625C24.6405 26.625 25.4506 26.0047 25.6967 25.1126L26.9271 20.6011C27.1988 19.6065 26.6912 18.5658 25.7377 18.171L20.816 16.1203C19.9804 15.7717 19.0114 16.0127 18.4423 16.715L16.3711 19.2425C12.7619 17.5353 9.83969 14.6131 8.13249 11.0039L10.66 8.93779C11.3623 8.3636 11.6033 7.39977 11.2547 6.56412L9.20397 1.64246V1.63733Z"
                 fill="black"></path>
             </svg>
-            <a href="tel:068646410">Chișinău - 068646410</a>
+            <a
+              v-if="footer?.phone_number_chisinau"
+              :href="`tel:${footer.phone_number_chisinau}`">
+              Chișinău - {{ footer.phone_number_chisinau }}
+            </a>
+            <template v-else>
+              <a href="tel:068646410">Chișinău - 068646410</a>
+            </template>
             &nbsp;|&nbsp;
-            <a href="tel:060649964">Ialoveni - 060649964</a>
+            <a
+              v-if="footer?.phone_number_ialoveni"
+              :href="`tel:${footer.phone_number_ialoveni}`">
+              Ialoveni - {{ footer.phone_number_ialoveni }}
+            </a>
+            <template v-else>
+              <a href="tel:060649964">Ialoveni - 060649964</a>
+            </template>
           </li>
           <li>
             <svg
@@ -32,7 +70,12 @@
                 d="M31 3.875C31 1.73467 29.2653 0 27.125 0H3.875C1.7377 0 0 1.73467 0 3.875V19.375C0 21.5123 1.7377 23.25 3.875 23.25H27.125C29.2653 23.25 31 21.5123 31 19.375V3.875ZM28.0938 3.875V5.21309L17.6494 13.7865C16.4021 14.8158 14.5979 14.8158 13.3506 13.7865L2.90625 5.21309V3.82051C2.90625 3.34219 3.34219 2.85176 3.875 2.85176H27.125C27.6602 2.85176 28.0938 3.34219 28.0938 3.82051V3.875ZM28.0938 8.97305V19.375C28.0938 19.9078 27.6602 20.3438 27.125 20.3438H3.875C3.34219 20.3438 2.90625 19.9078 2.90625 19.375V8.97305L11.5039 16.0328C13.8289 17.94 17.1711 17.94 19.5506 16.0328L28.0938 8.97305Z"
                 fill="black"></path>
             </svg>
-            <a href="mailTo: officemaxkebab@gmail.com">officemaxkebab@gmail.com</a>
+            <a
+              v-if="footer?.email"
+              :href="`mailto:${footer.email}`">
+              {{ footer.email }}
+            </a>
+            <a v-else href="mailto:officemaxkebab@gmail.com">officemaxkebab@gmail.com</a>
           </li>
           <li class="main-footer__delivery-links">
             <a
@@ -102,7 +145,16 @@
         </ul>
         <div class="main-footer__top__partner">
           Max Kebab a ales Bludelego
-          <a href="https://bludelego.it/" target="_blank">
+          <a
+            v-if="footer?.partner_url"
+            :href="footer.partner_url"
+            target="_blank">
+            <img
+              v-if="footer?.parnter_logo"
+              :src="footer.parnter_logo"
+              alt="Partner logo" />
+          </a>
+          <a v-else href="https://bludelego.it/" target="_blank">
             <img src="https://maxkebab.md/wp-content/uploads/2022/10/bludelego.svg" />
           </a>
         </div>
@@ -112,7 +164,14 @@
     <div class="main-footer__bottom">
       <div class="main-footer__bottom__copyright">Copyright © 2026 Max Kebab</div>
       <div class="main-footer__bottom__social">
-        <ul>
+        <ul v-if="footer?.social_links?.length">
+          <li v-for="(link, index) in footer.social_links" :key="index">
+            <a :href="link.url" target="_blank">
+              <img :src="link.immagine" alt="Social link" />
+            </a>
+          </li>
+        </ul>
+        <ul v-else>
           <li>
             <a href="https://www.instagram.com/_max_kebab_/" target="_blank">
               <img
