@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { IMenuItem } from "~/interfaces/IMenuItem";
+import { useCartStore } from "~/stores/useCartStore";
 
 defineProps({
   menu: {
@@ -10,6 +11,7 @@ defineProps({
 
 const is_active = ref(false);
 const is_cart_open = ref(false);
+const cart = useCartStore();
 
 onMounted(() => {
   window.addEventListener("scroll", () => {
@@ -49,11 +51,11 @@ onMounted(() => {
                 stroke="white"></path>
           </svg>
           <span class="cart-contents" title="Coș">
-            <span class="amount"><span class="count">3</span></span>
+            <span class="amount"><span class="count">{{ cart.count }}</span></span>
           </span>
         </div>
         <div class="main-header__cart-icon__total">
-          257 Lei
+          {{ cart.total }} Lei
         </div>
       </div>
       <UIMiniCart :is-open="is_cart_open" @close="is_cart_open = false" />
