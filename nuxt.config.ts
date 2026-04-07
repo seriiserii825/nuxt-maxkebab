@@ -25,6 +25,7 @@ export default defineNuxtConfig({
         "swiper/vue",
         "swiper/modules",
         "@pinia-plugin-persistedstate/nuxt",
+        "gsap",
       ],
     },
   },
@@ -41,4 +42,3 @@ export default defineNuxtConfig({
     ],
   },
 });
-

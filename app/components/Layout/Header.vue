@@ -7,10 +7,22 @@ defineProps({
     required: true,
   },
 });
+
+const is_active = ref(false);
+
+onMounted(() => {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 0) {
+      is_active.value = true;
+    } else {
+      is_active.value = false;
+    }
+  });
+});
 </script>
 
 <template>
-  <header class="main-header">
+  <header class="main-header" :class="{'active': is_active}">
     <div class="container main-header__menu">
       <LayoutLanguageSelector />
       <UICitySelect />
