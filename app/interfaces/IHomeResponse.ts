@@ -16,6 +16,19 @@ export interface ICatalog {
   slug: string;
   has_children: boolean;
   children: ICatalogChild[];
+  icons: IACFImage[];
+  images: IACFImage[];
+  background: string;
+}
+
+export interface IACFImage {
+  id: number;
+  url: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+  sizes: Record<string, string | number>;
 }
 
 export interface ICatalogChild {

@@ -6,23 +6,22 @@ defineProps({
     type: Object as PropType<ICatalog>,
     required: true,
   },
-  gradients: {
-    type: Object as PropType<IGradientsBg>,
-    required: true,
-  },
 });
 </script>
 
 <template>
-  <div class="products-section" :style="{ background: bg }">
-    <img class="rndAnim bg-image bg-image--1" src="" alt="pizza" loading="lazy" />
-    <img class="rndAnim bg-image bg-image--2" src="" alt="pizza" loading="lazy" />
+  <div class="products-section" :style="{ background: catalog.background }">
+    <template v-if="catalog.images && catalog.images.length >= 2">
+      <img
+        v-for="(image, index) in catalog.images.slice(0, 2)"
+        :key="index"
+        :class="`rndAnim bg-image bg-image--${index + 1}`"
+        :src="image.url"
+        alt="pizza"
+        loading="lazy" />
+    </template>
 
-    <div
-      v-for="(child, index) in catalog.children"
-      :key="child.id"
-      :style="{ background: gradients.gradients[index] }"
-      class="products-section__child">
+    <div v-for="child in catalog.children" :key="child.id" class="products-section__child">
       <div class="products-section__inner">
         <div class="container">
           <div class="products-section__header">
