@@ -170,9 +170,39 @@
     border-top: 1px dashed #e8e8e8;
   }
 
-  &__item-qty {
-    font-size: 1.2rem;
-    color: var(--text-light);
+  &__item-qty-ctrl {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  &__qty-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    font-size: 1.6rem;
+    line-height: 1;
+    background: none;
+    border: 1.5px solid var(--accent-dark);
+    border-radius: 50%;
+    color: var(--accent-dark);
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s;
+
+    &:hover {
+      background-color: var(--accent-dark);
+      color: #fff;
+    }
+  }
+
+  &__qty-val {
+    min-width: 1.8rem;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-color);
   }
 
   &__item-total {
@@ -186,13 +216,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2rem;
-    height: 2rem;
+    width: 2.4rem;
+    height: 2.4rem;
     background: none;
     border: none;
     cursor: pointer;
-    color: #ccc;
+    color: #bbb;
     transition: color 0.2s;
+    padding: 0;
 
     &:hover {
       color: var(--color-red);

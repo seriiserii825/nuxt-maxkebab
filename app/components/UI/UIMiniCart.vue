@@ -29,7 +29,7 @@ interface CartItem {
   comment?: string;
 }
 
-const cartItems: CartItem[] = [
+const cartItems = ref<CartItem[]>([
   {
     id: 1,
     title: 'Max Kebab Classic',
@@ -77,7 +77,20 @@ const cartItems: CartItem[] = [
       { label: 'Lavas', value: 'Lavas', price: 5 },
     ],
   },
-];
+]);
+
+function increaseQty(item: CartItem) {
+  item.qty++;
+}
+
+function decreaseQty(item: CartItem) {
+  if (item.qty > 1) item.qty--;
+}
+
+function removeItem(id: number) {
+  const idx = cartItems.value.findIndex(i => i.id === id);
+  if (idx !== -1) cartItems.value.splice(idx, 1);
+}
 
 function itemExtrasPrice(item: CartItem): number {
   const additionsTotal = item.additions?.reduce((s, a) => s + (a.price ?? 0), 0) ?? 0;
@@ -90,7 +103,7 @@ function itemTotal(item: CartItem): number {
 }
 
 const total = computed(() =>
-  cartItems.reduce((sum, item) => sum + itemTotal(item), 0)
+  cartItems.value.reduce((sum, item) => sum + itemTotal(item), 0)
 );
 </script>
 
@@ -117,9 +130,9 @@ const total = computed(() =>
             <div class="mini-cart__item-body">
               <div class="mini-cart__item-top">
                 <span class="mini-cart__item-title">{{ item.title }}</span>
-                <button class="mini-cart__item-remove" aria-label="Remove">
-                  <svg width="12" height="12" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <button class="mini-cart__item-remove" aria-label="Remove" @click="removeItem(item.id)">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </button>
               </div>
@@ -154,7 +167,11 @@ const total = computed(() =>
               </p>
 
               <div class="mini-cart__item-bottom">
-                <span class="mini-cart__item-qty">{{ item.qty }} x {{ item.basePrice }} Lei</span>
+                <div class="mini-cart__item-qty-ctrl">
+                  <button class="mini-cart__qty-btn" @click="decreaseQty(item)" aria-label="Decrease">−</button>
+                  <span class="mini-cart__qty-val">{{ item.qty }}</span>
+                  <button class="mini-cart__qty-btn" @click="increaseQty(item)" aria-label="Increase">+</button>
+                </div>
                 <span class="mini-cart__item-total">{{ itemTotal(item) }} Lei</span>
               </div>
             </div>
