@@ -44,12 +44,16 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="products-section" :style="{ background: catalog.background }">
+  <div class="products-section" :style="{ background: catalog.background }" :id="catalog.scroll_id">
     <template v-if="catalog.images && catalog.images.length >= 2">
       <img
         v-for="(image, index) in catalog.images.slice(0, 2)"
         :key="index"
-        :ref="(el) => { if (el) rndAnimEls.push(el as HTMLElement) }"
+        :ref="
+          (el) => {
+            if (el) rndAnimEls.push(el as HTMLElement);
+          }
+        "
         :class="`rndAnim bg-image bg-image--${index + 1}`"
         :src="image.url"
         alt="pizza"

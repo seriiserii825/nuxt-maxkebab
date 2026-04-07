@@ -13,6 +13,7 @@ export interface ISlider {
 export interface ICatalog {
   id: number;
   name: string;
+  scroll_id: string;
   slug: string;
   has_children: boolean;
   children: ICatalogChild[];
