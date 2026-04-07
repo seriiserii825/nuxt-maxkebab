@@ -2,12 +2,19 @@
 const { locales, locale } = useI18n();
 const switchLocalePath = useSwitchLocalePath();
 
+const dropdown_ref = ref<HTMLElement | null>(null);
 const is_visible_dropdown = ref(false);
 const currentLocale = computed(() => locales.value.find((l) => l.code === locale.value));
 
 watch(locale, () => {
-  is_visible_dropdown.value = false;
+  closeDropdown();
 });
+
+useClickOutside(dropdown_ref, closeDropdown)
+
+function closeDropdown(){
+  is_visible_dropdown.value = false;
+}
 </script>
 
 <template>
@@ -16,7 +23,7 @@ watch(locale, () => {
       <h2 class="language-selector__title">
         {{ $t('languageSelector.title') }}
       </h2>
-      <div class="language-selector__list">
+      <div ref="dropdown_ref" class="language-selector__list">
         <NuxtLink
             v-for="lc in locales"
             :key="lc.code"
