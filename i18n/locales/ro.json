@@ -35,5 +35,8 @@
     "decrease": "Micșorează cantitatea",
     "increase": "Mărește cantitatea",
     "close": "Închide coșul"
+  },
+  "footer": {
+    "ales": "a ales"
   }
 }

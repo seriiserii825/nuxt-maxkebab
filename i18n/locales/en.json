@@ -35,5 +35,8 @@
     "decrease": "Decrease quantity",
     "increase": "Increase quantity",
     "close": "Close cart"
+  },
+  "footer": {
+    "ales": "choose"
   }
 }

@@ -34,17 +34,17 @@ const full_company_name = computed(() => {
           <li>
             <IconPhone />
             <a v-if="footer?.phone_number_chisinau" :href="`tel:${footer.phone_number_chisinau}`">
-              Chișinău - {{ footer.phone_number_chisinau }}
+              {{ t("cities.chisinau") }} - {{ footer.phone_number_chisinau }}
             </a>
             <template v-else>
-              <a href="tel:068646410">Chișinău - 068646410</a>
+              <a href="tel:068646410">{{ t("cities.chisinau") }} - 068646410</a>
             </template>
             &nbsp;|&nbsp;
             <a v-if="footer?.phone_number_ialoveni" :href="`tel:${footer.phone_number_ialoveni}`">
-              Ialoveni - {{ footer.phone_number_ialoveni }}
+              {{ t("cities.ialoveni") }} - {{ footer.phone_number_ialoveni }}
             </a>
             <template v-else>
-              <a href="tel:060649964">Ialoveni - 060649964</a>
+              <a href="tel:060649964">{{ t("citites.chisinau") }} - 060649964</a>
             </template>
           </li>
           <li>
@@ -77,7 +77,7 @@ const full_company_name = computed(() => {
           </li>
         </ul>
         <div class="main-footer__top__partner">
-          Max Kebab a ales Bludelego
+          Max Kebab {{ t("footer.ales") }} Bludelego
           <a v-if="footer?.partner_url" :href="footer.partner_url" target="_blank">
             <img v-if="footer?.parnter_logo" :src="footer.parnter_logo" alt="Partner logo" />
           </a>
