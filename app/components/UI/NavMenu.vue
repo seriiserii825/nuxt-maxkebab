@@ -21,12 +21,12 @@ defineProps({
         <ul class="sub-menu">
           <li v-for="sub in item.sub_menu" :key="sub.href">
             <NuxtLink :href="`${$localePath('index')}${sub.href}`">
-            {{ t(sub.text) }}
+              {{ t(sub.text) }}
             </NuxtLink>
           </li>
         </ul>
       </template>
-      <a v-else :href="$localePath(item.href)">{{ t(item.text) }}</a>
+      <NuxtLink v-else :to="$localePath(item.href)">{{ t(item.text) }}</NuxtLink>
     </li>
   </ul>
 </template>
