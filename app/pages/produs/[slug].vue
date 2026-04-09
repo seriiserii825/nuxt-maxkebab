@@ -1,4 +1,10 @@
 <script setup lang="ts">
+const breadcrumbs = [
+  { label: "Acasă", to: "/" },
+  { label: "Combo", to: "/#meniuri" },
+  { label: "Menu Kebab standart" },
+];
+
 const bautura = [
   { value: "Coca-Cola", label: "Coca-Cola", checked: true },
   { value: "Sprite", label: "Sprite" },
@@ -79,37 +85,16 @@ const adaosuriSosuri = [
 <template>
   <div class="single-product">
     <div class="container">
-      <ul class="breadcrumb">
-        <li class="breadcrumb__item">
-          <NuxtLink class="breadcrumb__link" to="/">Acasă</NuxtLink>
-          /
-        </li>
-        <li class="breadcrumb__item">
-          <NuxtLink class="breadcrumb__link" to="/#meniuri">Combo</NuxtLink>
-          /
-        </li>
-        <li class="breadcrumb__item">
-          <span>Menu Kebab standart</span>
-        </li>
-      </ul>
+      <ProductBreadcrumb :items="breadcrumbs" />
 
       <div class="single-product__wrap">
         <div class="single-product__info">
-          <h1 class="single-product__title">Menu Kebab standart</h1>
+          <ProductInfo
+            title="Menu Kebab standart"
+            description="Kebab standart; Cartofi pai; Bautura; Sos"
+            :price="135" />
 
-          <div class="single-product__description">
-            <p><strong>Kebab standart; Cartofi pai; Bautura; Sos</strong></p>
-          </div>
-
-          <div class="single-product__price">
-            <span class="single-product__price-value">135</span>
-            <span class="single-product__price-currency">Lei</span>
-          </div>
-
-          <div class="single-product__actions">
-            <UIQuantitySelector />
-            <button class="single-product__submit" type="submit">Adaugă în coș</button>
-          </div>
+          <ProductActions />
 
           <div class="single-product__form">
             <ProductOptionGroupRadio
@@ -128,14 +113,11 @@ const adaosuriSosuri = [
           </div>
         </div>
 
-        <div class="single-product__gallery">
-          <img
-            class="single-product__image"
-            src="https://maxkebab.md/wp-content/uploads/2025/11/meniu-kebab-standart-600x900.jpg"
-            alt="Menu Kebab standart"
-            width="600"
-            height="900" />
-        </div>
+        <ProductGallery
+          src="https://maxkebab.md/wp-content/uploads/2025/11/meniu-kebab-standart-600x900.jpg"
+          alt="Menu Kebab standart"
+          :width="600"
+          :height="900" />
       </div>
     </div>
   </div>
