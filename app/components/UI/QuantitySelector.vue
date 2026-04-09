@@ -1,8 +1,14 @@
+<script setup lang="ts">
+import { useSingleProductStore } from "~/stores/useSingleProductStore";
+
+const store = useSingleProductStore();
+</script>
+
 <template>
   <div class="quantity">
-    <button class="quantity__btn" type="button">−</button>
-    <input class="quantity__input" type="number" name="quantity" value="1" min="1" />
-    <button class="quantity__btn" type="button">+</button>
+    <button class="quantity__btn" type="button" @click="store.decreaseQuantity">−</button>
+    <span class="quantity__value">{{ store.quantity }}</span>
+    <button class="quantity__btn" type="button" @click="store.increaseQuantity">+</button>
   </div>
 </template>
 
@@ -32,19 +38,12 @@
     }
   }
 
-  &__input {
+  &__value {
     width: 5rem;
     font-size: 2.5rem;
     font-weight: 700;
     text-align: center;
     color: #000;
-    border: none;
-    appearance: textfield;
-
-    &::-webkit-inner-spin-button,
-    &::-webkit-outer-spin-button {
-      appearance: none;
-    }
   }
 }
 </style>

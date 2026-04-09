@@ -1,8 +1,14 @@
 <script setup lang="ts">
-defineProps<{
-  title: string
-  options: { name: string; value: string; label: string; price: number }[]
-}>()
+import { useSingleProductStore } from "~/stores/useSingleProductStore";
+
+const props = defineProps<{
+  title: string;
+  options: { name: string; value: string; label: string; price: number }[];
+}>();
+
+const store = useSingleProductStore();
+
+props.options.forEach((opt) => store.registerCheckbox(opt.name, opt.price));
 </script>
 
 <template>
@@ -15,7 +21,9 @@ defineProps<{
             class="option-group__checkbox"
             type="checkbox"
             :name="option.name"
-            :value="option.value" />
+            :value="option.value"
+            :checked="store.checkboxOptions[option.name]?.checked"
+            @change="store.toggleCheckbox(option.name)" />
           <span class="option-group__text">{{ option.label }} + {{ option.price }} Lei</span>
         </label>
       </li>

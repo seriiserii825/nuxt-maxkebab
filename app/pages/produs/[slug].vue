@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { useSingleProductStore } from "~/stores/useSingleProductStore";
+
+const store = useSingleProductStore();
+store.init(135);
+
 const breadcrumbs = [
   { label: "Acasă", to: "/" },
   { label: "Combo", to: "/#meniuri" },
@@ -92,7 +97,7 @@ const adaosuriSosuri = [
           <ProductInfo
             title="Menu Kebab standart"
             description="Kebab standart; Cartofi pai; Bautura; Sos"
-            :price="135" />
+            :price="store.totalPrice" />
 
           <ProductActions />
 
