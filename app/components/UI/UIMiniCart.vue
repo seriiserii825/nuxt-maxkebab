@@ -54,19 +54,7 @@ const cart = useCartStore();
                   class="mini-cart__item-remove"
                   :aria-label="t('miniCart.remove')"
                   @click="cart.removeItem(item.id)">
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"
-                      stroke="currentColor"
-                      stroke-width="1.8"
-                      stroke-linecap="round"
-                      stroke-linejoin="round" />
-                  </svg>
+                  <IconRemove />
                 </button>
               </div>
 
@@ -77,27 +65,34 @@ const cart = useCartStore();
                   {{ opt.value }}
                 </li>
               </ul>
-
-              <!-- Additions (checkboxes) with price -->
-              <ul
-                v-if="item.additions?.length"
-                class="mini-cart__item-opts mini-cart__item-opts--additions">
-                <li v-for="add in item.additions" :key="add.label">
-                  + {{ add.label }}
-                  <span class="mini-cart__item-opts-price">+{{ add.price }} Lei</span>
-                </li>
-              </ul>
+              <template v-if="item.additions?.length">
+                <h3 class="mini-cart__item-title">{{ t("miniCart.additions") }}:</h3>
+                <!-- Additions (checkboxes) with price -->
+                <ul
+                  v-if="item.additions?.length"
+                  class="mini-cart__item-opts mini-cart__item-opts--additions">
+                  <li v-for="add in item.additions" :key="add.label">
+                    + {{ add.label }}
+                    <span class="mini-cart__item-opts-price">+{{ add.price }} Lei</span>
+                  </li>
+                </ul>
+              </template>
 
               <!-- Sauces (steppers) with price -->
-              <ul
-                v-if="item.sauces?.length"
-                class="mini-cart__item-opts mini-cart__item-opts--sauces">
-                <li v-for="sauce in item.sauces" :key="sauce.label">
-                  {{ sauce.label }}
-                  <span v-if="sauce.count" class="mini-cart__item-opts-count">x{{ sauce.count }}</span>
-                  <span class="mini-cart__item-opts-price">+{{ sauce.price }} Lei</span>
-                </li>
-              </ul>
+              <template v-if="item.sauces?.length">
+                <h3 class="mini-cart__item-title">{{ t("miniCart.additions_sausage") }}:</h3>
+                <ul
+                  v-if="item.sauces?.length"
+                  class="mini-cart__item-opts mini-cart__item-opts--sauces">
+                  <li v-for="sauce in item.sauces" :key="sauce.label">
+                    {{ sauce.label }}
+                    <span v-if="sauce.count" class="mini-cart__item-opts-count">
+                      x{{ sauce.count }}
+                    </span>
+                    <span class="mini-cart__item-opts-price">+{{ sauce.price }} Lei</span>
+                  </li>
+                </ul>
+              </template>
 
               <div class="mini-cart__item-bottom">
                 <div class="mini-cart__item-qty-ctrl">

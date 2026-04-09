@@ -34,7 +34,9 @@
     "remove": "Elimină",
     "decrease": "Micșorează cantitatea",
     "increase": "Mărește cantitatea",
-    "close": "Închide coșul"
+    "close": "Închide coșul",
+    "additions": "Adaosuri",
+    "additions_sausage": "Adaosuri sosuri"
   },
   "footer": {
     "ales": "a ales"

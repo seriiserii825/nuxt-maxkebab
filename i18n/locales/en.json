@@ -34,7 +34,9 @@
     "remove": "Remove",
     "decrease": "Decrease quantity",
     "increase": "Increase quantity",
-    "close": "Close cart"
+    "close": "Close cart",
+    "additions": "Additions",
+    "additions_sausage": "Additions sauces"
   },
   "footer": {
     "ales": "choose"

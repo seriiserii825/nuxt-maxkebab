@@ -18,7 +18,6 @@ function decrement() {
 function increment() {
   const max = props.max ?? Infinity;
   if (count.value < max) count.value++;
-  console.log(props.id, "props.id");
   emits("emit_count", { id: props.id, count: count.value });
 }
 </script>

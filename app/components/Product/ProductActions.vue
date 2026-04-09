@@ -10,18 +10,22 @@ const props = defineProps<{
 
 const cart = useCartStore();
 const single = useSingleProductStore();
+const { checkboxOptions, stepperOptions } = storeToRefs(single);
 
 function addToCart() {
   const options = Object.values(single.radioSelections).map(({ title, value }) => ({
     label: title,
     value,
   }));
+  const additions_values = Object.values(checkboxOptions.value);
 
-  const additions = Object.values(single.checkboxOptions)
+  const additions = additions_values
     .filter((o) => o.checked)
     .map((o) => ({ label: o.label, value: o.label, price: o.price }));
 
-  const sauces = Object.values(single.stepperOptions)
+  const sauces_values = Object.values(stepperOptions.value);
+
+  const sauces = sauces_values
     .filter((o) => o.count > 0)
     .map((o) => ({
       label: o.label,
@@ -47,9 +51,7 @@ function addToCart() {
 <template>
   <div class="single-product__actions">
     <UIQuantitySelector />
-    <button class="single-product__submit" type="button" @click="addToCart">
-      Adaugă în coș
-    </button>
+    <button class="single-product__submit" type="button" @click="addToCart">Adaugă în coș</button>
   </div>
 </template>
 

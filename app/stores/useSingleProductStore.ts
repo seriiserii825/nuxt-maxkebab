@@ -72,8 +72,6 @@ export const useSingleProductStore = defineStore("singleProduct", () => {
   }
 
   function setStepperCount(id: string, count: number) {
-    console.log(id, "id");
-    console.log(count, "count");
     const option = stepperOptions.value[id];
     if (option) option.count = count;
   }
