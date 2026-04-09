@@ -1,0 +1,463 @@
+.single-product {
+  padding-top: 22rem;
+  padding-bottom: 6rem;
+  background-color: #fff;
+
+  // ── layout ────────────────────────────────────────────────────────────────
+
+  &__wrap {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    gap: 5rem;
+    z-index: 2;
+
+    @media (max-width: 992px) {
+      display: grid;
+      gap: 0;
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // ── info (left column) ────────────────────────────────────────────────────
+
+  &__info {
+    width: 50%;
+
+    @media (max-width: 1450px) {
+      width: 70%;
+    }
+
+    @media (max-width: 992px) {
+      order: 2;
+      padding-top: 5rem;
+      width: auto;
+    }
+  }
+
+  &__title {
+    margin-top: -6px;
+    margin-bottom: 5rem;
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 4.2rem;
+    color: #000;
+
+    @media (max-width: 576px) {
+      margin-bottom: 2rem;
+      font-size: 2.8rem;
+    }
+  }
+
+  &__description {
+    margin-bottom: 2rem;
+    width: 70%;
+
+    @media (max-width: 576px) {
+      width: 100%;
+    }
+
+    p {
+      font-size: 2rem;
+      font-weight: 300;
+      line-height: 2.3rem;
+      color: #000;
+    }
+  }
+
+  &__price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 4.7rem;
+    letter-spacing: -0.025em;
+    color: #120d0d;
+  }
+
+  &__price-currency {
+    font-size: 2rem;
+    color: var(--color-red);
+  }
+
+  // ── form ─────────────────────────────────────────────────────────────────
+
+  &__form {
+    margin-top: 3.6rem;
+  }
+
+  // ── totals ────────────────────────────────────────────────────────────────
+
+  &__totals {
+    margin-top: 2rem;
+    padding: 2rem 0;
+    border-top: 1px solid #d9d9d9;
+  }
+
+  &__total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    font-size: 1.8rem;
+    color: #000;
+
+    &--grand {
+      margin-top: 1rem;
+      font-size: 2.4rem;
+      font-weight: 700;
+    }
+  }
+
+  &__total-label {
+    color: var(--text-light);
+
+    .single-product__total-row--grand & {
+      color: #000;
+    }
+  }
+
+  &__total-value {
+    font-weight: 600;
+  }
+
+  // ── actions ───────────────────────────────────────────────────────────────
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 3rem;
+    margin-bottom: 6.4rem;
+
+    @media (max-width: 576px) {
+      display: grid;
+    }
+  }
+
+  &__submit {
+    padding: 2rem 8rem;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 2.3rem;
+    letter-spacing: -0.025em;
+    color: #fff;
+    background: #ee3230;
+    border: none;
+    border-radius: 10px;
+    transition: background 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      background: #a72322;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  // ── gallery (right column) ────────────────────────────────────────────────
+
+  &__gallery {
+    display: inline-block;
+    width: 50%;
+
+    @media (max-width: 992px) {
+      margin: 0 auto;
+      width: 100%;
+    }
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+// ── option groups ────────────────────────────────────────────────────────────
+
+.option-group {
+  position: relative;
+  margin-bottom: 4rem;
+  padding: 3.5rem 2rem 2rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 1rem;
+
+  &__title {
+    position: absolute;
+    top: -1.6rem;
+    left: 3rem;
+    padding: 0 1rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 2.9rem;
+    color: #000;
+    background: #fff;
+  }
+
+  &__required {
+    color: var(--color-red);
+  }
+
+  // ── lists ─────────────────────────────────────────────────────────────────
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    padding: 0;
+
+    &--grid {
+      display: grid;
+      gap: 1.2rem 1.8rem;
+      grid-template-columns: repeat(2, 1fr);
+
+      @media (max-width: 576px) {
+        gap: 0.8rem;
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+
+  // ── items ─────────────────────────────────────────────────────────────────
+
+  &__item {
+    display: flex;
+    align-items: center;
+
+    &--number {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+  }
+
+  // ── label & controls ──────────────────────────────────────────────────────
+
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.7rem;
+    font-weight: 300;
+    line-height: 2.3rem;
+    letter-spacing: -0.025em;
+    color: #000;
+    cursor: pointer;
+
+    &--textarea {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-size: 1.7rem;
+      font-weight: 400;
+      cursor: default;
+    }
+  }
+
+  &__text {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  &__desc {
+    display: block;
+    font-size: 1.4rem;
+    color: var(--text-light);
+  }
+
+  &__item-price {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--color-red);
+
+    &::before {
+      content: "+ ";
+    }
+  }
+
+  // ── radio ─────────────────────────────────────────────────────────────────
+
+  &__radio {
+    position: relative;
+    flex-shrink: 0;
+    width: 3.2rem;
+    height: 3.2rem;
+    border: 3px solid #ececec;
+    border-radius: 50%;
+    transition: border-color 0.2s;
+    appearance: none;
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--color-red);
+    }
+
+    &:checked {
+      border-color: var(--color-green);
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 1.6rem;
+        height: 1.6rem;
+        background: var(--color-green);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  // ── checkbox ──────────────────────────────────────────────────────────────
+
+  &__checkbox {
+    position: relative;
+    flex-shrink: 0;
+    width: 3.2rem;
+    height: 3.2rem;
+    border: 3px solid #ececec;
+    border-radius: 50%;
+    transition: border-color 0.2s;
+    appearance: none;
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--color-red);
+    }
+
+    &:checked {
+      border-color: var(--color-red);
+
+      &::after {
+        content: "+";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 2.4rem;
+        color: var(--color-green);
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  // ── textarea ──────────────────────────────────────────────────────────────
+
+  &__textarea {
+    display: block;
+    padding: 1.6rem;
+    width: 100%;
+    min-height: 10rem;
+    font-family: var(--font-1);
+    font-size: 1.6rem;
+    border: 1px solid #ccc;
+    border-radius: 0.4rem;
+    transition: border-color 0.2s;
+    outline: none;
+    resize: vertical;
+
+    &:focus {
+      border-color: var(--accent);
+    }
+  }
+
+  // ── stepper (number fields) ───────────────────────────────────────────────
+
+  &__stepper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__stepper-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3.2rem;
+    height: 3.2rem;
+    font-size: 2.4rem;
+    line-height: 1;
+    background: #ececec;
+    border: none;
+    border-radius: 50%;
+    transition: background 0.2s;
+    cursor: pointer;
+
+    &:first-child {
+      color: var(--color-red);
+    }
+
+    &:last-child {
+      color: var(--color-green);
+    }
+
+    &:hover {
+      background: #d9d9d9;
+    }
+  }
+
+  &__stepper-input {
+    width: 5rem;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    color: #000;
+    border: none;
+    appearance: textfield;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      appearance: none;
+    }
+  }
+}
+
+// ── quantity block ────────────────────────────────────────────────────────────
+
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  &__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5.5rem;
+    height: 5.5rem;
+    font-size: 3rem;
+    line-height: 1;
+    background: #ececec;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 60px -20px rgb(0, 0, 0, 25%);
+    transition: background 0.2s;
+    cursor: pointer;
+
+    &:hover {
+      background: #d9d9d9;
+    }
+  }
+
+  &__input {
+    width: 5rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: #000;
+    border: none;
+    appearance: textfield;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      appearance: none;
+    }
+  }
+}
