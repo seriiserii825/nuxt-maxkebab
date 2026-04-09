@@ -94,6 +94,7 @@ const cart = useCartStore();
                 class="mini-cart__item-opts mini-cart__item-opts--sauces">
                 <li v-for="sauce in item.sauces" :key="sauce.label">
                   {{ sauce.label }}
+                  <span v-if="sauce.count" class="mini-cart__item-opts-count">x{{ sauce.count }}</span>
                   <span class="mini-cart__item-opts-price">+{{ sauce.price }} Lei</span>
                 </li>
               </ul>

@@ -2,6 +2,7 @@ export interface CartItemOption {
   label: string;
   value: string;
   price?: number;
+  count?: number;
 }
 
 export interface CartItem {

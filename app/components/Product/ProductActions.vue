@@ -23,7 +23,12 @@ function addToCart() {
 
   const sauces = Object.values(single.stepperOptions)
     .filter((o) => o.count > 0)
-    .map((o) => ({ label: o.label, value: o.label, price: o.price * o.count }));
+    .map((o) => ({
+      label: o.label,
+      value: o.label,
+      price: o.price * o.count,
+      count: o.count,
+    }));
 
   cart.addItem({
     id: props.productId,

@@ -38,7 +38,7 @@ const stepperModels = Object.fromEntries(
         v-for="item in items"
         :key="item.id"
         class="option-group__item option-group__item--number">
-        <UIStepperCounter v-model="stepperModels[item.id]" :min="item.min" :max="item.max" />
+        <UIStepperCounter v-model:value="stepperModels[item.id]" :min="item.min" :max="item.max" />
         <label class="option-group__label" :for="item.id">
           {{ item.label }}
           <span class="option-group__item-price">{{ item.price }} Lei</span>
