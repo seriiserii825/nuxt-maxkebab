@@ -1,19 +1,25 @@
 <script setup lang="ts">
-const props = defineProps<{
-  min?: number
-  max?: number
-}>()
+const emits = defineEmits(["emit_count"]);
 
-const count = defineModel<number>({ default: 0 })
+const props = defineProps<{
+  min?: number;
+  max?: number;
+  id: string;
+}>();
+
+const count = defineModel<number>({ default: 0 });
 
 function decrement() {
-  const min = props.min ?? 0
-  if (count.value > min) count.value--
+  const min = props.min ?? 0;
+  if (count.value > min) count.value--;
+  emits("emit_count", { id: props.id, count: count.value });
 }
 
 function increment() {
-  const max = props.max ?? Infinity
-  if (count.value < max) count.value++
+  const max = props.max ?? Infinity;
+  if (count.value < max) count.value++;
+  console.log(props.id, "props.id");
+  emits("emit_count", { id: props.id, count: count.value });
 }
 </script>
 

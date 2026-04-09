@@ -24,15 +24,10 @@ export const useSingleProductStore = defineStore("singleProduct", () => {
   );
 
   const stepperTotal = computed(() =>
-    Object.values(stepperOptions.value).reduce(
-      (sum, o) => sum + o.price * o.count,
-      0,
-    ),
+    Object.values(stepperOptions.value).reduce((sum, o) => sum + o.price * o.count, 0),
   );
 
-  const unitPrice = computed(
-    () => basePrice.value + checkboxTotal.value + stepperTotal.value,
-  );
+  const unitPrice = computed(() => basePrice.value + checkboxTotal.value + stepperTotal.value);
 
   const totalPrice = computed(() => unitPrice.value * quantity.value);
 
@@ -77,6 +72,8 @@ export const useSingleProductStore = defineStore("singleProduct", () => {
   }
 
   function setStepperCount(id: string, count: number) {
+    console.log(id, "id");
+    console.log(count, "count");
     const option = stepperOptions.value[id];
     if (option) option.count = count;
   }
