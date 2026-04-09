@@ -1,32 +1,37 @@
 <script setup lang="ts">
-defineProps<{
-  title: string
-  items: { id: string; name: string; label: string; price: number; desc: string; min: number; max: number }[]
-}>()
+import { ref } from "vue";
+
+const props = defineProps<{
+  title: string;
+  items: {
+    id: string;
+    name: string;
+    label: string;
+    price: number;
+    desc: string;
+    min: number;
+    max: number;
+  }[];
+}>();
+
+const counts = ref<Record<string, number>>(
+  Object.fromEntries(props.items.map((item) => [item.id, 0])),
+);
 </script>
 
 <template>
   <div class="option-group">
     <h3 class="option-group__title">{{ title }}</h3>
     <ul class="option-group__list option-group__list--grid">
-      <li v-for="item in items" :key="item.id" class="option-group__item option-group__item--number">
+      <li
+        v-for="item in items"
+        :key="item.id"
+        class="option-group__item option-group__item--number">
+        <UIStepperCounter v-model="counts[item.id]" :min="item.min" :max="item.max" />
         <label class="option-group__label" :for="item.id">
           {{ item.label }}
           <span class="option-group__item-price">{{ item.price }} Lei</span>
-          <small class="option-group__desc">{{ item.desc }}</small>
         </label>
-        <div class="option-group__stepper">
-          <button class="option-group__stepper-btn" type="button">−</button>
-          <input
-            class="option-group__stepper-input"
-            type="number"
-            :id="item.id"
-            :name="item.name"
-            value="0"
-            :min="item.min"
-            :max="item.max" />
-          <button class="option-group__stepper-btn" type="button">+</button>
-        </div>
       </li>
     </ul>
   </div>
@@ -75,9 +80,9 @@ defineProps<{
     align-items: center;
 
     &--number {
-      align-items: flex-start;
-      flex-direction: column;
-      gap: 0.8rem;
+      align-items: center;
+      flex-direction: row;
+      gap: 1.2rem;
     }
   }
 
@@ -96,7 +101,6 @@ defineProps<{
   &__item-price {
     font-size: 1.6rem;
     font-weight: 700;
-    color: var(--color-red);
 
     &::before {
       content: "+ ";
@@ -107,54 +111,6 @@ defineProps<{
     display: block;
     font-size: 1.4rem;
     color: var(--text-light);
-  }
-
-  &__stepper {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  &__stepper-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 3.2rem;
-    height: 3.2rem;
-    font-size: 2.4rem;
-    line-height: 1;
-    background: #ececec;
-    border: none;
-    border-radius: 50%;
-    transition: background 0.2s;
-    cursor: pointer;
-
-    &:first-child {
-      color: var(--color-red);
-    }
-
-    &:last-child {
-      color: var(--color-green);
-    }
-
-    &:hover {
-      background: #d9d9d9;
-    }
-  }
-
-  &__stepper-input {
-    width: 5rem;
-    font-size: 2rem;
-    font-weight: 700;
-    text-align: center;
-    color: #000;
-    border: none;
-    appearance: textfield;
-
-    &::-webkit-inner-spin-button,
-    &::-webkit-outer-spin-button {
-      appearance: none;
-    }
   }
 }
 </style>
