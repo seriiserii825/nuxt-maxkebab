@@ -29,6 +29,7 @@
 @use "blocks/woocommerce/woocommerce-notices-wrapper";
 @use "blocks/woocommerce/woocommerce-cart-form";
 @use "blocks/woocommerce/woocommerce-checkout";
+
 // @use "blocks/woocommerce/single-product";
 @use "blocks/pages/page-cart";
 @use "blocks/pages/page-checkout";
@@ -42,6 +43,7 @@
 @use "blocks/globals/page-intro";
 @use "blocks/pages/page-about";
 @use "blocks/pages/page-terms";
+
 // @use "blocks/globals/single-product-page";
 @use "blocks/globals/breadcrumb-list";
 @use "blocks/woocommerce/single-variation-wrap";
@@ -64,5 +66,4 @@
 @use "blocks/product-section";
 @use "blocks/product-card";
 @use "blocks/mini-cart";
-
 @use "blocks/pages/single-product";

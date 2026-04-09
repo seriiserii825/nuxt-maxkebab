@@ -1,4 +1,80 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const bautura = [
+  { value: "Coca-Cola", label: "Coca-Cola", checked: true },
+  { value: "Sprite", label: "Sprite" },
+  { value: "Fanta", label: "Fanta" },
+];
+
+const sos = [
+  { value: "Ketchup", label: "Ketchup", checked: true },
+  { value: "Maioneza cu usturoi", label: "Maioneza cu usturoi" },
+];
+
+const adaosuri = [
+  { name: "adaos_carne", value: "Carne", label: "Carne", price: 15 },
+  { name: "adaos_cascaval", value: "Cascaval", label: "Cascaval", price: 20 },
+  { name: "adaos_ciuperci", value: "Ciuperci", label: "Ciuperci", price: 20 },
+  { name: "adaos_masline", value: "Masline", label: "Masline", price: 15 },
+  { name: "adaos_lavas", value: "Lavas", label: "Lavas", price: 5 },
+];
+
+const adaosuriSosuri = [
+  {
+    id: "sos_picant",
+    name: "sos_picant",
+    label: "Sos picant",
+    price: 10,
+    desc: "50 g · Max: 5",
+    min: 0,
+    max: 5,
+  },
+  {
+    id: "maioneza_usturoi",
+    name: "maioneza_usturoi",
+    label: "Maioneza cu usturoi",
+    price: 12,
+    desc: "50 g · Max: 5",
+    min: 0,
+    max: 5,
+  },
+  {
+    id: "ketchup_sos",
+    name: "ketchup_sos",
+    label: "Ketchup",
+    price: 12,
+    desc: "50 g · Max: 5",
+    min: 0,
+    max: 5,
+  },
+  {
+    id: "sos_cascaval",
+    name: "sos_cascaval",
+    label: "Sos cascaval",
+    price: 15,
+    desc: "50 g · Max: 5",
+    min: 0,
+    max: 5,
+  },
+  {
+    id: "mustar",
+    name: "mustar",
+    label: "Mustar",
+    price: 10,
+    desc: "50 g · Max: 5",
+    min: 0,
+    max: 5,
+  },
+  {
+    id: "mustar_american",
+    name: "mustar_american",
+    label: "Mustar american",
+    price: 10,
+    desc: "50 g · Max: 5",
+    min: 0,
+    max: 5,
+  },
+];
+</script>
 
 <template>
   <div class="single-product">
@@ -31,262 +107,24 @@
           </div>
 
           <div class="single-product__actions">
-            <QuantitySelector />
-
+            <UIQuantitySelector />
             <button class="single-product__submit" type="submit">Adaugă în coș</button>
           </div>
 
           <div class="single-product__form">
-            <!-- Bautura -->
-            <div class="option-group">
-              <h3 class="option-group__title">
-                Bautura
-                <span class="option-group__required">*</span>
-              </h3>
-              <ul class="option-group__list">
-                <li class="option-group__item">
-                  <label class="option-group__label">
-                    <input
-                      class="option-group__radio"
-                      type="radio"
-                      name="bautura"
-                      value="Coca-Cola"
-                      checked />
-                    <span class="option-group__text">Coca-Cola</span>
-                  </label>
-                </li>
-                <li class="option-group__item">
-                  <label class="option-group__label">
-                    <input class="option-group__radio" type="radio" name="bautura" value="Sprite" />
-                    <span class="option-group__text">Sprite</span>
-                  </label>
-                </li>
-                <li class="option-group__item">
-                  <label class="option-group__label">
-                    <input class="option-group__radio" type="radio" name="bautura" value="Fanta" />
-                    <span class="option-group__text">Fanta</span>
-                  </label>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Sos -->
-            <div class="option-group">
-              <h3 class="option-group__title">
-                Sos
-                <span class="option-group__required">*</span>
-              </h3>
-              <ul class="option-group__list">
-                <li class="option-group__item">
-                  <label class="option-group__label">
-                    <input
-                      class="option-group__radio"
-                      type="radio"
-                      name="sos"
-                      value="Ketchup"
-                      checked />
-                    <span class="option-group__text">Ketchup</span>
-                  </label>
-                </li>
-                <li class="option-group__item">
-                  <label class="option-group__label">
-                    <input
-                      class="option-group__radio"
-                      type="radio"
-                      name="sos"
-                      value="Maioneza cu usturoi" />
-                    <span class="option-group__text">Maioneza cu usturoi</span>
-                  </label>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Mențiuni -->
-            <div class="option-group">
-              <h3 class="option-group__title">Mențiuni</h3>
-              <label class="option-group__label option-group__label--textarea" for="comentariu">
-                Comentariu
-              </label>
-              <textarea class="option-group__textarea" id="comentariu" name="comentariu"></textarea>
-            </div>
-
-            <!-- Adaosuri -->
-            <div class="option-group">
-              <h3 class="option-group__title">Adaosuri</h3>
-              <ul class="option-group__list option-group__list--grid">
-                <li class="option-group__item">
-                  <label class="option-group__label">
-                    <input
-                      class="option-group__checkbox"
-                      type="checkbox"
-                      name="adaos_carne"
-                      value="Carne" />
-                    <span class="option-group__text">Carne + 15 Lei</span>
-                  </label>
-                </li>
-                <li class="option-group__item">
-                  <label class="option-group__label">
-                    <input
-                      class="option-group__checkbox"
-                      type="checkbox"
-                      name="adaos_cascaval"
-                      value="Cascaval" />
-                    <span class="option-group__text">Cascaval + 20 Lei</span>
-                  </label>
-                </li>
-                <li class="option-group__item">
-                  <label class="option-group__label">
-                    <input
-                      class="option-group__checkbox"
-                      type="checkbox"
-                      name="adaos_ciuperci"
-                      value="Ciuperci" />
-                    <span class="option-group__text">Ciuperci + 20 Lei</span>
-                  </label>
-                </li>
-                <li class="option-group__item">
-                  <label class="option-group__label">
-                    <input
-                      class="option-group__checkbox"
-                      type="checkbox"
-                      name="adaos_masline"
-                      value="Masline" />
-                    <span class="option-group__text">Masline + 15 Lei</span>
-                  </label>
-                </li>
-                <li class="option-group__item">
-                  <label class="option-group__label">
-                    <input
-                      class="option-group__checkbox"
-                      type="checkbox"
-                      name="adaos_lavas"
-                      value="Lavas" />
-                    <span class="option-group__text">Lavas + 5 Lei</span>
-                  </label>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Adaosuri sosuri -->
-            <div class="option-group">
-              <h3 class="option-group__title">Adaosuri sosuri</h3>
-              <ul class="option-group__list option-group__list--grid">
-                <li class="option-group__item option-group__item--number">
-                  <label class="option-group__label" for="sos_picant">
-                    Sos picant
-                    <span class="option-group__item-price">10 Lei</span>
-                    <small class="option-group__desc">50 g · Max: 5</small>
-                  </label>
-                  <div class="option-group__stepper">
-                    <button class="option-group__stepper-btn" type="button">−</button>
-                    <input
-                      class="option-group__stepper-input"
-                      type="number"
-                      id="sos_picant"
-                      name="sos_picant"
-                      value="0"
-                      min="0"
-                      max="5" />
-                    <button class="option-group__stepper-btn" type="button">+</button>
-                  </div>
-                </li>
-                <li class="option-group__item option-group__item--number">
-                  <label class="option-group__label" for="maioneza_usturoi">
-                    Maioneza cu usturoi
-                    <span class="option-group__item-price">12 Lei</span>
-                    <small class="option-group__desc">50 g · Max: 5</small>
-                  </label>
-                  <div class="option-group__stepper">
-                    <button class="option-group__stepper-btn" type="button">−</button>
-                    <input
-                      class="option-group__stepper-input"
-                      type="number"
-                      id="maioneza_usturoi"
-                      name="maioneza_usturoi"
-                      value="0"
-                      min="0"
-                      max="5" />
-                    <button class="option-group__stepper-btn" type="button">+</button>
-                  </div>
-                </li>
-                <li class="option-group__item option-group__item--number">
-                  <label class="option-group__label" for="ketchup_sos">
-                    Ketchup
-                    <span class="option-group__item-price">12 Lei</span>
-                    <small class="option-group__desc">50 g · Max: 5</small>
-                  </label>
-                  <div class="option-group__stepper">
-                    <button class="option-group__stepper-btn" type="button">−</button>
-                    <input
-                      class="option-group__stepper-input"
-                      type="number"
-                      id="ketchup_sos"
-                      name="ketchup_sos"
-                      value="0"
-                      min="0"
-                      max="5" />
-                    <button class="option-group__stepper-btn" type="button">+</button>
-                  </div>
-                </li>
-                <li class="option-group__item option-group__item--number">
-                  <label class="option-group__label" for="sos_cascaval">
-                    Sos cascaval
-                    <span class="option-group__item-price">15 Lei</span>
-                    <small class="option-group__desc">50 g · Max: 5</small>
-                  </label>
-                  <div class="option-group__stepper">
-                    <button class="option-group__stepper-btn" type="button">−</button>
-                    <input
-                      class="option-group__stepper-input"
-                      type="number"
-                      id="sos_cascaval"
-                      name="sos_cascaval"
-                      value="0"
-                      min="0"
-                      max="5" />
-                    <button class="option-group__stepper-btn" type="button">+</button>
-                  </div>
-                </li>
-                <li class="option-group__item option-group__item--number">
-                  <label class="option-group__label" for="mustar">
-                    Mustar
-                    <span class="option-group__item-price">10 Lei</span>
-                    <small class="option-group__desc">50 g · Max: 5</small>
-                  </label>
-                  <div class="option-group__stepper">
-                    <button class="option-group__stepper-btn" type="button">−</button>
-                    <input
-                      class="option-group__stepper-input"
-                      type="number"
-                      id="mustar"
-                      name="mustar"
-                      value="0"
-                      min="0"
-                      max="5" />
-                    <button class="option-group__stepper-btn" type="button">+</button>
-                  </div>
-                </li>
-                <li class="option-group__item option-group__item--number">
-                  <label class="option-group__label" for="mustar_american">
-                    Mustar american
-                    <span class="option-group__item-price">10 Lei</span>
-                    <small class="option-group__desc">50 g · Max: 5</small>
-                  </label>
-                  <div class="option-group__stepper">
-                    <button class="option-group__stepper-btn" type="button">−</button>
-                    <input
-                      class="option-group__stepper-input"
-                      type="number"
-                      id="mustar_american"
-                      name="mustar_american"
-                      value="0"
-                      min="0"
-                      max="5" />
-                    <button class="option-group__stepper-btn" type="button">+</button>
-                  </div>
-                </li>
-              </ul>
-            </div>
+            <ProductOptionGroupRadio
+              title="Bautura"
+              :required="true"
+              name="bautura"
+              :options="bautura" />
+            <ProductOptionGroupRadio title="Sos" :required="true" name="sos" :options="sos" />
+            <ProductOptionGroupTextarea
+              title="Mențiuni"
+              id="comentariu"
+              name="comentariu"
+              label="Comentariu" />
+            <ProductOptionGroupCheckbox title="Adaosuri" :options="adaosuri" />
+            <ProductOptionGroupStepper title="Adaosuri sosuri" :items="adaosuriSosuri" />
           </div>
         </div>
 
