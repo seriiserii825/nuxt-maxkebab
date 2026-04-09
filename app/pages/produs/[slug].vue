@@ -99,7 +99,10 @@ const adaosuriSosuri = [
             description="Kebab standart; Cartofi pai; Bautura; Sos"
             :price="store.totalPrice" />
 
-          <ProductActions />
+          <ProductActions
+            :product-id="1"
+            title="Menu Kebab standart"
+            image="https://maxkebab.md/wp-content/uploads/2025/11/meniu-kebab-standart-600x900.jpg" />
 
           <div class="single-product__form">
             <ProductOptionGroupRadio

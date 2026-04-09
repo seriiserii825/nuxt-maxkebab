@@ -1,10 +1,14 @@
 <script setup lang="ts">
+import { useSingleProductStore } from "~/stores/useSingleProductStore";
+
 defineProps<{
-  title: string
-  id: string
-  name: string
-  label: string
-}>()
+  title: string;
+  id: string;
+  name: string;
+  label: string;
+}>();
+
+const store = useSingleProductStore();
 </script>
 
 <template>
@@ -13,7 +17,12 @@ defineProps<{
     <label class="option-group__label option-group__label--textarea" :for="id">
       {{ label }}
     </label>
-    <textarea class="option-group__textarea" :id="id" :name="name"></textarea>
+    <textarea
+      class="option-group__textarea"
+      :id="id"
+      :name="name"
+      :value="store.comment"
+      @input="store.setComment(($event.target as HTMLTextAreaElement).value)" />
   </div>
 </template>
 

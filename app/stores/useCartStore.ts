@@ -3,54 +3,10 @@ import type { CartItem, CartItemOption } from "~/interfaces/ICartItem";
 
 export type { CartItem, CartItemOption };
 
-const dummyItems: CartItem[] = [
-  {
-    id: 1,
-    title: "Max Kebab Classic",
-    image: "/img/products/kebab-1.jpg",
-    basePrice: 89,
-    qty: 2,
-    options: [
-      { label: "Bautura", value: "Coca-Cola" },
-      { label: "Sos", value: "Ketchup" },
-    ],
-    additions: [
-      { label: "Carne", value: "Carne", price: 15 },
-      { label: "Cascaval", value: "Cascaval", price: 20 },
-    ],
-    sauces: [{ label: "Sos picant", value: "Sos picant", price: 10 }],
-    comment: "Fără ceapă, vă rog",
-  },
-  {
-    id: 2,
-    title: "Kebab Poulet",
-    image: "/img/products/kebab-2.jpg",
-    basePrice: 79,
-    qty: 1,
-    options: [
-      { label: "Bautura", value: "Sprite" },
-      { label: "Sos", value: "Maioneza cu usturoi" },
-    ],
-    sauces: [
-      { label: "Ketchup", value: "Ketchup", price: 12 },
-      { label: "Mustar", value: "Mustar", price: 10 },
-    ],
-  },
-  {
-    id: 3,
-    title: "Durum Mix",
-    image: "/img/products/kebab-3.jpg",
-    basePrice: 95,
-    qty: 1,
-    options: [{ label: "Sos", value: "Ketchup" }],
-    additions: [{ label: "Lavas", value: "Lavas", price: 5 }],
-  },
-];
-
 export const useCartStore = defineStore(
   "cart",
   () => {
-    const items = ref<CartItem[]>(dummyItems);
+    const items = ref<CartItem[]>([]);
 
     const count = computed(() => items.value.reduce((sum, i) => sum + i.qty, 0));
 
@@ -82,6 +38,10 @@ export const useCartStore = defineStore(
       const existing = items.value.find((i) => i.id === item.id);
       if (existing) {
         existing.qty += item.qty;
+        existing.options = item.options;
+        existing.additions = item.additions;
+        existing.sauces = item.sauces;
+        existing.comment = item.comment;
       } else {
         items.value.push(item);
       }

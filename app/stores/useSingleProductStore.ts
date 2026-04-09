@@ -6,8 +6,8 @@ export const useSingleProductStore = defineStore("singleProduct", () => {
   const quantity = ref(1);
   const comment = ref("");
 
-  // group -> selected value (radio, no price)
-  const radioSelections = ref<Record<string, string>>({});
+  // group -> { title, value } (radio, no price)
+  const radioSelections = ref<Record<string, { title: string; value: string }>>({});
 
   // name -> { price, checked }
   const checkboxOptions = ref<Record<string, CheckboxOption>>({});
@@ -59,12 +59,12 @@ export const useSingleProductStore = defineStore("singleProduct", () => {
     if (quantity.value > 1) quantity.value--;
   }
 
-  function setRadio(group: string, value: string) {
-    radioSelections.value[group] = value;
+  function setRadio(group: string, title: string, value: string) {
+    radioSelections.value[group] = { title, value };
   }
 
-  function registerCheckbox(name: string, price: number, checked = false) {
-    checkboxOptions.value[name] = { price, checked };
+  function registerCheckbox(name: string, label: string, price: number, checked = false) {
+    checkboxOptions.value[name] = { label, price, checked };
   }
 
   function toggleCheckbox(name: string) {
@@ -72,8 +72,8 @@ export const useSingleProductStore = defineStore("singleProduct", () => {
     if (option) option.checked = !option.checked;
   }
 
-  function registerStepper(id: string, price: number) {
-    stepperOptions.value[id] = { price, count: 0 };
+  function registerStepper(id: string, label: string, price: number) {
+    stepperOptions.value[id] = { label, price, count: 0 };
   }
 
   function setStepperCount(id: string, count: number) {

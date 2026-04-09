@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import { useSingleProductStore } from "~/stores/useSingleProductStore";
 
 const props = defineProps<{
@@ -16,16 +17,17 @@ const props = defineProps<{
 
 const store = useSingleProductStore();
 
-// Register items in store on mount
-props.items.forEach((item) => store.registerStepper(item.id, item.price));
+props.items.forEach((item) => store.registerStepper(item.id, item.label, item.price));
 
-function getCount(id: string) {
-  return store.stepperOptions[id]?.count ?? 0;
-}
-
-function setCount(id: string, count: number) {
-  store.setStepperCount(id, count);
-}
+const stepperModels = Object.fromEntries(
+  props.items.map((item) => [
+    item.id,
+    computed({
+      get: () => store.stepperOptions[item.id]?.count ?? 0,
+      set: (v: number) => store.setStepperCount(item.id, v),
+    }),
+  ]),
+);
 </script>
 
 <template>
@@ -36,11 +38,7 @@ function setCount(id: string, count: number) {
         v-for="item in items"
         :key="item.id"
         class="option-group__item option-group__item--number">
-        <UIStepperCounter
-          :model-value="getCount(item.id)"
-          :min="item.min"
-          :max="item.max"
-          @update:model-value="setCount(item.id, $event)" />
+        <UIStepperCounter v-model="stepperModels[item.id]" :min="item.min" :max="item.max" />
         <label class="option-group__label" :for="item.id">
           {{ item.label }}
           <span class="option-group__item-price">{{ item.price }} Lei</span>

@@ -78,7 +78,7 @@ const cart = useCartStore();
                 </li>
               </ul>
 
-              <!-- Additions with price -->
+              <!-- Additions (checkboxes) with price -->
               <ul
                 v-if="item.additions?.length"
                 class="mini-cart__item-opts mini-cart__item-opts--additions">
@@ -88,7 +88,7 @@ const cart = useCartStore();
                 </li>
               </ul>
 
-              <!-- Sauce counters -->
+              <!-- Sauces (steppers) with price -->
               <ul
                 v-if="item.sauces?.length"
                 class="mini-cart__item-opts mini-cart__item-opts--sauces">
@@ -97,9 +97,6 @@ const cart = useCartStore();
                   <span class="mini-cart__item-opts-price">+{{ sauce.price }} Lei</span>
                 </li>
               </ul>
-
-              <!-- Comment -->
-              <p v-if="item.comment" class="mini-cart__item-comment">"{{ item.comment }}"</p>
 
               <div class="mini-cart__item-bottom">
                 <div class="mini-cart__item-qty-ctrl">

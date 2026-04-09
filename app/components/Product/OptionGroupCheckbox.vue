@@ -8,7 +8,7 @@ const props = defineProps<{
 
 const store = useSingleProductStore();
 
-props.options.forEach((opt) => store.registerCheckbox(opt.name, opt.price));
+props.options.forEach((opt) => store.registerCheckbox(opt.name, opt.label, opt.price));
 </script>
 
 <template>

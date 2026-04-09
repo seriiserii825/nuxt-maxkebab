@@ -1,10 +1,18 @@
 <script setup lang="ts">
-defineProps<{
-  title: string
-  required?: boolean
-  name: string
-  options: { value: string; label: string; checked?: boolean }[]
-}>()
+import { useSingleProductStore } from "~/stores/useSingleProductStore";
+
+const props = defineProps<{
+  title: string;
+  required?: boolean;
+  name: string;
+  options: { value: string; label: string; checked?: boolean }[];
+}>();
+
+const store = useSingleProductStore();
+
+// Init default selection
+const defaultOption = props.options.find((o) => o.checked);
+if (defaultOption) store.setRadio(props.name, props.title, defaultOption.value);
 </script>
 
 <template>
@@ -21,7 +29,8 @@ defineProps<{
             type="radio"
             :name="name"
             :value="option.value"
-            :checked="option.checked" />
+            :checked="store.radioSelections[name]?.value === option.value || (!store.radioSelections[name] && option.checked)"
+            @change="store.setRadio(name, title, option.value)" />
           <span class="option-group__text">{{ option.label }}</span>
         </label>
       </li>
