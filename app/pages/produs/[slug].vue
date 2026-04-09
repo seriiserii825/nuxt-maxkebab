@@ -31,11 +31,7 @@
           </div>
 
           <div class="single-product__actions">
-            <div class="quantity">
-              <button class="quantity__btn" type="button">−</button>
-              <input class="quantity__input" type="number" name="quantity" value="1" min="1" />
-              <button class="quantity__btn" type="button">+</button>
-            </div>
+            <QuantitySelector />
 
             <button class="single-product__submit" type="submit">Adaugă în coș</button>
           </div>
