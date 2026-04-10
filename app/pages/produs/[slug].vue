@@ -2,6 +2,8 @@
   import type { IWooProduct } from "~/interfaces/IWooProduct";
   import { useSingleProductStore } from "~/stores/useSingleProductStore";
 
+  import { bautura, sos, adaosuri, adaosuriSosuri } from "~/data/single_product_options";
+
   const route = useRoute();
   const slug = route.params.slug as string;
   const { t, locale } = useI18n();
@@ -21,93 +23,21 @@
   const categorySlug = computed(() => `/#${category.value?.slug ?? ""}`);
 
   const store = useSingleProductStore();
-  store.init(0);
+  store.init(
+    product.value?.sale_price
+      ? Number(product.value.sale_price)
+      : Number(product.value?.regular_price),
+  );
 
   const breadcrumbs = ref([
     { label: t("breadcrumbs.home"), to: "/" },
-    { label: category.value ? category.value?.name : "", to: categorySlug.value },
-    { label: product.value?.name },
+    { label: category.value ? category.value?.name : "No Category", to: categorySlug.value },
+    { label: product.value?.name ? product.value.name : "No Product" },
   ]);
-
-  const bautura = [
-    { value: "Coca-Cola", label: "Coca-Cola", checked: true },
-    { value: "Sprite", label: "Sprite" },
-    { value: "Fanta", label: "Fanta" },
-  ];
-
-  const sos = [
-    { value: "Ketchup", label: "Ketchup", checked: true },
-    { value: "Maioneza cu usturoi", label: "Maioneza cu usturoi" },
-  ];
-
-  const adaosuri = [
-    { name: "adaos_carne", value: "Carne", label: "Carne", price: 15 },
-    { name: "adaos_cascaval", value: "Cascaval", label: "Cascaval", price: 20 },
-    { name: "adaos_ciuperci", value: "Ciuperci", label: "Ciuperci", price: 20 },
-    { name: "adaos_masline", value: "Masline", label: "Masline", price: 15 },
-    { name: "adaos_lavas", value: "Lavas", label: "Lavas", price: 5 },
-  ];
-
-  const adaosuriSosuri = [
-    {
-      id: "sos_picant",
-      name: "sos_picant",
-      label: "Sos picant",
-      price: 10,
-      desc: "50 g · Max: 5",
-      min: 0,
-      max: 5,
-    },
-    {
-      id: "maioneza_usturoi",
-      name: "maioneza_usturoi",
-      label: "Maioneza cu usturoi",
-      price: 12,
-      desc: "50 g · Max: 5",
-      min: 0,
-      max: 5,
-    },
-    {
-      id: "ketchup_sos",
-      name: "ketchup_sos",
-      label: "Ketchup",
-      price: 12,
-      desc: "50 g · Max: 5",
-      min: 0,
-      max: 5,
-    },
-    {
-      id: "sos_cascaval",
-      name: "sos_cascaval",
-      label: "Sos cascaval",
-      price: 15,
-      desc: "50 g · Max: 5",
-      min: 0,
-      max: 5,
-    },
-    {
-      id: "mustar",
-      name: "mustar",
-      label: "Mustar",
-      price: 10,
-      desc: "50 g · Max: 5",
-      min: 0,
-      max: 5,
-    },
-    {
-      id: "mustar_american",
-      name: "mustar_american",
-      label: "Mustar american",
-      price: 10,
-      desc: "50 g · Max: 5",
-      min: 0,
-      max: 5,
-    },
-  ];
 </script>
 
 <template>
-  <div class="single-product">
+  <div class="single-product" v-if="product">
     <div class="container">
       <!-- <UIPrettyPrint v-if="product" :data="product" /> -->
       <ProductBreadcrumb :items="breadcrumbs" />
@@ -115,8 +45,8 @@
       <div class="single-product__wrap">
         <div class="single-product__info">
           <ProductInfo
-            title="Menu Kebab standart"
-            description="Kebab standart; Cartofi pai; Bautura; Sos"
+            :title="product.name"
+            :description="product.description"
             :price="store.totalPrice"
           />
 
