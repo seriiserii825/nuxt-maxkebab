@@ -1,7 +1,9 @@
 <script setup lang="ts">
+  import type { IProduct } from "~/interfaces/IHomeResponse";
+
   const { t, locale } = useI18n();
 
-  const { data, error } = await useFetch("/api/offers", {
+  const { data, error } = await useFetch<IProduct[]>("/api/offers", {
     query: { lang: locale },
     watch: [locale],
   });
@@ -21,7 +23,22 @@
 
 <template>
   <div class="oferte">
-    <UIPrettyPrint v-if="data" :data="data" />
-    <ProductBreadcrumb :items="breadcrumbs" />
+    <div class="container">
+      <!-- <UIPrettyPrint v-if="data" :data="data" /> -->
+      <ProductBreadcrumb :items="breadcrumbs" />
+      <div v-if="data && data.length > 0" class="oferte__wrap">
+        <ProductCard v-for="offer in data" :key="offer.id" :product="offer" />
+      </div>
+    </div>
   </div>
 </template>
+<style lang="scss">
+  .oferte {
+    padding-top: 20rem;
+    &__wrap {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
