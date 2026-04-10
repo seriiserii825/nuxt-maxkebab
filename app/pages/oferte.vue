@@ -27,7 +27,7 @@
       <!-- <UIPrettyPrint v-if="data" :data="data" /> -->
       <ProductBreadcrumb :items="breadcrumbs" />
       <div v-if="data && data.length > 0" class="oferte__wrap">
-        <ProductCard v-for="offer in data" :key="offer.id" :product="offer" />
+        <ProductOffer v-for="offer in data" :key="offer.id" :product="offer" />
       </div>
     </div>
   </div>
