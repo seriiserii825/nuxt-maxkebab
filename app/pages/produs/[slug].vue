@@ -3,6 +3,7 @@
   import { useSingleProductStore } from "~/stores/useSingleProductStore";
 
   import { bautura, sos, adaosuri, adaosuriSosuri } from "~/data/single_product_options";
+  import { IAddonGroup } from "../../../server/api/product/addons.get";
 
   const route = useRoute();
   const slug = route.params.slug as string;
@@ -16,6 +17,20 @@
     showError({
       statusCode: error.value.statusCode ?? 500,
       message: error.value.data?.message ?? error.value.message,
+    });
+  }
+
+  const { data: groups, error: addons_error } = await useFetch<IAddonGroup[]>(
+    "/api/product/addons",
+    {
+      query: { product_id: product.value?.id },
+    },
+  );
+
+  if (addons_error.value) {
+    showError({
+      statusCode: addons_error.value.statusCode ?? 500,
+      message: addons_error.value.data?.message ?? addons_error.value.message,
     });
   }
 
@@ -40,6 +55,7 @@
   <div class="single-product" v-if="product">
     <div class="container">
       <!-- <UIPrettyPrint v-if="product" :data="product" /> -->
+      <UIPrettyPrint v-if="groups" :data="groups" />
       <ProductBreadcrumb :items="breadcrumbs" />
 
       <div class="single-product__wrap">
