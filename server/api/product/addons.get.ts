@@ -43,17 +43,18 @@ export interface IAddonGroup {
 }
 
 export default defineEventHandler(async (event): Promise<IAddonGroup[]> => {
-  const { product_id } = getQuery(event) as { product_id?: string };
+  const { product_id, locale } = getQuery(event) as { product_id?: string; locale?: string };
 
   if (!product_id) {
     throw createError({ statusCode: 400, message: "product_id is required" });
   }
 
-  const wp = useWpFetch(event);
+  const wp = useWpFetch(event, locale);
 
   try {
     return await wp.get<IAddonGroup[]>("/custom/v1/product-addons", { product_id });
-  } catch (err: unknown) {
-    throw createError({ statusCode: err?.statusCode ?? err?.status ?? 500, message: err?.message });
+  } catch (err) {
+    const e = err as { statusCode?: number; status?: number; message?: string };
+    throw createError({ statusCode: e?.statusCode ?? e?.status ?? 500, message: e?.message });
   }
 });

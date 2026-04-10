@@ -23,7 +23,7 @@
   const { data: groups, error: addons_error } = await useFetch<IAddonGroup[]>(
     "/api/product/addons",
     {
-      query: { product_id: product.value?.id },
+      query: { product_id: product.value?.id, locale },
     },
   );
 
