@@ -2,28 +2,37 @@
 const { locales, locale } = useI18n();
 const switchLocalePath = useSwitchLocalePath();
 
+const dropdown_ref = ref<HTMLElement | null>(null);
 const is_visible_dropdown = ref(false);
 const currentLocale = computed(() => locales.value.find((l) => l.code === locale.value));
 
 watch(locale, () => {
-  is_visible_dropdown.value = false;
+  closeDropdown();
 });
+
+useClickOutside(dropdown_ref, closeDropdown)
+
+function closeDropdown(){
+  is_visible_dropdown.value = false;
+}
 </script>
 
 <template>
   <div class="language-selector">
     <section class="language-selector__dropdown" :class="{ active: is_visible_dropdown }">
-      <h2 class="language-selector__title">Alege limba</h2>
-      <div class="language-selector__list">
+      <h2 class="language-selector__title">
+        {{ $t('languageSelector.title') }}
+      </h2>
+      <div ref="dropdown_ref" class="language-selector__list">
         <NuxtLink
-          v-for="locale in locales"
-          :key="locale.code"
-          :to="switchLocalePath(locale.code)"
-          :class="{ active: locale.code === currentLocale?.code }"
-          class="language-selector__item">
-          <img :src="`/img/${locale.img}`" :alt="locale.name" />
-          <span class="name">{{ locale.name }}</span>
-          <span class="code">{{ locale.code.toUpperCase() }}</span>
+            v-for="lc in locales"
+            :key="lc.code"
+            :to="switchLocalePath(lc.code)"
+            :class="{ active: lc.code === currentLocale?.code }"
+            class="language-selector__item">
+        <img :src="`/img/${lc.img}`" :alt="lc.name" />
+        <span class="name">{{ lc.name }}</span>
+        <span class="code">{{ lc.code.toUpperCase() }}</span>
         </NuxtLink>
       </div>
     </section>

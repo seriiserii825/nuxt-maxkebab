@@ -18,10 +18,11 @@ export function useWpFetch(event: Parameters<typeof getCookie>[0], lang?: string
     headers.Authorization = `Bearer ${token}`;
   }
 
-  function handleError(err: any): never {
+  function handleError(err: unknown): never {
+    const e = err as { response?: { status?: number }; data?: { message?: string }; message?: string };
     throw createError({
-      statusCode: err?.response?.status ?? 500,
-      message: err?.data?.message ?? err?.message ?? "WordPress API error",
+      statusCode: e?.response?.status ?? 500,
+      message: e?.data?.message ?? e?.message ?? "WordPress API error",
     });
   }
 

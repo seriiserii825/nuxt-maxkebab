@@ -17,8 +17,8 @@ ul.breadcrumb {
     color: #000;
     transition: all .4s;
     @media screen and (max-width: 576px) {
-      padding: 0;
       margin-bottom: 1rem;
+      padding: 0;
     }
 
     &:last-of-type {

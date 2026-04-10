@@ -70,9 +70,8 @@
 
   &__buttons {
     display: flex;
-    flex-direction: column;
     gap: 15px;
-    flex-wrap: wrap;
+    flex-flow: column wrap;
 
     @media (min-width: 480px) {
       flex-direction: row;
@@ -81,17 +80,17 @@
     // When showing delivery buttons (glovo, straus, continue)
     &:has(.city-popup__button--glovo:not(.hidden)) {
       display: grid;
-      grid-template-columns: 1fr 1fr;
       gap: 15px;
+      grid-template-columns: 1fr 1fr;
 
       @media (max-width: 576px) {
         grid-template-columns: 1fr;
       }
 
       .city-popup__button--continue {
+        max-width: 300px;
         grid-column: 1 / -1;
         justify-self: center;
-        max-width: 300px;
 
         @media (max-width: 576px) {
           grid-column: 1;
@@ -105,10 +104,12 @@
   }
 
   &__button {
-    &.hidden {
-      display: none !important;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
     padding: 15px 30px;
+    min-height: 60px;
     font-size: 18px;
     font-weight: 600;
     color: #fff;
@@ -117,11 +118,10 @@
     border-radius: 8px;
     transition: all 0.3s ease;
     cursor: pointer;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 60px;
+
+    &.hidden {
+      display: none !important;
+    }
 
     &:hover {
       background: #c0392b;
@@ -137,8 +137,8 @@
       background: #FFC245;
 
       @media (max-width: 576px) {
-        width: 210px;
         margin: 0 auto;
+        width: 210px;
       }
 
       &:hover {
@@ -146,8 +146,8 @@
       }
 
       svg {
-        max-height: 40px;
         width: auto;
+        max-height: 40px;
       }
     }
 
@@ -155,8 +155,8 @@
       background: #f6009b;
 
       @media (max-width: 576px) {
-        width: 210px;
         margin: 0 auto;
+        width: 210px;
       }
 
       &:hover {
@@ -164,8 +164,8 @@
       }
 
       svg {
-        max-height: 25px;
         width: auto;
+        max-height: 25px;
       }
     }
 
@@ -173,8 +173,8 @@
       background: #27ae60;
 
       @media (max-width: 576px) {
-        width: 210px;
         margin: 0 auto;
+        width: 210px;
       }
 
       &:hover {

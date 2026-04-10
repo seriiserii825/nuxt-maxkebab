@@ -141,8 +141,8 @@
 		position: relative;
 		top: -0.9rem;
 		right: 10rem;
-		width: initial !important;
 		flex: 0 0 8.8rem !important;
+		width: initial !important;
 		@media screen and (max-width: 768px) {
 			top: 0;
 		}
@@ -152,17 +152,17 @@
 			display: flex !important;
 			justify-content: center !important;
 			align-items: center !important;
+			flex: 0 0 2.2rem !important;
 			width: initial !important;
 			height: 2.2rem !important;
 			font-size: 2rem !important;
 			border: none !important;
-			flex: 0 0 2.2rem !important;
 		}
 
 		.quantity {
+			flex: 0 0 3rem !important;
 			width: initial !important;
 			border: none !important;
-			flex: 0 0 3rem !important;
 
 			input {
 				height: 2.2rem !important;

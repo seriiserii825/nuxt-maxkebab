@@ -11,8 +11,8 @@
 	.sticky-wrapper {
 		flex: 0 0 50.1rem;
 		@media screen and (max-width: 1200px) {
-			width: 30%;
 			flex: initial;
+			width: 30%;
 		}
 		@media screen and (max-width: 768px) {
 			display: none;
@@ -20,9 +20,9 @@
 	}
 
 	&__sidebar {
+		flex: 0 0 50.1rem;
 		padding-top: 9.1rem;
 		padding-left: 0.3rem;
-		flex: 0 0 50.1rem;
 		@media screen and (max-width: 768px) {
 			display: none;
 		}
@@ -38,11 +38,11 @@
 	}
 
 	&__content {
-		padding: 16rem 0.3rem 8.3rem 6.8rem;
 		flex: 1;
+		padding: 16rem 0.3rem 8.3rem 6.8rem;
 		@media screen and (max-width: 1200px) {
-			width: 70%;
 			flex: initial;
+			width: 70%;
 		}
 		@media screen and (max-width: 768px) {
 			padding: 4rem 1rem;
@@ -61,8 +61,8 @@
 
 .taxonomy__loop ul.products {
 	display: flex;
-	margin: 0 -1.6rem;
 	flex-wrap: wrap;
+	margin: 0 -1.6rem;
 	@media screen and (max-width: 576px) {
 		display: block;
 		margin: 0;
@@ -70,8 +70,8 @@
 
 	li.product {
 		position: relative;
-		margin: 0 1.6rem 3.2rem;
 		flex-basis: calc(50% - 3.2rem);
+		margin: 0 1.6rem 3.2rem;
 		@media screen and (max-width: 576px) {
 			margin: 0 0 3.2rem;
 		}
@@ -108,6 +108,7 @@
 
 			.add_to_cart_button {
 				position: relative;
+				flex: 1;
 				height: 8.6rem;
 				font-size: 1.6rem;
 				font-weight: 700;
@@ -119,7 +120,6 @@
 				border-radius: 0;
 				transition: all 0.4s;
 				cursor: pointer;
-				flex: 1;
 
 				&:hover {
 					background: var(--accent);

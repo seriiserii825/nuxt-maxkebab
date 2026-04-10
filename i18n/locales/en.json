@@ -1,4 +1,10 @@
 {
+  "languageSelector": {
+    "title": "Choose language"
+  },
+  "breadcrumbs": {
+    "home": "Home"
+  },
   "menu": {
     "menu": "Menu",
     "combo": "Combo",
@@ -15,5 +21,27 @@
   "cities": {
     "chisinau": "Chișinău",
     "ialoveni": "Ialoveni"
+  },
+  "cityPopup": {
+    "title": "Choose how to order",
+    "selectLocation": "Select a location",
+    "deliveryOptions": "Prefer Glovo, Straus or order on the site?",
+    "orderOnSite": "Order on site"
+  },
+  "miniCart": {
+    "title": "Cart",
+    "empty": "Your cart is empty.",
+    "total": "Total:",
+    "cartBtn": "Cart",
+    "checkoutBtn": "Checkout",
+    "remove": "Remove",
+    "decrease": "Decrease quantity",
+    "increase": "Increase quantity",
+    "close": "Close cart",
+    "additions": "Additions",
+    "additions_sausage": "Additions sauces"
+  },
+  "footer": {
+    "ales": "choose"
   }
 }

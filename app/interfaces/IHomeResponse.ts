@@ -1,5 +1,6 @@
 export interface IHomeResponse {
   slider: ISlider;
+  catalog: ICatalog[];
 }
 
 export interface ISlider {
@@ -12,9 +13,23 @@ export interface ISlider {
 export interface ICatalog {
   id: number;
   name: string;
+  scroll_id: string;
   slug: string;
   has_children: boolean;
   children: ICatalogChild[];
+  icons: IACFImage[];
+  images: IACFImage[];
+  background: string;
+}
+
+export interface IACFImage {
+  id: number;
+  url: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+  sizes: Record<string, string | number>;
 }
 
 export interface ICatalogChild {
