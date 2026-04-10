@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import type { IWooProduct } from "~/interfaces/IWooProduct";
   import { useSingleProductStore } from "~/stores/useSingleProductStore";
-
   import type { IAddonGroup } from "~/server/api/product/addons.get";
+  import type { IProduct } from "~/interfaces/IHomeResponse";
 
   const route = useRoute();
   const slug = route.params.slug as string;
@@ -19,6 +19,27 @@
     });
   }
 
+  const category = computed(() => product.value?.categories?.[0]);
+  const categorySlug = computed(() => `/#${category.value?.slug ?? ""}`);
+
+  const { data: related_prodcuts, error: related_products_error } = await useFetch<IProduct[]>(
+    "/api/related-products",
+    {
+      query: {
+        term_id: category.value ? category.value.id : null,
+        product_id: product.value ? product.value.id : null,
+        locale,
+      },
+    },
+  );
+
+  if (related_products_error.value) {
+    showError({
+      statusCode: related_products_error.value.statusCode ?? 500,
+      message: related_products_error.value.data?.message ?? related_products_error.value.message,
+    });
+  }
+
   const { data: groups, error: addons_error } = await useFetch<IAddonGroup[]>(
     "/api/product/addons",
     {
@@ -32,9 +53,6 @@
       message: addons_error.value.data?.message ?? addons_error.value.message,
     });
   }
-
-  const category = computed(() => product.value?.categories?.[0]);
-  const categorySlug = computed(() => `/#${category.value?.slug ?? ""}`);
 
   const store = useSingleProductStore();
   store.init(
@@ -55,6 +73,7 @@
     <div class="container">
       <!-- <UIPrettyPrint v-if="product" :data="product" /> -->
       <!-- <UIPrettyPrint v-if="groups" :data="groups" /> -->
+      <!-- <UIPrettyPrint v-if="related_prodcuts" :data="related_prodcuts" /> -->
       <ProductBreadcrumb :items="breadcrumbs" />
 
       <div class="single-product__wrap">
@@ -101,6 +120,7 @@
           :height="900"
         />
       </div>
+      <RelatedProducts v-if="related_prodcuts" :products="related_prodcuts" />
     </div>
   </div>
 </template>
