@@ -76,7 +76,7 @@
         </div>
 
         <ProductGallery
-          src="https://maxkebab.md/wp-content/uploads/2025/11/meniu-kebab-standart-600x900.jpg"
+          :src="product.images?.[0]?.src ?? ''"
           alt="Menu Kebab standart"
           :width="600"
           :height="900"
