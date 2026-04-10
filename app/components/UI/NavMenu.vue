@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import type { IMenuItem } from "~/interfaces/IMenuItem";
+  import type { IMenuItem } from "~/interfaces/IMenuItem";
 
-const { t } = useI18n();
+  const { t } = useI18n();
 
-defineProps({
-  menu: {
-    type: Array as PropType<IMenuItem[]>,
-    required: true,
-  },
-});
+  defineProps({
+    menu: {
+      type: Array as PropType<IMenuItem[]>,
+      required: true,
+    },
+  });
 </script>
 
 <template>
@@ -26,7 +26,9 @@ defineProps({
           </li>
         </ul>
       </template>
-      <NuxtLink v-else :to="$localePath(item.href)">{{ t(item.text) }}</NuxtLink>
+      <NuxtLink v-else :to="$localePath(item.href)">
+        {{ t(item.text) }}
+      </NuxtLink>
     </li>
   </ul>
 </template>
