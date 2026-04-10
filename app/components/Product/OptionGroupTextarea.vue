@@ -1,33 +1,31 @@
 <script setup lang="ts">
+import type { IAddonGroup } from "~/server/api/product/addons.get";
 import { useSingleProductStore } from "~/stores/useSingleProductStore";
 
-defineProps<{
-  title: string;
-  id: string;
-  name: string;
-  label: string;
-}>();
-
+defineProps<{ group: IAddonGroup }>();
 const store = useSingleProductStore();
 </script>
 
 <template>
-  <div class="option-group">
-    <h3 class="option-group__title">{{ title }}</h3>
-    <label class="option-group__label option-group__label--textarea" :for="id">
-      {{ label }}
+  <div class="textarea-group">
+    <h3 class="textarea-group__title">{{ group.title }}</h3>
+    <label
+      v-if="group.fields[0]?.label"
+      class="textarea-group__label"
+      :for="String(group.fields[0].id)">
+      {{ group.fields[0].label }}
     </label>
     <textarea
-      class="option-group__textarea"
-      :id="id"
-      :name="name"
+      class="textarea-group__textarea"
+      :id="String(group.fields[0]?.id)"
+      :name="String(group.fields[0]?.id)"
       :value="store.comment"
       @input="store.setComment(($event.target as HTMLTextAreaElement).value)" />
   </div>
 </template>
 
 <style scoped lang="scss">
-.option-group {
+.textarea-group {
   position: relative;
   margin-bottom: 4rem;
   padding: 3.5rem 2rem 2rem;
@@ -47,23 +45,12 @@ const store = useSingleProductStore();
   }
 
   &__label {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    display: block;
+    margin-bottom: 0.8rem;
     font-size: 1.7rem;
-    font-weight: 300;
-    line-height: 2.3rem;
-    letter-spacing: -0.025em;
+    font-weight: 400;
     color: #000;
-    cursor: pointer;
-
-    &--textarea {
-      display: block;
-      margin-bottom: 0.8rem;
-      font-size: 1.7rem;
-      font-weight: 400;
-      cursor: default;
-    }
+    cursor: default;
   }
 
   &__textarea {

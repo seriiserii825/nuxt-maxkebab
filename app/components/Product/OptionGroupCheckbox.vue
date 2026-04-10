@@ -1,30 +1,34 @@
 <script setup lang="ts">
+import type { IAddonGroup } from "~/server/api/product/addons.get";
 import { useSingleProductStore } from "~/stores/useSingleProductStore";
 
-const props = defineProps<{
-  title: string;
-  options: { name: string; value: string; label: string; price: number }[];
-}>();
-
+const props = defineProps<{ group: IAddonGroup }>();
 const store = useSingleProductStore();
 
-props.options.forEach((opt) => store.registerCheckbox(opt.name, opt.label, opt.price));
+props.group.fields.forEach((field) => {
+  store.registerCheckbox(String(field.id), field.label, field.price);
+});
 </script>
 
 <template>
-  <div class="option-group">
-    <h3 class="option-group__title">{{ title }}</h3>
-    <ul class="option-group__list option-group__list--grid">
-      <li v-for="option in options" :key="option.name" class="option-group__item">
-        <label class="option-group__label">
+  <div class="checkbox-group">
+    <h3 class="checkbox-group__title">{{ group.title }}</h3>
+    <ul class="checkbox-group__list">
+      <li
+        v-for="field in group.fields"
+        :key="field.id"
+        class="checkbox-group__item">
+        <label class="checkbox-group__label">
           <input
-            class="option-group__checkbox"
+            class="checkbox-group__checkbox"
             type="checkbox"
-            :name="option.name"
-            :value="option.value"
-            :checked="store.checkboxOptions[option.name]?.checked"
-            @change="store.toggleCheckbox(option.name)" />
-          <span class="option-group__text">{{ option.label }} + {{ option.price }} Lei</span>
+            :name="String(field.id)"
+            :checked="store.checkboxOptions[String(field.id)]?.checked"
+            @change="store.toggleCheckbox(String(field.id))" />
+          <span class="checkbox-group__text">
+            {{ field.label }}
+            <span class="checkbox-group__price">+ {{ field.price }} Lei</span>
+          </span>
         </label>
       </li>
     </ul>
@@ -32,7 +36,7 @@ props.options.forEach((opt) => store.registerCheckbox(opt.name, opt.label, opt.p
 </template>
 
 <style scoped lang="scss">
-.option-group {
+.checkbox-group {
   position: relative;
   margin-bottom: 4rem;
   padding: 3.5rem 2rem 2rem;
@@ -52,20 +56,14 @@ props.options.forEach((opt) => store.registerCheckbox(opt.name, opt.label, opt.p
   }
 
   &__list {
-    display: flex;
-    flex-direction: column;
-    gap: 2.4rem;
+    display: grid;
+    gap: 1.2rem 1.8rem;
+    grid-template-columns: repeat(2, 1fr);
     padding: 0;
 
-    &--grid {
-      display: grid;
-      gap: 1.2rem 1.8rem;
-      grid-template-columns: repeat(2, 1fr);
-
-      @media (max-width: 576px) {
-        gap: 0.8rem;
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 576px) {
+      gap: 0.8rem;
+      grid-template-columns: 1fr;
     }
   }
 
@@ -90,6 +88,10 @@ props.options.forEach((opt) => store.registerCheckbox(opt.name, opt.label, opt.p
     display: flex;
     align-items: center;
     gap: 0.6rem;
+  }
+
+  &__price {
+    font-weight: 700;
   }
 
   &__checkbox {

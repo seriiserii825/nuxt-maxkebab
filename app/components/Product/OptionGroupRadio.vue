@@ -1,37 +1,39 @@
 <script setup lang="ts">
+import type { IAddonGroup } from "~/server/api/product/addons.get";
 import { useSingleProductStore } from "~/stores/useSingleProductStore";
 
-const props = defineProps<{
-  title: string;
-  required?: boolean;
-  name: string;
-  options: { value: string; label: string; checked?: boolean }[];
-}>();
-
+const props = defineProps<{ group: IAddonGroup }>();
 const store = useSingleProductStore();
 
-// Init default selection
-const defaultOption = props.options.find((o) => o.checked);
-if (defaultOption) store.setRadio(props.name, props.title, defaultOption.value);
+const field = props.group.fields[0];
+const name = String(field?.id ?? props.group.id);
+const title = props.group.title.replace(/\s*\*\s*$/, "").trim();
+const required = props.group.title.includes("*");
+
+const firstOption = field?.options[0];
+if (firstOption?.label) store.setRadio(name, title, firstOption.label);
 </script>
 
 <template>
-  <div class="option-group">
-    <h3 class="option-group__title">
+  <div class="radio-group">
+    <h3 class="radio-group__title">
       {{ title }}
-      <span v-if="required" class="option-group__required">*</span>
+      <span v-if="required" class="radio-group__required">*</span>
     </h3>
-    <ul class="option-group__list">
-      <li v-for="option in options" :key="option.value" class="option-group__item">
-        <label class="option-group__label">
+    <ul class="radio-group__list">
+      <li
+        v-for="(option, i) in field?.options"
+        :key="i"
+        class="radio-group__item">
+        <label class="radio-group__label">
           <input
-            class="option-group__radio"
+            class="radio-group__radio"
             type="radio"
             :name="name"
-            :value="option.value"
-            :checked="store.radioSelections[name]?.value === option.value || (!store.radioSelections[name] && option.checked)"
-            @change="store.setRadio(name, title, option.value)" />
-          <span class="option-group__text">{{ option.label }}</span>
+            :value="option.label"
+            :checked="store.radioSelections[name]?.value === option.label || (!store.radioSelections[name] && i === 0)"
+            @change="store.setRadio(name, title, option.label)" />
+          <span class="radio-group__text">{{ option.label }}</span>
         </label>
       </li>
     </ul>
@@ -39,7 +41,7 @@ if (defaultOption) store.setRadio(props.name, props.title, defaultOption.value);
 </template>
 
 <style scoped lang="scss">
-.option-group {
+.radio-group {
   position: relative;
   margin-bottom: 4rem;
   padding: 3.5rem 2rem 2rem;

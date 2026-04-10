@@ -2,8 +2,7 @@
   import type { IWooProduct } from "~/interfaces/IWooProduct";
   import { useSingleProductStore } from "~/stores/useSingleProductStore";
 
-  import { bautura, sos, adaosuri, adaosuriSosuri } from "~/data/single_product_options";
-  import { IAddonGroup } from "../../../server/api/product/addons.get";
+  import type { IAddonGroup } from "~/server/api/product/addons.get";
 
   const route = useRoute();
   const slug = route.params.slug as string;
@@ -55,7 +54,7 @@
   <div class="single-product" v-if="product">
     <div class="container">
       <!-- <UIPrettyPrint v-if="product" :data="product" /> -->
-      <UIPrettyPrint v-if="groups" :data="groups" />
+      <!-- <UIPrettyPrint v-if="groups" :data="groups" /> -->
       <ProductBreadcrumb :items="breadcrumbs" />
 
       <div class="single-product__wrap">
@@ -72,22 +71,26 @@
             image="https://maxkebab.md/wp-content/uploads/2025/11/meniu-kebab-standart-600x900.jpg"
           />
 
-          <div class="single-product__form">
-            <ProductOptionGroupRadio
-              title="Bautura"
-              :required="true"
-              name="bautura"
-              :options="bautura"
-            />
-            <ProductOptionGroupRadio title="Sos" :required="true" name="sos" :options="sos" />
-            <ProductOptionGroupTextarea
-              title="Mențiuni"
-              id="comentariu"
-              name="comentariu"
-              label="Comentariu"
-            />
-            <ProductOptionGroupCheckbox title="Adaosuri" :options="adaosuri" />
-            <ProductOptionGroupStepper title="Adaosuri sosuri" :items="adaosuriSosuri" />
+          <div v-if="groups?.length" class="single-product__form">
+            <template v-for="group in groups" :key="group.id">
+              <ProductOptionGroupRadio v-if="group.fields[0]?.type === 'radio'" :group="group" />
+              <ProductOptionGroupCheckbox
+                v-else-if="
+                  group.fields[0]?.type === 'checkbox' || group.fields[0]?.type === 'checkbox-group'
+                "
+                :group="group"
+              />
+              <ProductOptionGroupQuantity
+                v-else-if="
+                  group.fields[0]?.type === 'number' || group.fields[0]?.type === 'products'
+                "
+                :group="group"
+              />
+              <ProductOptionGroupTextarea
+                v-else-if="group.fields[0]?.type === 'textarea' || group.fields[0]?.type === 'text'"
+                :group="group"
+              />
+            </template>
           </div>
         </div>
 
