@@ -1,8 +1,26 @@
 <script setup lang="ts">
   import { useSingleProductStore } from "~/stores/useSingleProductStore";
 
+  const route = useRoute();
+  const productSlug = route.params.slug as string;
+
+  const { locale } = useI18n();
+  const { data: single_product, error } = await useFetch(
+    "/api/single-product",
+    {
+      query: { lang: locale, slug: productSlug },
+      watch: [locale],
+    },
+  );
+  if (error.value) {
+    showError({
+      statusCode: error.value.statusCode ?? 500,
+      message: error.value.data?.message ?? error.value.message,
+    });
+  }
+
   const store = useSingleProductStore();
-  store.init(135);
+  store.init(0);
 
   const breadcrumbs = [
     { label: "Acasă", to: "/" },
@@ -90,6 +108,7 @@
 <template>
   <div class="single-product">
     <div class="container">
+      <UIPrettyPrint v-if="single_product" :data="single_product" />
       <ProductBreadcrumb :items="breadcrumbs" />
 
       <div class="single-product__wrap">
