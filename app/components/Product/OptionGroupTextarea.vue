@@ -4,16 +4,17 @@ import { useSingleProductStore } from "~/stores/useSingleProductStore";
 
 defineProps<{ group: IAddonGroup }>();
 const store = useSingleProductStore();
+const { ta } = useAddonTranslate();
 </script>
 
 <template>
   <div class="textarea-group">
-    <h3 class="textarea-group__title">{{ group.title }}</h3>
+    <h3 class="textarea-group__title">{{ ta(group.title) }}</h3>
     <label
       v-if="group.fields[0]?.label"
       class="textarea-group__label"
       :for="String(group.fields[0].id)">
-      {{ group.fields[0].label }}
+      {{ ta(group.fields[0].label) }}
     </label>
     <textarea
       class="textarea-group__textarea"

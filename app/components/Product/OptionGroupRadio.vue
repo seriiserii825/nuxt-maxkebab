@@ -4,6 +4,7 @@ import { useSingleProductStore } from "~/stores/useSingleProductStore";
 
 const props = defineProps<{ group: IAddonGroup }>();
 const store = useSingleProductStore();
+const { ta } = useAddonTranslate();
 
 const field = props.group.fields[0];
 const name = String(field?.id ?? props.group.id);
@@ -17,7 +18,7 @@ if (firstOption?.label) store.setRadio(name, title, firstOption.label);
 <template>
   <div class="radio-group">
     <h3 class="radio-group__title">
-      {{ title }}
+      {{ ta(title) }}
       <span v-if="required" class="radio-group__required">*</span>
     </h3>
     <ul class="radio-group__list">
@@ -33,7 +34,7 @@ if (firstOption?.label) store.setRadio(name, title, firstOption.label);
             :value="option.label"
             :checked="store.radioSelections[name]?.value === option.label || (!store.radioSelections[name] && i === 0)"
             @change="store.setRadio(name, title, option.label)" />
-          <span class="radio-group__text">{{ option.label }}</span>
+          <span class="radio-group__text">{{ ta(option.label) }}</span>
         </label>
       </li>
     </ul>

@@ -2,6 +2,8 @@
 import type { IAddonGroup } from "~/server/api/product/addons.get";
 import { useSingleProductStore } from "~/stores/useSingleProductStore";
 
+const { ta } = useAddonTranslate();
+
 const props = defineProps<{ group: IAddonGroup }>();
 const store = useSingleProductStore();
 
@@ -16,7 +18,7 @@ function onCount({ id, count }: { id: string; count: number }) {
 
 <template>
   <div class="quantity-group">
-    <h3 class="quantity-group__title">{{ group.title }}</h3>
+    <h3 class="quantity-group__title">{{ ta(group.title) }}</h3>
     <ul class="quantity-group__list">
       <li
         v-for="field in group.fields"
@@ -28,7 +30,7 @@ function onCount({ id, count }: { id: string; count: number }) {
           :max="Number(field.max) || 99"
           @emit_count="onCount" />
         <label class="quantity-group__label" :for="String(field.id)">
-          {{ field.label }}
+          {{ ta(field.label) }}
           <span class="quantity-group__price">+ {{ field.price }} Lei</span>
         </label>
       </li>

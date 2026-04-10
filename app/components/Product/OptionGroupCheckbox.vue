@@ -2,6 +2,8 @@
 import type { IAddonGroup } from "~/server/api/product/addons.get";
 import { useSingleProductStore } from "~/stores/useSingleProductStore";
 
+const { ta } = useAddonTranslate();
+
 const props = defineProps<{ group: IAddonGroup }>();
 const store = useSingleProductStore();
 
@@ -12,7 +14,7 @@ props.group.fields.forEach((field) => {
 
 <template>
   <div class="checkbox-group">
-    <h3 class="checkbox-group__title">{{ group.title }}</h3>
+    <h3 class="checkbox-group__title">{{ ta(group.title) }}</h3>
     <ul class="checkbox-group__list">
       <li
         v-for="field in group.fields"
@@ -26,7 +28,7 @@ props.group.fields.forEach((field) => {
             :checked="store.checkboxOptions[String(field.id)]?.checked"
             @change="store.toggleCheckbox(String(field.id))" />
           <span class="checkbox-group__text">
-            {{ field.label }}
+            {{ ta(field.label) }}
             <span class="checkbox-group__price">+ {{ field.price }} Lei</span>
           </span>
         </label>
