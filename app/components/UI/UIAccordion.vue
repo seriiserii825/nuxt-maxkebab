@@ -1,32 +1,30 @@
 <script setup lang="ts">
-import type { IDeliveryItem } from "~/interfaces/IDeliveryResponse";
+  import type { IDeliveryItem } from "~/interfaces/IDeliveryResponse";
 
-const props = defineProps({
-  items: {
-    type: Array as PropType<IDeliveryItem[]>,
-    required: true,
-  },
-});
+  defineProps({
+    items: {
+      type: Array as PropType<IDeliveryItem[]>,
+      required: true,
+    },
+  });
 
-const city_store = useCityStore();
-const { currentCity } = storeToRefs(city_store);
+  const city_store = useCityStore();
+  const { currentCity } = storeToRefs(city_store);
 
-const openItems = ref<Set<number>>(new Set([0]));
+  const openItems = ref<Set<number>>(new Set([0]));
 
-function toggle(i: number) {
-  if (openItems.value.has(i)) {
-    openItems.value.delete(i);
-  } else {
-    openItems.value.add(i);
+  function toggle(i: number) {
+    if (openItems.value.has(i)) {
+      openItems.value.delete(i);
+    } else {
+      openItems.value.add(i);
+    }
+    openItems.value = new Set(openItems.value);
   }
-  openItems.value = new Set(openItems.value);
-}
 
-function cityContent(item: IDeliveryItem): string {
-  return currentCity.value?.slug === "ialoveni"
-    ? item.description_Ialoveni
-    : item.description;
-}
+  function cityContent(item: IDeliveryItem): string {
+    return currentCity.value?.slug === "ialoveni" ? item.description_Ialoveni : item.description;
+  }
 </script>
 
 <template>
