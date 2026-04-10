@@ -5,6 +5,7 @@ export const useSingleProductStore = defineStore("singleProduct", () => {
   const basePrice = ref(0);
   const quantity = ref(1);
   const comment = ref("");
+  const resetKey = ref(0);
 
   // group -> { title, value } (radio, no price)
   const radioSelections = ref<Record<string, { title: string; value: string }>>({});
@@ -40,6 +41,7 @@ export const useSingleProductStore = defineStore("singleProduct", () => {
     radioSelections.value = {};
     checkboxOptions.value = {};
     stepperOptions.value = {};
+    resetKey.value++;
   }
 
   function setQuantity(n: number) {
@@ -85,6 +87,7 @@ export const useSingleProductStore = defineStore("singleProduct", () => {
     basePrice,
     quantity,
     comment,
+    resetKey,
     radioSelections,
     checkboxOptions,
     stepperOptions,

@@ -19,32 +19,23 @@ export const useCartStore = defineStore(
       }, 0),
     );
 
-    function increaseQty(id: number) {
-      const item = items.value.find((i) => i.id === id);
+    function increaseQty(uid: string) {
+      const item = items.value.find((i) => i.uid === uid);
       if (item) item.qty++;
     }
 
-    function decreaseQty(id: number) {
-      const item = items.value.find((i) => i.id === id);
+    function decreaseQty(uid: string) {
+      const item = items.value.find((i) => i.uid === uid);
       if (item && item.qty > 1) item.qty--;
     }
 
-    function removeItem(id: number) {
-      const idx = items.value.findIndex((i) => i.id === id);
+    function removeItem(uid: string) {
+      const idx = items.value.findIndex((i) => i.uid === uid);
       if (idx !== -1) items.value.splice(idx, 1);
     }
 
     function addItem(item: CartItem) {
-      const existing = items.value.find((i) => i.id === item.id);
-      if (existing) {
-        existing.qty += item.qty;
-        existing.options = item.options;
-        existing.additions = item.additions;
-        existing.sauces = item.sauces;
-        existing.comment = item.comment;
-      } else {
-        items.value.push(item);
-      }
+      items.value.push(item);
     }
 
     function clearCart() {

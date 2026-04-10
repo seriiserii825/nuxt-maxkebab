@@ -71,7 +71,7 @@
             image="https://maxkebab.md/wp-content/uploads/2025/11/meniu-kebab-standart-600x900.jpg"
           />
 
-          <div v-if="groups?.length" class="single-product__form">
+          <div v-if="groups?.length" :key="store.resetKey" class="single-product__form">
             <template v-for="group in groups" :key="group.id">
               <ProductOptionGroupRadio v-if="group.fields[0]?.type === 'radio'" :group="group" />
               <ProductOptionGroupCheckbox

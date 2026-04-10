@@ -17,15 +17,12 @@ function addToCart() {
     label: title,
     value,
   }));
-  const additions_values = Object.values(checkboxOptions.value);
 
-  const additions = additions_values
+  const additions = Object.values(checkboxOptions.value)
     .filter((o) => o.checked)
     .map((o) => ({ label: o.label, value: o.label, price: o.price }));
 
-  const sauces_values = Object.values(stepperOptions.value);
-
-  const sauces = sauces_values
+  const sauces = Object.values(stepperOptions.value)
     .filter((o) => o.count > 0)
     .map((o) => ({
       label: o.label,
@@ -35,6 +32,7 @@ function addToCart() {
     }));
 
   cart.addItem({
+    uid: `${props.productId}_${Date.now()}`,
     id: props.productId,
     title: props.title,
     image: props.image,
@@ -45,6 +43,8 @@ function addToCart() {
     sauces: sauces.length ? sauces : undefined,
     comment: single.comment || undefined,
   });
+
+  single.init(single.basePrice);
 }
 </script>
 
