@@ -45,6 +45,7 @@
     "ales": "choose"
   },
   "pages": {
-    "offers": "Offers"
+    "offers": "Offers",
+    "about": "About us"
   }
 }
