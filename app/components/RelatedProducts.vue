@@ -7,15 +7,19 @@
       required: true,
     },
   });
+
+  const { registerEl } = useImageFloat();
 </script>
 
 <template>
   <div class="related-products">
     <img
+      :ref="(el) => registerEl(el as HTMLElement)"
       src="/img/single-product-animate-1.png"
       class="related-products__img related-products__img--top-left"
       alt="" />
     <img
+      :ref="(el) => registerEl(el as HTMLElement)"
       src="/img/single-product-animate-2.png"
       class="related-products__img related-products__img--top-right"
       alt="" />
