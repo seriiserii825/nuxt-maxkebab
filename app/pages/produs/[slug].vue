@@ -4,8 +4,7 @@
 
   const route = useRoute();
   const slug = route.params.slug as string;
-
-  const { locale } = useI18n();
+  const { t, locale } = useI18n();
 
   const { data: product, error } = await useFetch<IWooProduct>("/api/product", {
     query: { slug, locale },
@@ -18,17 +17,17 @@
     });
   }
 
-  const categoryId = computed(() => product.value?.categories?.[0]?.id);
-  console.log("categoryId", categoryId);
+  const category = computed(() => product.value?.categories?.[0]);
+  const categorySlug = computed(() => `/#${category.value?.slug ?? ""}`);
 
   const store = useSingleProductStore();
   store.init(0);
 
-  const breadcrumbs = [
-    { label: "Acasă", to: "/" },
-    { label: "Combo", to: "/#meniuri" },
-    { label: "Menu Kebab standart" },
-  ];
+  const breadcrumbs = ref([
+    { label: t("breadcrumbs.home"), to: "/" },
+    { label: category.value ? category.value?.name : "", to: categorySlug.value },
+    { label: product.value?.name },
+  ]);
 
   const bautura = [
     { value: "Coca-Cola", label: "Coca-Cola", checked: true },
@@ -110,7 +109,7 @@
 <template>
   <div class="single-product">
     <div class="container">
-      <UIPrettyPrint v-if="product" :data="product" />
+      <!-- <UIPrettyPrint v-if="product" :data="product" /> -->
       <ProductBreadcrumb :items="breadcrumbs" />
 
       <div class="single-product__wrap">

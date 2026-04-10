@@ -2,6 +2,9 @@
   "languageSelector": {
     "title": "Выберите язык"
   },
+  "breadcrumbs": {
+    "home": "Главная"
+  },
   "menu": {
     "menu": "Меню",
     "combo": "Комбо",

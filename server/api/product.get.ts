@@ -1,13 +1,13 @@
 export default defineEventHandler(async (event): Promise<IWooProduct> => {
-  const woo = useWooFetch();
   const { slug, locale } = getQuery(event) as { slug: string; locale: string };
+  const woo = useWooFetch(locale);
 
   if (!slug) {
     throw createError({ statusCode: 400, message: "slug query parameter is required" });
   }
 
   try {
-    const { data: products } = await woo.getRaw<IWooProduct[]>("/products", { slug, locale });
+    const { data: products } = await woo.getRaw<IWooProduct[]>("/products", { slug });
 
     if (!products.length) {
       throw createError({ statusCode: 404, message: "Product not found" });

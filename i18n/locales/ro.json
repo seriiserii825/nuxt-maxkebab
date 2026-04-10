@@ -2,6 +2,9 @@
   "languageSelector": {
     "title": "Alege limba"
   },
+  "breadcrumbs": {
+    "home": "Acasă"
+  },
   "menu": {
     "menu": "Menu",
     "combo": "Combo",
