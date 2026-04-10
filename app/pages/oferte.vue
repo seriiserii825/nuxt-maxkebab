@@ -19,10 +19,27 @@
     { label: t("breadcrumbs.home"), to: "/" },
     { label: t("pages.offers") },
   ]);
+
+  const { registerEl } = useImageFloat();
 </script>
 
 <template>
   <div class="oferte">
+    <img
+      :ref="(el) => registerEl(el as HTMLElement)"
+      src="/img/single-product-animate-1.png"
+      class="oferte__img oferte__img--top-left"
+      alt="" />
+    <img
+      :ref="(el) => registerEl(el as HTMLElement)"
+      src="/img/bubbles-dark.png"
+      class="oferte__img oferte__img--top-right"
+      alt="" />
+    <img
+      :ref="(el) => registerEl(el as HTMLElement)"
+      src="/img/single-product-animate-2.png"
+      class="oferte__img oferte__img--top-right-bottom"
+      alt="" />
     <div class="container">
       <!-- <UIPrettyPrint v-if="data" :data="data" /> -->
       <ProductBreadcrumb :items="breadcrumbs" />
@@ -34,7 +51,29 @@
 </template>
 <style lang="scss">
   .oferte {
-    padding-top: 20rem;
+    position: relative;
+    padding-top: 22rem;
+    padding-bottom: 11rem;
+    background: linear-gradient(180deg, #fffef1 80.21%, #f1fff5 100%);
+    &__img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      &--top-left {
+        top: 38rem;
+      }
+      &--top-right {
+        top: 14rem;
+        left: initial;
+        right: 0;
+      }
+      &--top-right-bottom {
+        top: 48rem;
+        left: initial;
+        right: 0;
+      }
+    }
     &__wrap {
       display: grid;
       gap: 2rem;
