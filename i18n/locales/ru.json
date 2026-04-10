@@ -43,5 +43,11 @@
   },
   "footer": {
     "ales": "выбрал"
+  },
+  "pages": {
+    "offers": "Акции",
+    "about": "О нас",
+    "delivery": "Доставка",
+    "contacts": "Контакты"
   }
 }

@@ -14,7 +14,8 @@ export default defineEventHandler(async (event): Promise<IWooProduct> => {
     }
 
     return products[0];
-  } catch (err: any) {
-    throw createError({ statusCode: err?.statusCode ?? err?.status ?? 500, message: err?.message });
+  } catch (err) {
+    const e = err as { statusCode?: number; status?: number; message?: string };
+    throw createError({ statusCode: e?.statusCode ?? e?.status ?? 500, message: e?.message });
   }
 });

@@ -6,6 +6,7 @@ export interface CartItemOption {
 }
 
 export interface CartItem {
+  uid: string;
   id: number;
   title: string;
   image: string;

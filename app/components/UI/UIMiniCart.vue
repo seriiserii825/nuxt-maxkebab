@@ -42,7 +42,7 @@ const cart = useCartStore();
         </p>
 
         <ul v-else class="mini-cart__list">
-          <li v-for="item in cart.items" :key="item.id" class="mini-cart__item">
+          <li v-for="item in cart.items" :key="item.uid" class="mini-cart__item">
             <div class="mini-cart__item-img">
               <img :src="item.image" :alt="item.title" />
             </div>
@@ -53,7 +53,7 @@ const cart = useCartStore();
                 <button
                   class="mini-cart__item-remove"
                   :aria-label="t('miniCart.remove')"
-                  @click="cart.removeItem(item.id)">
+                  @click="cart.removeItem(item.uid)">
                   <IconRemove />
                 </button>
               </div>
@@ -99,14 +99,14 @@ const cart = useCartStore();
                   <button
                     class="mini-cart__qty-btn"
                     :aria-label="t('miniCart.decrease')"
-                    @click="cart.decreaseQty(item.id)">
+                    @click="cart.decreaseQty(item.uid)">
                     −
                   </button>
                   <span class="mini-cart__qty-val">{{ item.qty }}</span>
                   <button
                     class="mini-cart__qty-btn"
                     :aria-label="t('miniCart.increase')"
-                    @click="cart.increaseQty(item.id)">
+                    @click="cart.increaseQty(item.uid)">
                     +
                   </button>
                 </div>

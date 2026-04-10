@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import type { IWooProduct } from "~/interfaces/IWooProduct";
   import { useSingleProductStore } from "~/stores/useSingleProductStore";
-
-  import { bautura, sos, adaosuri, adaosuriSosuri } from "~/data/single_product_options";
+  import type { IAddonGroup } from "~/server/api/product/addons.get";
+  import type { IProduct } from "~/interfaces/IHomeResponse";
 
   const route = useRoute();
   const slug = route.params.slug as string;
@@ -22,6 +22,38 @@
   const category = computed(() => product.value?.categories?.[0]);
   const categorySlug = computed(() => `/#${category.value?.slug ?? ""}`);
 
+  const { data: related_prodcuts, error: related_products_error } = await useFetch<IProduct[]>(
+    "/api/related-products",
+    {
+      query: {
+        term_id: category.value ? category.value.id : null,
+        product_id: product.value ? product.value.id : null,
+        locale,
+      },
+    },
+  );
+
+  if (related_products_error.value) {
+    showError({
+      statusCode: related_products_error.value.statusCode ?? 500,
+      message: related_products_error.value.data?.message ?? related_products_error.value.message,
+    });
+  }
+
+  const { data: groups, error: addons_error } = await useFetch<IAddonGroup[]>(
+    "/api/product/addons",
+    {
+      query: { product_id: product.value?.id, locale },
+    },
+  );
+
+  if (addons_error.value) {
+    showError({
+      statusCode: addons_error.value.statusCode ?? 500,
+      message: addons_error.value.data?.message ?? addons_error.value.message,
+    });
+  }
+
   const store = useSingleProductStore();
   store.init(
     product.value?.sale_price
@@ -40,6 +72,8 @@
   <div class="single-product" v-if="product">
     <div class="container">
       <!-- <UIPrettyPrint v-if="product" :data="product" /> -->
+      <!-- <UIPrettyPrint v-if="groups" :data="groups" /> -->
+      <!-- <UIPrettyPrint v-if="related_prodcuts" :data="related_prodcuts" /> -->
       <ProductBreadcrumb :items="breadcrumbs" />
 
       <div class="single-product__wrap">
@@ -47,31 +81,30 @@
           <ProductInfo
             :title="product.name"
             :description="product.description"
-            :price="store.totalPrice"
-          />
+            :price="store.totalPrice" />
 
           <ProductActions
             :product-id="1"
             title="Menu Kebab standart"
-            image="https://maxkebab.md/wp-content/uploads/2025/11/meniu-kebab-standart-600x900.jpg"
-          />
+            image="https://maxkebab.md/wp-content/uploads/2025/11/meniu-kebab-standart-600x900.jpg" />
 
-          <div class="single-product__form">
-            <ProductOptionGroupRadio
-              title="Bautura"
-              :required="true"
-              name="bautura"
-              :options="bautura"
-            />
-            <ProductOptionGroupRadio title="Sos" :required="true" name="sos" :options="sos" />
-            <ProductOptionGroupTextarea
-              title="Mențiuni"
-              id="comentariu"
-              name="comentariu"
-              label="Comentariu"
-            />
-            <ProductOptionGroupCheckbox title="Adaosuri" :options="adaosuri" />
-            <ProductOptionGroupStepper title="Adaosuri sosuri" :items="adaosuriSosuri" />
+          <div v-if="groups?.length" :key="store.resetKey" class="single-product__form">
+            <template v-for="group in groups" :key="group.id">
+              <ProductOptionGroupRadio v-if="group.fields[0]?.type === 'radio'" :group="group" />
+              <ProductOptionGroupCheckbox
+                v-else-if="
+                  group.fields[0]?.type === 'checkbox' || group.fields[0]?.type === 'checkbox-group'
+                "
+                :group="group" />
+              <ProductOptionGroupQuantity
+                v-else-if="
+                  group.fields[0]?.type === 'number' || group.fields[0]?.type === 'products'
+                "
+                :group="group" />
+              <ProductOptionGroupTextarea
+                v-else-if="group.fields[0]?.type === 'textarea' || group.fields[0]?.type === 'text'"
+                :group="group" />
+            </template>
           </div>
         </div>
 
@@ -79,9 +112,9 @@
           :src="product.images?.[0]?.src ?? ''"
           alt="Menu Kebab standart"
           :width="600"
-          :height="900"
-        />
+          :height="900" />
       </div>
+      <RelatedProducts v-if="related_prodcuts" :products="related_prodcuts" />
     </div>
   </div>
 </template>

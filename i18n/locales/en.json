@@ -43,5 +43,11 @@
   },
   "footer": {
     "ales": "choose"
+  },
+  "pages": {
+    "offers": "Offers",
+    "about": "About us",
+    "delivery": "Delivery",
+    "contacts": "Contacts"
   }
 }

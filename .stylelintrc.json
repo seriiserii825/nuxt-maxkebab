@@ -11,6 +11,7 @@
     }
   ],
   "rules": {
+    "scss/comment-no-empty": null,
     "custom-property-pattern": null,
     "font-family-no-missing-generic-family-keyword": null,
     "selector-class-pattern": null,

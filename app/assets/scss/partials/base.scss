@@ -159,6 +159,23 @@ a {
   display: none !important;
 }
 
+// .page-enter-active,
+// .page-leave-active {
+//   transition:
+//     opacity 0.3s ease-in,
+//     transform 0.3s ease-in;
+// }
+//
+// .page-enter-from {
+//   opacity: 0;
+//   transform: translateY(26px);
+// }
+//
+// .page-leave-to {
+//   opacity: 0;
+//   transform: translateY(-16px);
+// }
+
 .message-region {
   position: absolute;
   left: 0;

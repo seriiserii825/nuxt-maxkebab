@@ -41,8 +41,8 @@ export function useStoreApiFetch(event: H3Event) {
     // Node 18+ Headers.getSetCookie() returns each Set-Cookie as a separate
     // string, avoiding the ambiguity of comma-splitting.
     const cookies: string[] =
-      typeof (headers as any).getSetCookie === "function"
-        ? (headers as any).getSetCookie()
+      typeof (headers as Headers & { getSetCookie?: () => string[] }).getSetCookie === "function"
+        ? (headers as Headers & { getSetCookie: () => string[] }).getSetCookie()
         : (headers.get("set-cookie") ?? "")
             .split(/,(?=\s*\w+=)/)
             .filter(Boolean);
@@ -83,12 +83,9 @@ export function useStoreApiFetch(event: H3Event) {
     });
     forwardSetCookie(res.headers);
     if (!res.ok) {
-      const errData = res._data as any;
+      const errData = res._data as { message?: string };
       console.error(`[storeApi] POST ${path} failed ${res.status}:`, JSON.stringify(errData, null, 2));
-      const err: any = new Error(errData?.message ?? `HTTP ${res.status}`);
-      err.status = res.status;
-      err.data = errData;
-      throw err;
+      throw createError({ statusCode: res.status, message: errData?.message ?? `HTTP ${res.status}`, data: errData });
     }
     return res._data as T;
   }

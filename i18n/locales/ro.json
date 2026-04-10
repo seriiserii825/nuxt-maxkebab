@@ -43,5 +43,11 @@
   },
   "footer": {
     "ales": "a ales"
+  },
+  "pages": {
+    "offers": "Oferte",
+    "about": "Despre noi",
+    "delivery": "Livrare",
+    "contacts": "Contacte"
   }
 }

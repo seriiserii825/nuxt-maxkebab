@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from "vue";
-import gsap from "gsap";
 import type { ICatalog } from "~/interfaces/IHomeResponse";
 
 defineProps({
@@ -10,37 +8,7 @@ defineProps({
   },
 });
 
-const rndAnimEls = ref<HTMLElement[]>([]);
-const tweens: gsap.core.Tween[] = [];
-
-function tweenProperty(target: HTMLElement, prop: string, min: number, max: number) {
-  const tween = gsap.to(target, {
-    [prop]: gsap.utils.random(min, max),
-    duration: gsap.utils.random(3, 6),
-    ease: "none",
-    onComplete: tweenProperty,
-    onCompleteParams: [target, prop, min, max],
-  });
-  tweens.push(tween);
-}
-
-function playEl(el: HTMLElement) {
-  const playField = 50;
-  const dx = playField * 0.4;
-  const dy = playField * 0.5;
-
-  tweenProperty(el, "scale", 0.9, 0.9);
-  tweenProperty(el, "x", -dx, dx);
-  tweenProperty(el, "y", -dy, dy);
-}
-
-onMounted(() => {
-  rndAnimEls.value.forEach(playEl);
-});
-
-onUnmounted(() => {
-  tweens.forEach((t) => t.kill());
-});
+const { registerEl } = useImageFloat();
 </script>
 
 <template>
@@ -49,11 +17,7 @@ onUnmounted(() => {
       <img
         v-for="(image, index) in catalog.images.slice(0, 2)"
         :key="index"
-        :ref="
-          (el) => {
-            if (el) rndAnimEls.push(el as HTMLElement);
-          }
-        "
+        :ref="(el) => registerEl(el as HTMLElement)"
         :class="`rndAnim bg-image bg-image--${index + 1}`"
         :src="image.url"
         alt="pizza"
