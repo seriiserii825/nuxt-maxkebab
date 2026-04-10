@@ -43,5 +43,8 @@
   },
   "footer": {
     "ales": "choose"
+  },
+  "pages": {
+    "offers": "Offers"
   }
 }

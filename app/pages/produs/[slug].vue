@@ -81,14 +81,12 @@
           <ProductInfo
             :title="product.name"
             :description="product.description"
-            :price="store.totalPrice"
-          />
+            :price="store.totalPrice" />
 
           <ProductActions
             :product-id="1"
             title="Menu Kebab standart"
-            image="https://maxkebab.md/wp-content/uploads/2025/11/meniu-kebab-standart-600x900.jpg"
-          />
+            image="https://maxkebab.md/wp-content/uploads/2025/11/meniu-kebab-standart-600x900.jpg" />
 
           <div v-if="groups?.length" :key="store.resetKey" class="single-product__form">
             <template v-for="group in groups" :key="group.id">
@@ -97,18 +95,15 @@
                 v-else-if="
                   group.fields[0]?.type === 'checkbox' || group.fields[0]?.type === 'checkbox-group'
                 "
-                :group="group"
-              />
+                :group="group" />
               <ProductOptionGroupQuantity
                 v-else-if="
                   group.fields[0]?.type === 'number' || group.fields[0]?.type === 'products'
                 "
-                :group="group"
-              />
+                :group="group" />
               <ProductOptionGroupTextarea
                 v-else-if="group.fields[0]?.type === 'textarea' || group.fields[0]?.type === 'text'"
-                :group="group"
-              />
+                :group="group" />
             </template>
           </div>
         </div>
@@ -117,8 +112,7 @@
           :src="product.images?.[0]?.src ?? ''"
           alt="Menu Kebab standart"
           :width="600"
-          :height="900"
-        />
+          :height="900" />
       </div>
       <RelatedProducts v-if="related_prodcuts" :products="related_prodcuts" />
     </div>

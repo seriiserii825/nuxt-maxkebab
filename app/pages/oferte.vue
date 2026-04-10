@@ -1,5 +1,6 @@
 <script setup lang="ts">
-  const { locale } = useI18n();
+  const { t, locale } = useI18n();
+
   const { data, error } = await useFetch("/api/offers", {
     query: { lang: locale },
     watch: [locale],
@@ -11,10 +12,16 @@
       message: error.value.data?.message ?? error.value.message,
     });
   }
+
+  const breadcrumbs = ref([
+    { label: t("breadcrumbs.home"), to: "/" },
+    { label: t("pages.offers") },
+  ]);
 </script>
 
 <template>
   <div class="oferte">
     <UIPrettyPrint v-if="data" :data="data" />
+    <ProductBreadcrumb :items="breadcrumbs" />
   </div>
 </template>
