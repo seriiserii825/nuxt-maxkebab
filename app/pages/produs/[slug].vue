@@ -1,23 +1,25 @@
 <script setup lang="ts">
+  import type { IWooProduct } from "~/interfaces/IWooProduct";
   import { useSingleProductStore } from "~/stores/useSingleProductStore";
 
   const route = useRoute();
-  const productSlug = route.params.slug as string;
+  const slug = route.params.slug as string;
 
   const { locale } = useI18n();
-  const { data: single_product, error } = await useFetch(
-    "/api/single-product",
-    {
-      query: { lang: locale, slug: productSlug },
-      watch: [locale],
-    },
-  );
+
+  const { data: product, error } = await useFetch<IWooProduct>("/api/product", {
+    query: { slug, locale },
+  });
+
   if (error.value) {
     showError({
       statusCode: error.value.statusCode ?? 500,
       message: error.value.data?.message ?? error.value.message,
     });
   }
+
+  const categoryId = computed(() => product.value?.categories?.[0]?.id);
+  console.log("categoryId", categoryId);
 
   const store = useSingleProductStore();
   store.init(0);
@@ -108,7 +110,7 @@
 <template>
   <div class="single-product">
     <div class="container">
-      <UIPrettyPrint v-if="single_product" :data="single_product" />
+      <UIPrettyPrint v-if="product" :data="product" />
       <ProductBreadcrumb :items="breadcrumbs" />
 
       <div class="single-product__wrap">
@@ -132,12 +134,7 @@
               name="bautura"
               :options="bautura"
             />
-            <ProductOptionGroupRadio
-              title="Sos"
-              :required="true"
-              name="sos"
-              :options="sos"
-            />
+            <ProductOptionGroupRadio title="Sos" :required="true" name="sos" :options="sos" />
             <ProductOptionGroupTextarea
               title="Mențiuni"
               id="comentariu"
@@ -145,10 +142,7 @@
               label="Comentariu"
             />
             <ProductOptionGroupCheckbox title="Adaosuri" :options="adaosuri" />
-            <ProductOptionGroupStepper
-              title="Adaosuri sosuri"
-              :items="adaosuriSosuri"
-            />
+            <ProductOptionGroupStepper title="Adaosuri sosuri" :items="adaosuriSosuri" />
           </div>
         </div>
 
