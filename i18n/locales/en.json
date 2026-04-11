@@ -49,5 +49,20 @@
     "about": "About us",
     "delivery": "Delivery",
     "contacts": "Contacts"
+  },
+  "shipping_cost": {
+    "ialoveni": "The delivery cost will be determined upon order confirmation.",
+    "chisinau": {
+      "curier": "Courier delivery",
+      "base": {
+        "before": "Delivery in",
+        "after": "remaining"
+      },
+      "threshold": {
+        "before": "Delivery in",
+        "after": "available"
+      },
+      "free": "Free delivery for Chișinău from"
+    }
   }
 }

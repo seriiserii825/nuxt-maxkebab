@@ -22,6 +22,11 @@
   &.shipping-cost--hidden {
     display: none;
   }
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
 
   &__remaining--available {
     color: #3c833f;

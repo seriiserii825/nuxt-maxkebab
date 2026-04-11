@@ -19,6 +19,20 @@ export const useCartStore = defineStore(
       }, 0),
     );
 
+    const CHISINAU_DELIVERY_THRESHOLD = 300;
+    const CHISINAU_DELIVERY_FREE = 500;
+    const CHISINAU_DELIVERY_PRICE = 95;
+    const CHISINAU_DELIVERY_PRICE_THRESHOLD = 50;
+
+    const threshold_left = computed(() => Math.max(CHISINAU_DELIVERY_THRESHOLD - total.value, 0));
+
+    const have_delivery_base = computed(() => total.value < CHISINAU_DELIVERY_THRESHOLD);
+
+    const have_delivery_threshold = computed(
+      () => total.value >= CHISINAU_DELIVERY_THRESHOLD && total.value < CHISINAU_DELIVERY_FREE,
+    );
+    const have_delivery_free = computed(() => total.value >= CHISINAU_DELIVERY_FREE);
+
     function increaseQty(uid: string) {
       const item = items.value.find((i) => i.uid === uid);
       if (item) item.qty++;
@@ -42,7 +56,22 @@ export const useCartStore = defineStore(
       items.value = [];
     }
 
-    return { items, count, total, increaseQty, decreaseQty, removeItem, addItem, clearCart };
+    return {
+      items,
+      count,
+      total,
+      increaseQty,
+      decreaseQty,
+      removeItem,
+      addItem,
+      clearCart,
+      have_delivery_base,
+      have_delivery_threshold,
+      have_delivery_free,
+      threshold_left,
+      CHISINAU_DELIVERY_PRICE,
+      CHISINAU_DELIVERY_PRICE_THRESHOLD,
+    };
   },
   {
     persist: true,

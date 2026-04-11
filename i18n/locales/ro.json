@@ -49,5 +49,20 @@
     "about": "Despre noi",
     "delivery": "Livrare",
     "contacts": "Contacte"
+  },
+  "shipping_cost": {
+    "ialoveni": "Costul livrării se stabilește la confirmarea comenzii.",
+    "chisinau": {
+      "curier": "Livrare curier",
+      "base": {
+        "before": "Până la livrarea de",
+        "after": "mai rămân"
+      },
+      "threshold": {
+        "before": "Livrarea pentru",
+        "after": "este disponibilă!"
+      },
+      "free": "Livrare gratuită pentru Chișinău dupa"
+    }
   }
 }
