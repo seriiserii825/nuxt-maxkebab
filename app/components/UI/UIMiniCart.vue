@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { useCartStore } from "~/stores/useCartStore";
+  import { useCartStore } from "~/stores/useCartStore";
 
-defineProps({
-  isOpen: {
-    type: Boolean,
-    default: false,
-  },
-});
+  defineProps({
+    isOpen: {
+      type: Boolean,
+      default: false,
+    },
+  });
 
-const emit = defineEmits(["close"]);
+  const emit = defineEmits(["close"]);
 
-const { t } = useI18n();
-const cart = useCartStore();
+  const { t } = useI18n();
+  const cart = useCartStore();
 </script>
 
 <template>
