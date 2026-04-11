@@ -1,5 +1,7 @@
 <template>
   <NuxtLayout>
-    <NuxtPage :transition="{ name: 'page', mode: 'out-in' }" />
+    <NuxtPage
+      :page-key="(route) => route.path.replace(/^\/(ru|en)(\/|$)/, '/')"
+      :transition="{ name: 'page', mode: 'out-in' }" />
   </NuxtLayout>
 </template>
