@@ -7,6 +7,7 @@ export const useCityStore = defineStore(
   () => {
     const city_was_selected = ref(false);
     const popup_is_active = ref(false);
+    const popup_delivery_step = ref(false);
     const city_index = ref(0);
     const cities = ref<ICity[]>(cities_data);
 
@@ -18,6 +19,11 @@ export const useCityStore = defineStore(
 
     function setPopupIsActive(isActive: boolean) {
       popup_is_active.value = isActive;
+      if (!isActive) popup_delivery_step.value = false;
+    }
+
+    function setPopupDeliveryStep(value: boolean) {
+      popup_delivery_step.value = value;
     }
 
     function setCityWasSelected(wasSelected: boolean) {
@@ -30,6 +36,8 @@ export const useCityStore = defineStore(
       currentCity,
       popup_is_active,
       setPopupIsActive,
+      popup_delivery_step,
+      setPopupDeliveryStep,
       city_was_selected,
       setCityWasSelected,
     };

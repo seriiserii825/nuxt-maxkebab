@@ -11,7 +11,11 @@ defineProps({
   },
 });
 
-const chisinau_selected = ref(false);
+const chisinau_selected = ref(city_store.popup_delivery_step);
+
+watch(() => city_store.popup_delivery_step, (val) => {
+  chisinau_selected.value = val;
+});
 
 const closePopup = () => {
   city_store.setPopupIsActive(false);

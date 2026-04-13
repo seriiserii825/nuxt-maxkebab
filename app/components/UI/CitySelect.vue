@@ -6,11 +6,20 @@ const { currentCity, cities, city_was_selected } = storeToRefs(cityStore);
 const is_open_dropdown = ref(false);
 
 function handleItemClick(index: number) {
+  const city = cities.value[index];
+  is_open_dropdown.value = false;
+
   if (!city_was_selected.value) {
+    cityStore.setPopupIsActive(true);
+    return;
+  }
+
+  if (city.slug === "chisinau") {
+    cityStore.setCityIndex(index);
+    cityStore.setPopupDeliveryStep(true);
     cityStore.setPopupIsActive(true);
   } else {
     cityStore.setCityIndex(index);
-    is_open_dropdown.value = false;
   }
 }
 </script>
