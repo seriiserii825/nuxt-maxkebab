@@ -34,6 +34,42 @@
       font-size: 1.8rem;
       font-weight: 700;
     }
+
+    &--shipping {
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  }
+
+  &__shipping {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    text-align: right;
+  }
+
+  &__shipping-option {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+
+    input[type="radio"] {
+      accent-color: var(--color-red);
+      cursor: pointer;
+    }
+
+    strong {
+      color: var(--color-red);
+    }
+  }
+
+  &__shipping-destination {
+    margin-top: 0.4rem;
+    font-size: 1.3rem;
+    color: #888;
   }
 
   &__label {

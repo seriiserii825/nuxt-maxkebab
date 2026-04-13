@@ -65,6 +65,12 @@
     "checkout": "Proceed to checkout",
     "resume": "You might also like…"
   },
+  "shipping": {
+    "pickup": "Pick up order",
+    "delivery_chisinau": "Courier delivery",
+    "delivery_ialoveni": "Ialoveni delivery - Cost will be determined upon order confirmation.",
+    "destination": "Delivery to {city}."
+  },
   "shipping_cost": {
     "ialoveni": "The delivery cost will be determined upon order confirmation.",
     "chisinau": {
