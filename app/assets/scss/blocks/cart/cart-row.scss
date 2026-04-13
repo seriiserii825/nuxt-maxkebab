@@ -3,7 +3,7 @@
   align-items: center;
   padding: 1rem 0;
   border-bottom: 1px solid var(--color-brown-dark);
-  grid-template-columns: 4rem 10rem 1fr 12rem 16rem 12rem;
+  grid-template-columns: 4rem 14rem 1fr 12rem 16rem 12rem;
 
   @media screen and (max-width: 768px) {
     gap: 1rem;
@@ -48,7 +48,7 @@
 
     img {
       display: block;
-      width: 8rem;
+      width: 12rem;
       border-radius: 1rem;
       aspect-ratio: 1 / 1;
       object-fit: cover;
@@ -68,14 +68,33 @@
   }
 
   &__extras {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     padding: 0;
+    margin: 0.4rem 0 0;
+    list-style: none;
+  }
+
+  &__extras-title {
+    display: block;
+    margin-top: 0.8rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #aaa;
   }
 
   &__extra {
-    display: flex;
-    gap: 0.6rem;
-    padding: 0.3rem 0;
-    font-size: 1.4rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.9rem;
+    font-size: 1.3rem;
+    background: #f4f4f4;
+    border-radius: 2rem;
+    color: #444;
   }
 
   &__extra-label {
@@ -88,7 +107,27 @@
   }
 
   &__extra-value {
-    color: #444;
+    color: #222;
+  }
+
+  &__extra-price {
+    font-weight: 600;
+    color: var(--color-red);
+  }
+
+  &__extra-count {
+    font-weight: 600;
+    color: #888;
+  }
+
+  &__extras--additions &__extra {
+    background: #fff5f5;
+    border: 1px solid #fdd;
+  }
+
+  &__extras--sauces &__extra {
+    background: #f5f8ff;
+    border: 1px solid #dde8fd;
   }
 
   &__price,
