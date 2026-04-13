@@ -3,12 +3,12 @@
 
   &__head {
     display: grid;
-    grid-template-columns: 4rem 10rem 1fr 12rem 16rem 12rem;
     align-items: center;
     padding: 1rem 1.4rem;
     font-weight: 600;
     color: #fff;
     background-color: var(--color-brown-light);
+    grid-template-columns: 4rem 10rem 1fr 12rem 16rem 12rem;
 
     @media screen and (max-width: 768px) {
       display: none;

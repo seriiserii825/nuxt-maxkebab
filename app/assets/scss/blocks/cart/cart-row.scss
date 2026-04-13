@@ -1,15 +1,15 @@
 .cart-row {
   display: grid;
-  grid-template-columns: 4rem 10rem 1fr 12rem 16rem 12rem;
   align-items: center;
   padding: 1rem 0;
   border-bottom: 1px solid var(--color-brown-dark);
+  grid-template-columns: 4rem 10rem 1fr 12rem 16rem 12rem;
 
   @media screen and (max-width: 768px) {
-    grid-template-columns: 4rem 8rem 1fr;
-    grid-template-rows: auto auto auto;
     gap: 1rem;
     padding: 1.5rem;
+    grid-template-columns: 4rem 8rem 1fr;
+    grid-template-rows: auto auto auto;
   }
 
   &:last-child {
@@ -34,8 +34,8 @@
     background: none;
     border: 1px solid var(--color-red);
     border-radius: 50%;
-    cursor: pointer;
     transition: all 0.2s;
+    cursor: pointer;
 
     &:hover {
       color: #fff;
