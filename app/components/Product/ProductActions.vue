@@ -2,6 +2,9 @@
   import { useCartStore } from "~/stores/useCartStore";
   import { useSingleProductStore } from "~/stores/useSingleProductStore";
 
+  const { notify } = useNotification();
+  const { t } = useI18n();
+
   const props = defineProps<{
     productId: number;
     title: string;
@@ -45,13 +48,18 @@
     });
 
     single.init(single.basePrice);
+
+    notify({
+      type: "success",
+      title: `${props.title} ${t("cart.added")}`,
+    });
   }
 </script>
 
 <template>
   <div class="single-product__actions">
     <UIQuantitySelector />
-    <button class="single-product__submit" type="button" @click="addToCart">Adaugă în coș</button>
+    <button class="single-product__submit" type="button" @click="addToCart">{{ t("cart.addBtn") }}</button>
   </div>
 </template>
 

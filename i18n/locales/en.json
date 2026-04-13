@@ -50,6 +50,10 @@
     "delivery": "Delivery",
     "contacts": "Contacts"
   },
+  "cart": {
+    "added": "has been added to cart!",
+    "addBtn": "Add to cart"
+  },
   "shipping_cost": {
     "ialoveni": "The delivery cost will be determined upon order confirmation.",
     "chisinau": {

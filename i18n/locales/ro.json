@@ -50,6 +50,10 @@
     "delivery": "Livrare",
     "contacts": "Contacte"
   },
+  "cart": {
+    "added": "a fost adăugat în coș!",
+    "addBtn": "Adaugă în coș"
+  },
   "shipping_cost": {
     "ialoveni": "Costul livrării se stabilește la confirmarea comenzii.",
     "chisinau": {
