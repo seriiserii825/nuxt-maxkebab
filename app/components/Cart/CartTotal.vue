@@ -1,19 +1,18 @@
 <script setup lang="ts">
-  import { useCartStore } from "~/stores/useCartStore";
-  import { useCityStore } from "~/stores/useCityStore";
-
   const cart = useCartStore();
-  const city = useCityStore();
+  const cityStore = useCityStore();
+  const { currentCity } = storeToRefs(cityStore);
+  const { have_delivery_base, have_delivery_threshold, have_delivery_free } = storeToRefs(cart);
 
   const deliveryCost = computed(() => {
-    if (city.currentCity?.slug !== "chisinau") return null;
-    if (cart.have_delivery_free) return 0;
-    if (cart.have_delivery_threshold) return cart.CHISINAU_DELIVERY_PRICE_THRESHOLD;
-    return cart.CHISINAU_DELIVERY_PRICE;
+    if (!currentCity.value || currentCity.value.slug === "ialoveni") return null;
+    if (have_delivery_base.value) return cart.CHISINAU_DELIVERY_PRICE;
+    if (have_delivery_threshold.value) return cart.CHISINAU_DELIVERY_PRICE_THRESHOLD;
+    return 0;
   });
 
   const grandTotal = computed(() => {
-    if (deliveryCost.value === null) return cart.total;
+    if (deliveryCost.value === null || deliveryCost.value === undefined) return cart.total;
     return cart.total + deliveryCost.value;
   });
 </script>
