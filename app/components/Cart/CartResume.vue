@@ -6,6 +6,8 @@
 
   const exclude = computed(() => [...new Set(cart.items.map((i) => i.id))].join(","));
 
+  const { t } = useI18n();
+
   const { data: products } = await useFetch<IProduct[]>("/api/random-products", {
     query: { locale, exclude },
   });
@@ -13,7 +15,7 @@
 
 <template>
   <div v-if="products?.length" class="cart-resume">
-    <h2 class="cart-resume__title">S-ar putea să te intereseze…</h2>
+    <h2 class="cart-resume__title">{{ t("cart.resume") }}</h2>
     <div class="cart-resume__grid">
       <ProductCard v-for="product in products" :key="product.id" :product="product" />
     </div>

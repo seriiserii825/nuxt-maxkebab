@@ -15,32 +15,34 @@
     if (deliveryCost.value === null || deliveryCost.value === undefined) return cart.total;
     return cart.total + deliveryCost.value;
   });
+
+  const { t } = useI18n();
 </script>
 
 <template>
   <div class="cart-total">
-    <h2 class="cart-total__title">Total coș</h2>
+    <h2 class="cart-total__title">{{ t("cart.total") }}</h2>
     <div class="cart-total__table">
       <div class="cart-total__row">
-        <span class="cart-total__label">Sub-total</span>
+        <span class="cart-total__label">{{ t("cart.subtotal") }}</span>
         <span class="cart-total__value">{{ cart.total }} Lei</span>
       </div>
       <div class="cart-total__row">
-        <span class="cart-total__label">Livrare</span>
+        <span class="cart-total__label">{{ t("cart.delivery") }}</span>
         <span class="cart-total__value">
           <template v-if="deliveryCost === null">—</template>
-          <template v-else-if="deliveryCost === 0">Gratuit</template>
+          <template v-else-if="deliveryCost === 0">{{ t("cart.free") }}</template>
           <template v-else>{{ deliveryCost }} Lei</template>
         </span>
       </div>
       <div class="cart-total__row cart-total__row--total">
-        <span class="cart-total__label">Total</span>
+        <span class="cart-total__label">{{ t("cart.totalLabel") }}</span>
         <span class="cart-total__value">{{ grandTotal }} Lei</span>
       </div>
     </div>
     <div class="cart-total__checkout">
       <NuxtLink to="/checkout" class="btn cart-total__checkout-btn">
-        Continuă cu finalizarea comenzii
+        {{ t("cart.checkout") }}
       </NuxtLink>
     </div>
   </div>

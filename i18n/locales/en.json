@@ -52,7 +52,18 @@
   },
   "cart": {
     "added": "has been added to cart!",
-    "addBtn": "Add to cart"
+    "addBtn": "Add to cart",
+    "title": "Your cart",
+    "product": "Product",
+    "price": "Price",
+    "quantity": "Quantity",
+    "subtotal": "Subtotal",
+    "delivery": "Delivery",
+    "total": "Cart total",
+    "totalLabel": "Total",
+    "free": "Free",
+    "checkout": "Proceed to checkout",
+    "resume": "You might also like…"
   },
   "shipping_cost": {
     "ialoveni": "The delivery cost will be determined upon order confirmation.",

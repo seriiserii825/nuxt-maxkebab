@@ -52,7 +52,18 @@
   },
   "cart": {
     "added": "a fost adăugat în coș!",
-    "addBtn": "Adaugă în coș"
+    "addBtn": "Adaugă în coș",
+    "title": "Coșul tău",
+    "product": "Produs",
+    "price": "Preț",
+    "quantity": "Cantitate",
+    "subtotal": "Sub-total",
+    "delivery": "Livrare",
+    "total": "Total coș",
+    "totalLabel": "Total",
+    "free": "Gratuit",
+    "checkout": "Continuă cu finalizarea comenzii",
+    "resume": "S-ar putea să te intereseze…"
   },
   "shipping_cost": {
     "ialoveni": "Costul livrării se stabilește la confirmarea comenzii.",
