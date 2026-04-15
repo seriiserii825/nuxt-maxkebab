@@ -2,15 +2,17 @@
   <NuxtLayout>
     <NuxtPage
       :page-key="(route) => route.path.replace(/^\/(ru|en)(\/|$)/, '/')"
-      :transition="{ name: 'page', mode: 'out-in' }" />
-    <NuxtNotifications position="top right" :speed="1000" :duration="5000">
+      :transition="{ name: 'page', mode: 'out-in' }"
+    />
+    <NuxtNotifications position="top left" :speed="1000" :duration="5000">
       <template #body="{ item, close }">
         <div class="notification" :class="`notification--${item.type}`">
           <div class="notification__title">{{ item.title }}</div>
           <div class="notification__text">{{ item.text }}</div>
           <div
             class="notification__progress"
-            :style="{ animationDuration: `${item.duration ?? 5000}ms` }" />
+            :style="{ animationDuration: `${item.duration ?? 5000}ms` }"
+          />
           <button class="notification__close" @click="close">×</button>
         </div>
       </template>
