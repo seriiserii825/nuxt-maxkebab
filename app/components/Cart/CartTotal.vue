@@ -7,7 +7,7 @@
   const shipping = useShippingStore();
 
   const { currentCity } = storeToRefs(cityStore);
-  const { have_delivery_base, have_delivery_threshold, have_delivery_free } = storeToRefs(cart);
+  const { have_delivery_threshold, have_delivery_free } = storeToRefs(cart);
 
   const isChisinau = computed(() => currentCity.value?.slug === "chisinau");
   const isIaloveni = computed(() => currentCity.value?.slug === "ialoveni");
@@ -31,7 +31,7 @@
 
   const grandTotal = computed(() => cart.total + shippingCost.value);
 
-  const cityName = computed(() => currentCity.value ? t(currentCity.value.text) : "");
+  const cityName = computed(() => (currentCity.value ? t(currentCity.value.text) : ""));
 </script>
 
 <template>
@@ -46,7 +46,6 @@
       <div class="cart-total__row cart-total__row--shipping">
         <span class="cart-total__label">{{ t("cart.delivery") }}</span>
         <div class="cart-total__shipping">
-
           <!-- Ialoveni options -->
           <template v-if="isIaloveni">
             <label class="cart-total__shipping-option">
@@ -55,7 +54,8 @@
                 name="shipping"
                 value="delivery"
                 :checked="shipping.method === 'delivery'"
-                @change="shipping.setMethod('delivery' as ShippingMethod)" />
+                @change="shipping.setMethod('delivery' as ShippingMethod)"
+              />
               {{ t("shipping.delivery_ialoveni") }}
             </label>
             <label class="cart-total__shipping-option">
@@ -64,7 +64,8 @@
                 name="shipping"
                 value="pickup"
                 :checked="shipping.method === 'pickup'"
-                @change="shipping.setMethod('pickup' as ShippingMethod)" />
+                @change="shipping.setMethod('pickup' as ShippingMethod)"
+              />
               {{ t("shipping.pickup") }}
             </label>
           </template>
@@ -77,7 +78,8 @@
                 name="shipping"
                 value="pickup"
                 :checked="shipping.method === 'pickup'"
-                @change="shipping.setMethod('pickup' as ShippingMethod)" />
+                @change="shipping.setMethod('pickup' as ShippingMethod)"
+              />
               {{ t("shipping.pickup") }}
             </label>
             <label class="cart-total__shipping-option">
@@ -86,7 +88,8 @@
                 name="shipping"
                 value="delivery"
                 :checked="shipping.method === 'delivery'"
-                @change="shipping.setMethod('delivery' as ShippingMethod)" />
+                @change="shipping.setMethod('delivery' as ShippingMethod)"
+              />
               {{ t("shipping.delivery_chisinau") }}:
               <strong v-if="have_delivery_free">{{ t("cart.free") }}</strong>
               <strong v-else>{{ chisinauDeliveryCost }} Lei</strong>

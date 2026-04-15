@@ -71,8 +71,8 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    padding: 0;
     margin: 0.4rem 0 0;
+    padding: 0;
     list-style: none;
   }
 
@@ -81,8 +81,8 @@
     margin-top: 0.8rem;
     font-size: 1.2rem;
     font-weight: 700;
-    text-transform: uppercase;
     letter-spacing: 0.06em;
+    text-transform: uppercase;
     color: #aaa;
   }
 
@@ -92,9 +92,9 @@
     gap: 0.4rem;
     padding: 0.3rem 0.9rem;
     font-size: 1.3rem;
+    color: #444;
     background: #f4f4f4;
     border-radius: 2rem;
-    color: #444;
   }
 
   &__extra-label {
