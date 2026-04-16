@@ -76,6 +76,13 @@
   "checkout": {
     "title": "Checkout",
     "firstName": "First name",
+    "lastName": "Last name",
+    "municipality": "Municipality/city",
+    "streetPlaceholder": "Address, street name, number, etc.",
+    "officeType": "Apt./Office",
+    "selectOfficeType": "Select",
+    "notes": "Order notes",
+    "notesPlaceholder": "Notes about your order, e.g. special notes for delivery.",
     "phone": "Phone",
     "email": "Email address",
     "street": "Street",

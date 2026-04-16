@@ -76,6 +76,13 @@
   "checkout": {
     "title": "Оформление заказа",
     "firstName": "Имя",
+    "lastName": "Фамилия",
+    "municipality": "Муниципий/населённый пункт",
+    "streetPlaceholder": "Адрес, название улицы, номер и т.д.",
+    "officeType": "Кв./Офис",
+    "selectOfficeType": "Выбрать",
+    "notes": "Примечания к заказу",
+    "notesPlaceholder": "Примечания к вашему заказу, например: особые пожелания по доставке.",
     "phone": "Телефон",
     "email": "Email",
     "street": "Улица",

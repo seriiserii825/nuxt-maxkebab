@@ -7,6 +7,12 @@ const { currentCity } = storeToRefs(cityStore);
 const isDelivery = computed(() => shipping.method === "delivery");
 const isChisinau = computed(() => currentCity.value?.slug === "chisinau");
 
+const officeTypes = [
+  { value: "apartament", label: "Apartament" },
+  { value: "casa", label: "Casă" },
+  { value: "oficiu", label: "Oficiu" },
+];
+
 const sectors = [
   { value: "buiucani", label: "Buiucani" },
   { value: "durlesti", label: "Durlești" },
@@ -18,20 +24,24 @@ const sectors = [
 
 const form = reactive({
   firstName: "",
+  lastName: "",
   phone: "",
   email: "",
   street: "",
   number: "",
+  officeType: "",
   apartment: "",
   staircase: "",
   floor: "",
   interphone: "",
   sector: "",
+  notes: "",
 });
 </script>
 
 <template>
   <div class="checkout-form">
+    <!-- Prenume + Nume -->
     <div class="checkout-form__row">
       <div class="checkout-form__group">
         <label class="checkout-form__label checkout-form__label--required" for="firstName">
@@ -46,7 +56,150 @@ const form = reactive({
           autocomplete="given-name"
         />
       </div>
+      <div class="checkout-form__group">
+        <label class="checkout-form__label checkout-form__label--required" for="lastName">
+          {{ t("checkout.lastName") }}
+        </label>
+        <input
+          id="lastName"
+          v-model="form.lastName"
+          type="text"
+          class="checkout-form__input"
+          required
+          autocomplete="family-name"
+        />
+      </div>
+    </div>
 
+    <!-- Address fields (delivery only) -->
+    <template v-if="isDelivery">
+      <!-- Municipiu/localitate + Stradă -->
+      <div class="checkout-form__row">
+        <div class="checkout-form__group">
+          <label class="checkout-form__label checkout-form__label--required" for="city">
+            {{ t("checkout.municipality") }}
+          </label>
+          <input
+            id="city"
+            :value="currentCity ? $t(currentCity.text) : ''"
+            type="text"
+            class="checkout-form__input"
+            readonly
+            autocomplete="address-level2"
+          />
+        </div>
+        <div class="checkout-form__group">
+          <label class="checkout-form__label checkout-form__label--required" for="street">
+            {{ t("checkout.street") }}
+          </label>
+          <input
+            id="street"
+            v-model="form.street"
+            type="text"
+            class="checkout-form__input"
+            :placeholder="t('checkout.streetPlaceholder')"
+            required
+            autocomplete="street-address"
+          />
+        </div>
+      </div>
+
+      <!-- Nr + Apt./Oficiu -->
+      <div class="checkout-form__row">
+        <div class="checkout-form__group">
+          <label class="checkout-form__label" for="number">
+            {{ t("checkout.number") }}
+          </label>
+          <input
+            id="number"
+            v-model="form.number"
+            type="text"
+            class="checkout-form__input"
+            placeholder="17/7"
+          />
+        </div>
+        <div class="checkout-form__group">
+          <label class="checkout-form__label" for="officeType">
+            {{ t("checkout.officeType") }}
+          </label>
+          <select id="officeType" v-model="form.officeType" class="checkout-form__select">
+            <option value="">{{ t("checkout.selectOfficeType") }}</option>
+            <option v-for="o in officeTypes" :key="o.value" :value="o.value">{{ o.label }}</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Ap + Scara -->
+      <div class="checkout-form__row">
+        <div class="checkout-form__group">
+          <label class="checkout-form__label" for="apartment">
+            {{ t("checkout.apartment") }}
+          </label>
+          <input
+            id="apartment"
+            v-model="form.apartment"
+            type="number"
+            class="checkout-form__input"
+            placeholder="12"
+          />
+        </div>
+        <div class="checkout-form__group">
+          <label class="checkout-form__label" for="staircase">
+            {{ t("checkout.staircase") }}
+          </label>
+          <input
+            id="staircase"
+            v-model="form.staircase"
+            type="number"
+            class="checkout-form__input"
+          />
+        </div>
+      </div>
+
+      <!-- Etaj + Interfon -->
+      <div class="checkout-form__row">
+        <div class="checkout-form__group">
+          <label class="checkout-form__label" for="floor">
+            {{ t("checkout.floor") }}
+          </label>
+          <input
+            id="floor"
+            v-model="form.floor"
+            type="number"
+            class="checkout-form__input"
+            placeholder="9"
+          />
+        </div>
+        <div class="checkout-form__group">
+          <label class="checkout-form__label" for="interphone">
+            {{ t("checkout.interphone") }}
+          </label>
+          <input
+            id="interphone"
+            v-model="form.interphone"
+            type="text"
+            class="checkout-form__input"
+          />
+        </div>
+      </div>
+
+      <!-- Sector (Chisinau only) -->
+      <div v-if="isChisinau" class="checkout-form__row checkout-form__row--full">
+        <div class="checkout-form__group">
+          <label class="checkout-form__label" for="sector">
+            {{ t("checkout.sector") }}
+            <span class="checkout-form__optional">({{ t("checkout.optional") }})</span>
+          </label>
+          <select id="sector" v-model="form.sector" class="checkout-form__select">
+            <option value="">{{ t("checkout.selectSector") }}</option>
+            <option v-for="s in sectors" :key="s.value" :value="s.value">{{ s.label }}</option>
+          </select>
+        </div>
+      </div>
+    </template>
+
+    <!-- Telefon + Email -->
+    <div class="checkout-form__row">
       <div class="checkout-form__group">
         <label class="checkout-form__label checkout-form__label--required" for="phone">
           {{ t("checkout.phone") }}
@@ -60,13 +213,9 @@ const form = reactive({
           autocomplete="tel"
         />
       </div>
-    </div>
-
-    <div class="checkout-form__row checkout-form__row--full">
       <div class="checkout-form__group">
         <label class="checkout-form__label" for="email">
           {{ t("checkout.email") }}
-          <span class="checkout-form__optional">({{ t("checkout.optional") }})</span>
         </label>
         <input
           id="email"
@@ -78,121 +227,19 @@ const form = reactive({
       </div>
     </div>
 
-    <template v-if="isDelivery">
-      <div class="checkout-form__row">
-        <div class="checkout-form__group">
-          <label class="checkout-form__label checkout-form__label--required" for="street">
-            {{ t("checkout.street") }}
-          </label>
-          <input
-            id="street"
-            v-model="form.street"
-            type="text"
-            class="checkout-form__input"
-            required
-            autocomplete="street-address"
-          />
-        </div>
-
-        <div class="checkout-form__group">
-          <label class="checkout-form__label" for="number">
-            {{ t("checkout.number") }}
-            <span class="checkout-form__optional">({{ t("checkout.optional") }})</span>
-          </label>
-          <input
-            id="number"
-            v-model="form.number"
-            type="text"
-            class="checkout-form__input"
-            placeholder="17/7"
-          />
-        </div>
+    <!-- Note comandă -->
+    <div class="checkout-form__row checkout-form__row--full">
+      <div class="checkout-form__group">
+        <label class="checkout-form__label" for="notes">
+          {{ t("checkout.notes") }}
+        </label>
+        <textarea
+          id="notes"
+          v-model="form.notes"
+          class="checkout-form__textarea"
+          :placeholder="t('checkout.notesPlaceholder')"
+        ></textarea>
       </div>
-
-      <div class="checkout-form__row">
-        <div class="checkout-form__group">
-          <label class="checkout-form__label" for="apartment">
-            {{ t("checkout.apartment") }}
-            <span class="checkout-form__optional">({{ t("checkout.optional") }})</span>
-          </label>
-          <input
-            id="apartment"
-            v-model="form.apartment"
-            type="number"
-            class="checkout-form__input"
-            placeholder="12"
-          />
-        </div>
-
-        <div class="checkout-form__group">
-          <label class="checkout-form__label" for="city">
-            {{ t("checkout.city") }}
-          </label>
-          <input
-            id="city"
-            :value="currentCity ? $t(currentCity.text) : ''"
-            type="text"
-            class="checkout-form__input"
-            readonly
-            autocomplete="address-level2"
-          />
-        </div>
-      </div>
-
-      <div class="checkout-form__row">
-        <div class="checkout-form__group">
-          <label class="checkout-form__label" for="staircase">
-            {{ t("checkout.staircase") }}
-            <span class="checkout-form__optional">({{ t("checkout.optional") }})</span>
-          </label>
-          <input
-            id="staircase"
-            v-model="form.staircase"
-            type="number"
-            class="checkout-form__input"
-          />
-        </div>
-
-        <div class="checkout-form__group">
-          <label class="checkout-form__label" for="floor">
-            {{ t("checkout.floor") }}
-            <span class="checkout-form__optional">({{ t("checkout.optional") }})</span>
-          </label>
-          <input
-            id="floor"
-            v-model="form.floor"
-            type="number"
-            class="checkout-form__input"
-            placeholder="9"
-          />
-        </div>
-      </div>
-
-      <div class="checkout-form__row">
-        <div class="checkout-form__group">
-          <label class="checkout-form__label" for="interphone">
-            {{ t("checkout.interphone") }}
-            <span class="checkout-form__optional">({{ t("checkout.optional") }})</span>
-          </label>
-          <input
-            id="interphone"
-            v-model="form.interphone"
-            type="text"
-            class="checkout-form__input"
-          />
-        </div>
-
-        <div v-if="isChisinau" class="checkout-form__group">
-          <label class="checkout-form__label" for="sector">
-            {{ t("checkout.sector") }}
-            <span class="checkout-form__optional">({{ t("checkout.optional") }})</span>
-          </label>
-          <select id="sector" v-model="form.sector" class="checkout-form__select">
-            <option value="">{{ t("checkout.selectSector") }}</option>
-            <option v-for="s in sectors" :key="s.value" :value="s.value">{{ s.label }}</option>
-          </select>
-        </div>
-      </div>
-    </template>
+    </div>
   </div>
 </template>

@@ -76,6 +76,13 @@
   "checkout": {
     "title": "Finalizare comandă",
     "firstName": "Prenume",
+    "lastName": "Nume",
+    "municipality": "Municipiu/localitate",
+    "streetPlaceholder": "Adresă, nume stradă, număr etc.",
+    "officeType": "Apt./Oficiu",
+    "selectOfficeType": "Alegeti",
+    "notes": "Note comandă",
+    "notesPlaceholder": "Note referitoare la comanda ta, de exemplu: anumite note pentru livrare.",
     "phone": "Telefon",
     "email": "Adresă email",
     "street": "Stradă",
