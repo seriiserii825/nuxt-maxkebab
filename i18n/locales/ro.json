@@ -63,7 +63,9 @@
     "totalLabel": "Total",
     "free": "Gratuit",
     "checkout": "Continuă cu finalizarea comenzii",
-    "resume": "S-ar putea să te intereseze…"
+    "resume": "S-ar putea să te intereseze…",
+    "empty": "Coșul tău este în prezent gol.",
+    "backToShop": "Înapoi la magazin"
   },
   "shipping": {
     "pickup": "Ridicare comandă",

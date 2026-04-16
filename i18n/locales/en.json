@@ -63,7 +63,9 @@
     "totalLabel": "Total",
     "free": "Free",
     "checkout": "Proceed to checkout",
-    "resume": "You might also like…"
+    "resume": "You might also like…",
+    "empty": "Your cart is currently empty.",
+    "backToShop": "Back to shop"
   },
   "shipping": {
     "pickup": "Pick up order",
