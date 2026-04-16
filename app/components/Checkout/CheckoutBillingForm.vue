@@ -2,8 +2,10 @@
 const { t } = useI18n();
 const shipping = useShippingStore();
 const cityStore = useCityStore();
+const checkoutForm = useCheckoutFormStore();
 const { currentCity } = storeToRefs(cityStore);
 
+const form = checkoutForm.form;
 const isDelivery = computed(() => shipping.method === "delivery");
 const isChisinau = computed(() => currentCity.value?.slug === "chisinau");
 
@@ -21,22 +23,6 @@ const sectors = [
   { value: "posta_veche", label: "Poșta Veche" },
   { value: "sculeanca", label: "Sculeanca" },
 ];
-
-const form = reactive({
-  firstName: "",
-  lastName: "",
-  phone: "",
-  email: "",
-  street: "",
-  number: "",
-  officeType: "",
-  apartment: "",
-  staircase: "",
-  floor: "",
-  interphone: "",
-  sector: "",
-  notes: "",
-});
 </script>
 
 <template>

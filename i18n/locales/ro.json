@@ -99,11 +99,21 @@
     "delivery": "Livrare",
     "total": "Total",
     "placeOrder": "Plasează comanda",
+    "placing": "Se procesează...",
+    "errorRequired": "Completează câmpurile obligatorii: Prenume, Nume, Telefon.",
+    "errorStreet": "Completează adresa de livrare.",
+    "errorGeneric": "A apărut o eroare. Încearcă din nou.",
     "paymentCash": "Numerar",
     "paymentCashDesc": "La destinație",
     "paymentOnline": "Achită Online",
     "paymentOnlineDesc": "Visa / Mastercard",
     "orderTitle": "Comanda ta"
+  },
+  "orderReceived": {
+    "title": "Comanda a fost plasată!",
+    "subtitle": "Mulțumim! Te vom contacta în scurt timp pentru confirmare.",
+    "number": "Numărul comenzii:",
+    "backToMenu": "Înapoi la meniu"
   },
   "shipping_cost": {
     "ialoveni": "Costul livrării se stabilește la confirmarea comenzii.",

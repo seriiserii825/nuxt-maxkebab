@@ -9,7 +9,6 @@ const cart = useCartStore();
 const { currentCity } = storeToRefs(cityStore);
 const { have_delivery_free, have_delivery_threshold } = storeToRefs(cart);
 
-const isChisinau = computed(() => currentCity.value?.slug === "chisinau");
 const isIaloveni = computed(() => currentCity.value?.slug === "ialoveni");
 
 const chisinauDeliveryCost = computed(() => {

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { CartItem } from "~/stores/useCartStore";
 
+const props = defineProps<{ loading?: boolean }>();
+const emit = defineEmits<{ submit: [] }>();
 const { t } = useI18n();
 const cart = useCartStore();
 const cityStore = useCityStore();
@@ -77,8 +79,14 @@ function getItemPrice(item: CartItem) {
       </div>
     </div>
 
-    <button type="submit" class="checkout-summary__submit">
-      {{ t("checkout.placeOrder") }}
+    <button
+      type="button"
+      class="checkout-summary__submit"
+      :class="{ 'checkout-summary__submit--loading': props.loading }"
+      :disabled="props.loading"
+      @click="emit('submit')"
+    >
+      {{ props.loading ? t("checkout.placing") : t("checkout.placeOrder") }}
     </button>
   </div>
 </template>

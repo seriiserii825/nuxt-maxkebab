@@ -1,6 +1,10 @@
 <script setup lang="ts">
 const { t } = useI18n();
-const payment = ref<"cod" | "maib">("cod");
+const checkoutForm = useCheckoutFormStore();
+const payment = computed({
+  get: () => checkoutForm.form.payment,
+  set: (v) => { checkoutForm.form.payment = v; },
+});
 </script>
 
 <template>

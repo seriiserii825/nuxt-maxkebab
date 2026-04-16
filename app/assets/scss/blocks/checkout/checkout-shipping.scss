@@ -7,11 +7,11 @@
     flex: 1;
     padding: 1.5rem 2rem;
     text-align: center;
+    background: none;
     border: 1px solid #e1e1e1;
     border-radius: 4px;
-    cursor: pointer;
     transition: all 0.3s;
-    background: none;
+    cursor: pointer;
 
     &--active {
       color: #fff;
@@ -26,8 +26,8 @@
 
   &__label {
     display: block;
-    font-weight: 600;
     font-size: 1.5rem;
+    font-weight: 600;
   }
 
   &__price {

@@ -99,11 +99,21 @@
     "delivery": "Доставка",
     "total": "Итого",
     "placeOrder": "Оформить заказ",
+    "placing": "Обработка...",
+    "errorRequired": "Заполните обязательные поля: Имя, Фамилия, Телефон.",
+    "errorStreet": "Укажите адрес доставки.",
+    "errorGeneric": "Произошла ошибка. Попробуйте снова.",
     "paymentCash": "Наличные",
     "paymentCashDesc": "При получении",
     "paymentOnline": "Оплата онлайн",
     "paymentOnlineDesc": "Visa / Mastercard",
     "orderTitle": "Ваш заказ"
+  },
+  "orderReceived": {
+    "title": "Заказ оформлен!",
+    "subtitle": "Спасибо! Мы свяжемся с вами для подтверждения.",
+    "number": "Номер заказа:",
+    "backToMenu": "Вернуться в меню"
   },
   "shipping_cost": {
     "ialoveni": "Стоимость доставки будет определена при подтверждении заказа.",

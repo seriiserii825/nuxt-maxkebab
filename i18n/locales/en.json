@@ -99,11 +99,21 @@
     "delivery": "Delivery",
     "total": "Total",
     "placeOrder": "Place order",
+    "placing": "Processing...",
+    "errorRequired": "Please fill in required fields: First name, Last name, Phone.",
+    "errorStreet": "Please enter your delivery address.",
+    "errorGeneric": "An error occurred. Please try again.",
     "paymentCash": "Cash",
     "paymentCashDesc": "At delivery",
     "paymentOnline": "Pay Online",
     "paymentOnlineDesc": "Visa / Mastercard",
     "orderTitle": "Your order"
+  },
+  "orderReceived": {
+    "title": "Order placed!",
+    "subtitle": "Thank you! We will contact you shortly to confirm.",
+    "number": "Order number:",
+    "backToMenu": "Back to menu"
   },
   "shipping_cost": {
     "ialoveni": "The delivery cost will be determined upon order confirmation.",
