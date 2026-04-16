@@ -73,6 +73,31 @@
     "delivery_ialoveni": "Доставка Яловены - Стоимость доставки определяется при подтверждении заказа.",
     "destination": "Доставка в {city}."
   },
+  "checkout": {
+    "title": "Оформление заказа",
+    "firstName": "Имя",
+    "phone": "Телефон",
+    "email": "Email",
+    "street": "Улица",
+    "number": "Номер дома",
+    "apartment": "Кв.",
+    "city": "Город",
+    "staircase": "Подъезд",
+    "floor": "Этаж",
+    "interphone": "Домофон",
+    "sector": "Сектор",
+    "selectSector": "Выберите сектор",
+    "optional": "необязательно",
+    "subtotal": "Сумма",
+    "delivery": "Доставка",
+    "total": "Итого",
+    "placeOrder": "Оформить заказ",
+    "paymentCash": "Наличные",
+    "paymentCashDesc": "При получении",
+    "paymentOnline": "Оплата онлайн",
+    "paymentOnlineDesc": "Visa / Mastercard",
+    "orderTitle": "Ваш заказ"
+  },
   "shipping_cost": {
     "ialoveni": "Стоимость доставки будет определена при подтверждении заказа.",
     "chisinau": {

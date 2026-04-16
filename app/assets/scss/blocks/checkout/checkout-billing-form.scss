@@ -1,0 +1,74 @@
+.checkout-form {
+  &__row {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+
+    @media screen and (max-width: 576px) {
+      grid-template-columns: 1fr;
+    }
+
+    &--full {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+    font-weight: 400;
+    font-size: 1.4rem;
+    cursor: pointer;
+
+    &--required::after {
+      content: "*";
+      color: var(--color-red);
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+  }
+
+  &__optional {
+    font-size: 1.2rem;
+    color: var(--text-light);
+  }
+
+  &__input,
+  &__select {
+    padding: 0 1.5rem;
+    height: 4.8rem;
+    width: 100%;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    outline: none;
+    font-size: 1.6rem;
+    font-family: inherit;
+    transition: border-color 0.3s;
+
+    &:focus {
+      border-color: var(--color-brown);
+    }
+
+    &:read-only {
+      background-color: #f5f5f5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 7L11 1' stroke='%23909090' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.5rem center;
+    padding-right: 4rem;
+    cursor: pointer;
+  }
+}

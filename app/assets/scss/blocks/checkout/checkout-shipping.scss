@@ -1,0 +1,38 @@
+.checkout-shipping {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+
+  &__method {
+    flex: 1;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: none;
+
+    &--active {
+      color: #fff;
+      background-color: var(--color-brown);
+      border-color: var(--color-brown);
+    }
+
+    &:hover:not(.checkout-shipping__method--active) {
+      border-color: var(--color-brown);
+    }
+  }
+
+  &__label {
+    display: block;
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+
+  &__price {
+    display: block;
+    margin-top: 0.4rem;
+    font-size: 1.3rem;
+  }
+}

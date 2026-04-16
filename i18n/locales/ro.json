@@ -73,6 +73,31 @@
     "delivery_ialoveni": "Livrare Ialoveni - Costul livrării se stabilește la confirmarea comenzii.",
     "destination": "Livrare la {city}."
   },
+  "checkout": {
+    "title": "Finalizare comandă",
+    "firstName": "Prenume",
+    "phone": "Telefon",
+    "email": "Adresă email",
+    "street": "Stradă",
+    "number": "Nr.",
+    "apartment": "Ap.",
+    "city": "Localitate",
+    "staircase": "Scara",
+    "floor": "Etaj",
+    "interphone": "Interfon",
+    "sector": "Sector",
+    "selectSector": "Alege sectorul",
+    "optional": "opțional",
+    "subtotal": "Sub-total",
+    "delivery": "Livrare",
+    "total": "Total",
+    "placeOrder": "Plasează comanda",
+    "paymentCash": "Numerar",
+    "paymentCashDesc": "La destinație",
+    "paymentOnline": "Achită Online",
+    "paymentOnlineDesc": "Visa / Mastercard",
+    "orderTitle": "Comanda ta"
+  },
   "shipping_cost": {
     "ialoveni": "Costul livrării se stabilește la confirmarea comenzii.",
     "chisinau": {

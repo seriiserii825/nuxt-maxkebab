@@ -71,3 +71,7 @@
 @use "blocks/cart/cart-row";
 @use "blocks/cart/cart-total";
 @use "blocks/cart/cart-resume";
+@use "blocks/checkout/checkout-shipping";
+@use "blocks/checkout/checkout-payment";
+@use "blocks/checkout/checkout-billing-form";
+@use "blocks/checkout/checkout-order-summary";

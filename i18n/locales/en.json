@@ -73,6 +73,31 @@
     "delivery_ialoveni": "Ialoveni delivery - Cost will be determined upon order confirmation.",
     "destination": "Delivery to {city}."
   },
+  "checkout": {
+    "title": "Checkout",
+    "firstName": "First name",
+    "phone": "Phone",
+    "email": "Email address",
+    "street": "Street",
+    "number": "Number",
+    "apartment": "Apt.",
+    "city": "City",
+    "staircase": "Staircase",
+    "floor": "Floor",
+    "interphone": "Interphone",
+    "sector": "Sector",
+    "selectSector": "Select sector",
+    "optional": "optional",
+    "subtotal": "Subtotal",
+    "delivery": "Delivery",
+    "total": "Total",
+    "placeOrder": "Place order",
+    "paymentCash": "Cash",
+    "paymentCashDesc": "At delivery",
+    "paymentOnline": "Pay Online",
+    "paymentOnlineDesc": "Visa / Mastercard",
+    "orderTitle": "Your order"
+  },
   "shipping_cost": {
     "ialoveni": "The delivery cost will be determined upon order confirmation.",
     "chisinau": {
