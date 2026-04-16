@@ -24,24 +24,28 @@ const chisinauDeliveryCost = computed(() => {
     <button
       type="button"
       class="checkout-shipping__method"
-      :class="{ 'checkout-shipping__method--active': shipping.method === 'pickup' }"
-      @click="shipping.setMethod('pickup' as ShippingMethod)"
+      :class="{ 'checkout-shipping__method--active': shipping.method === 'delivery' }"
+      @click="shipping.setMethod('delivery' as ShippingMethod)"
     >
-      <span class="checkout-shipping__label">{{ t("shipping.pickup") }}</span>
+      <template v-if="isIaloveni">
+        <span class="checkout-shipping__label">{{ t("shipping.delivery_ialoveni") }}</span>
+      </template>
+      <template v-else>
+        <span class="checkout-shipping__label">{{ t("shipping.delivery_chisinau") }}</span>
+        <span class="checkout-shipping__price">
+          <template v-if="have_delivery_free">{{ t("cart.free") }}</template>
+          <template v-else>{{ chisinauDeliveryCost }} Lei</template>
+        </span>
+      </template>
     </button>
 
     <button
       type="button"
       class="checkout-shipping__method"
-      :class="{ 'checkout-shipping__method--active': shipping.method === 'delivery' }"
-      @click="shipping.setMethod('delivery' as ShippingMethod)"
+      :class="{ 'checkout-shipping__method--active': shipping.method === 'pickup' }"
+      @click="shipping.setMethod('pickup' as ShippingMethod)"
     >
-      <span class="checkout-shipping__label">{{ t("shipping.delivery_chisinau") }}</span>
-      <span class="checkout-shipping__price">
-        <template v-if="isIaloveni">—</template>
-        <template v-else-if="isChisinau && have_delivery_free">{{ t("cart.free") }}</template>
-        <template v-else-if="isChisinau">{{ chisinauDeliveryCost }} Lei</template>
-      </span>
+      <span class="checkout-shipping__label">{{ t("shipping.pickup") }}</span>
     </button>
   </div>
 </template>

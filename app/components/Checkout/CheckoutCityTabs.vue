@@ -1,6 +1,9 @@
 <script setup lang="ts">
 const cityStore = useCityStore();
+const shipping = useShippingStore();
 const { currentCity } = storeToRefs(cityStore);
+
+watch(currentCity, () => shipping.reset());
 </script>
 
 <template>
