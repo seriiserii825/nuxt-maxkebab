@@ -49,6 +49,7 @@
     });
 
     single.init(single.basePrice);
+    cart.sidebarOpen = true;
 
     notify({
       type: "success",

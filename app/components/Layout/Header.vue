@@ -10,8 +10,8 @@ defineProps({
 });
 
 const is_active = ref(false);
-const is_cart_open = ref(false);
 const cart = useCartStore();
+const { sidebarOpen: is_cart_open } = storeToRefs(cart);
 
 onMounted(() => {
   window.addEventListener("scroll", () => {

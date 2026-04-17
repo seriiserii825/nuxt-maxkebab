@@ -7,6 +7,7 @@ export const useCartStore = defineStore(
   "cart",
   () => {
     const items = ref<CartItem[]>([]);
+    const sidebarOpen = ref(false);
 
     const count = computed(() => items.value.reduce((sum, i) => sum + i.qty, 0));
 
@@ -58,6 +59,7 @@ export const useCartStore = defineStore(
 
     return {
       items,
+      sidebarOpen,
       count,
       total,
       increaseQty,
