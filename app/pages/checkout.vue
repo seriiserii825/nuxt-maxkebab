@@ -28,6 +28,7 @@ async function submit() {
     const { order_id } = await $fetch<{ order_id: number }>("/api/checkout", {
       method: "POST",
       body: {
+        locale:     useNuxtApp().$i18n.locale.value,
         firstName:  f.firstName,
         lastName:   f.lastName,
         phone:      f.phone,

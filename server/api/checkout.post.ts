@@ -16,6 +16,7 @@ const cartItemSchema = z.object({
 });
 
 const schema = z.object({
+  locale:      z.enum(["ro", "en", "ru"]).optional().default("ro"),
   firstName:   z.string().min(1),
   lastName:    z.string().min(1),
   phone:       z.string().min(1),
@@ -24,12 +25,12 @@ const schema = z.object({
   citySlug:    z.string().min(1),          // "chisinau" | "ialoveni"
   shipping:    z.enum(["pickup", "delivery"]),
   street:      z.string().optional().default(""),
-  number:      z.string().optional().default(""),
-  apartment:   z.string().optional().default(""),
+  number:      z.union([z.string(), z.number()]).transform(String).optional().default(""),
+  apartment:   z.union([z.string(), z.number()]).transform(String).optional().default(""),
   officeType:  z.string().optional().default(""),
-  staircase:   z.string().optional().default(""),
-  floor:       z.string().optional().default(""),
-  interphone:  z.string().optional().default(""),
+  staircase:   z.union([z.string(), z.number()]).transform(String).optional().default(""),
+  floor:       z.union([z.string(), z.number()]).transform(String).optional().default(""),
+  interphone:  z.union([z.string(), z.number()]).transform(String).optional().default(""),
   sector:      z.string().optional().default(""),
   payment:     z.enum(["cod", "maib"]),
   notes:       z.string().optional().default(""),
@@ -59,7 +60,7 @@ export default defineEventHandler(async (event) => {
   const billing = {
     first_name: d.firstName,
     last_name:  d.lastName,
-    address_1:  addressParts || d.city,
+    address_1:  addressParts || (d.shipping === "pickup" ? t(d.locale, "shipping.pickup") : d.city),
     address_2:  address2Parts,
     city:       d.city,
     state:      stateMap[d.citySlug] ?? "",
