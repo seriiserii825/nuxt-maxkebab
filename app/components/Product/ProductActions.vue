@@ -23,7 +23,7 @@
 
     const additions = Object.values(checkboxOptions.value)
       .filter((o) => o.checked)
-      .map((o) => ({ label: o.label, value: o.label, price: o.price }));
+      .map((o) => ({ label: o.label, value: o.label, price: o.price, group: o.group }));
 
     const sauces = Object.values(stepperOptions.value)
       .filter((o) => o.count > 0)
@@ -32,6 +32,7 @@
         value: o.label,
         price: o.price * o.count,
         count: o.count,
+        group: o.group,
       }));
 
     cart.addItem({

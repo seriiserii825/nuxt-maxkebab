@@ -10,8 +10,8 @@ const cartItemSchema = z.object({
   basePrice: z.number(),
   qty: z.number().min(1),
   options: z.array(z.object({ label: z.string(), value: z.string() })).optional().default([]),
-  additions: z.array(z.object({ label: z.string(), price: z.number().optional().default(0) })).optional().default([]),
-  sauces: z.array(z.object({ label: z.string(), price: z.number().optional().default(0), count: z.number().optional() })).optional().default([]),
+  additions: z.array(z.object({ label: z.string(), price: z.number().optional().default(0), group: z.string().optional().default("") })).optional().default([]),
+  sauces: z.array(z.object({ label: z.string(), price: z.number().optional().default(0), count: z.number().optional(), group: z.string().optional().default("") })).optional().default([]),
   comment: z.string().optional().default(""),
 });
 
@@ -82,12 +82,26 @@ export default defineEventHandler(async (event) => {
     item.options?.forEach((o) => {
       if (o.value) meta_data.push({ key: o.label, value: o.value });
     });
+    let lastAddGroup = "";
     item.additions?.forEach((a) => {
-      if (a.label) meta_data.push({ key: a.label, value: a.price ? `+${a.price} Lei` : "+" });
+      if (!a.label) return;
+      const g = a.group ?? "";
+      if (g && g !== lastAddGroup) {
+        meta_data.push({ key: `##${g}`, value: g });
+        lastAddGroup = g;
+      }
+      meta_data.push({ key: a.label, value: a.price ? `+${a.price} Lei` : "+" });
     });
+    let lastSauceGroup = "";
     item.sauces?.forEach((s) => {
+      if (!s.label) return;
+      const g = s.group ?? "";
+      if (g && g !== lastSauceGroup) {
+        meta_data.push({ key: `##${g}`, value: g });
+        lastSauceGroup = g;
+      }
       const val = [s.count && `x${s.count}`, s.price && `+${s.price} Lei`].filter(Boolean).join(" ");
-      if (s.label) meta_data.push({ key: s.label, value: val || "+" });
+      meta_data.push({ key: s.label, value: val || "+" });
     });
     if (item.comment) meta_data.push({ key: "Comentariu", value: item.comment });
 
@@ -147,10 +161,28 @@ async function sendOrderEmails(opts: {
         (item.sauces?.reduce((s, a) => s + (a.price ?? 0), 0) ?? 0);
       const lineTotal = ((item.basePrice + extrasTotal) * item.qty).toFixed(2);
 
+      function groupedRows<T extends { group?: string }>(
+        items: T[],
+        row: (item: T) => string,
+      ) {
+        const lines: string[] = [];
+        let lastGroup = "";
+        for (const item of items) {
+          const g = item.group ?? "";
+          if (g && g !== lastGroup) {
+            lines.push(`<div style="font-size:11px;color:#374151;font-weight:700;padding-left:8px;margin-top:4px;">${g}:</div>`);
+            lastGroup = g;
+          }
+          lines.push(row(item));
+        }
+        return lines;
+      }
+
       const extraLines = [
-        ...(item.options?.map((o) => `<div style="font-size:12px;color:#6b7280;padding-left:8px;">↳ ${o.label}: <strong>${o.value}</strong></div>`) ?? []),
-        ...(item.additions?.map((a) => `<div style="font-size:12px;color:#6b7280;padding-left:8px;">↳ ${a.label}: <strong>+${a.price} Lei</strong></div>`) ?? []),
-        ...(item.sauces?.map((s) => `<div style="font-size:12px;color:#6b7280;padding-left:8px;">↳ ${s.label}${s.count ? ` x${s.count}` : ""}: <strong>+${s.price} Lei</strong></div>`) ?? []),
+        ...(item.options?.map((o) => `<div style="font-size:12px;color:#6b7280;padding-left:8px;">↳ <strong>${o.label}:</strong> ${o.value}</div>`) ?? []),
+        ...groupedRows(item.additions ?? [], (a) => `<div style="font-size:12px;color:#6b7280;padding-left:16px;">+ ${a.label}: <strong>+${a.price} Lei</strong></div>`),
+        ...groupedRows(item.sauces ?? [], (s) => `<div style="font-size:12px;color:#6b7280;padding-left:16px;">${s.label}${s.count ? ` x${s.count}` : ""}: <strong>+${s.price} Lei</strong></div>`),
+        ...(item.comment ? [`<div style="font-size:12px;color:#6b7280;padding-left:8px;margin-top:4px;">↳ Comentariu: <strong>${item.comment}</strong></div>`] : []),
       ].join("");
 
       return `<tr>

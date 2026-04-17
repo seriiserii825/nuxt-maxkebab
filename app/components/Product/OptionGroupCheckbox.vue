@@ -8,7 +8,7 @@ const props = defineProps<{ group: IAddonGroup }>();
 const store = useSingleProductStore();
 
 props.group.fields.forEach((field) => {
-  store.registerCheckbox(String(field.id), field.label, field.price);
+  store.registerCheckbox(String(field.id), field.label, field.price, props.group.title);
 });
 </script>
 

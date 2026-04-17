@@ -3,6 +3,7 @@ export interface CartItemOption {
   value: string;
   price?: number;
   count?: number;
+  group?: string;
 }
 
 export interface CartItem {

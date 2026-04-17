@@ -8,7 +8,7 @@ const props = defineProps<{ group: IAddonGroup }>();
 const store = useSingleProductStore();
 
 props.group.fields.forEach((field) => {
-  store.registerStepper(String(field.id), field.label, field.price);
+  store.registerStepper(String(field.id), field.label, field.price, props.group.title);
 });
 
 function onCount({ id, count }: { id: string; count: number }) {
