@@ -94,6 +94,15 @@
     "interphone": "Interphone",
     "sector": "Sector",
     "selectSector": "Select sector",
+    "sectors": {
+      "buiucani": "Buiucani",
+      "durlesti": "Durlești",
+      "centru": "Centru",
+      "botanica": "Botanica",
+      "posta_veche": "Poșta Veche",
+      "riscani": "Râșcani",
+      "sculeanca": "Sculeanca"
+    },
     "optional": "optional",
     "subtotal": "Subtotal",
     "delivery": "Delivery",

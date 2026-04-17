@@ -94,6 +94,15 @@
     "interphone": "Домофон",
     "sector": "Сектор",
     "selectSector": "Выберите сектор",
+    "sectors": {
+      "buiucani": "Буюкань",
+      "durlesti": "Дурлешть",
+      "centru": "Центр",
+      "botanica": "Ботаника",
+      "posta_veche": "Старая почта",
+      "riscani": "Рышкань",
+      "sculeanca": "Скулянка"
+    },
     "optional": "необязательно",
     "subtotal": "Сумма",
     "delivery": "Доставка",

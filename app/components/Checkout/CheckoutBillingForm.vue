@@ -15,14 +15,15 @@ const officeTypes = [
   { value: "oficiu", label: "Oficiu" },
 ];
 
-const sectors = [
-  { value: "buiucani", label: "Buiucani" },
-  { value: "durlesti", label: "Durlești" },
-  { value: "centru", label: "Centru" },
-  { value: "botanica", label: "Botanica" },
-  { value: "posta_veche", label: "Poșta Veche" },
-  { value: "sculeanca", label: "Sculeanca" },
-];
+const sectors = computed(() => [
+  { value: "buiucani" },
+  { value: "durlesti" },
+  { value: "centru" },
+  { value: "botanica" },
+  { value: "posta_veche" },
+  { value: "riscani" },
+  { value: "sculeanca" },
+].map((s) => ({ value: s.value, label: t(`checkout.sectors.${s.value}`) })));
 </script>
 
 <template>
